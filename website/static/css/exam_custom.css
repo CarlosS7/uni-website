@@ -1,0 +1,18 @@
+body {
+    background-image:
+    radial-gradient(
+      #3333cc,
+      #3399cc
+    );
+}
+
+.panel {
+    background: rgba(255, 255, 255, 0.8)
+}
+
+.footer {
+    padding-top: 20px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    border-top: 1px solid #eee;
+}

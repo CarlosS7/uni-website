@@ -1,0 +1,63 @@
+{
+    "exam_id": "silly1",
+    "section": "General Knowledge",
+    "next_page": "finish",
+    "inline": "",
+    "questions": [
+        {
+            "object_id": "silly1_gen01_01",
+            "correct": "B",
+            "body": ["1:", " What is the answer to life, the universe and everything?"],
+            "answers": [
+                ["A", "Whatever you want it to be, baby"],
+                ["B", "42"],
+                ["C", "A quarter to three"],
+                ["D", "Never mind the meaning of life, dear, let's have a nice cup of tea"]
+            ]
+        },
+        {
+            "object_id": "silly1_gen01_02",
+            "correct": "D",
+            "body": ["2:", " How did the knights escape from the monster?"],
+            "answers": [
+                ["A", "They tunneled their way out."],
+                ["B", "They threw sand in its eyes."],
+                ["C", "They sought an injunction against the monster."],
+                ["D", "The animator had a heart attack."]
+            ]
+        },
+        {
+            "object_id": "silly1_gen01_03",
+            "correct": "D",
+            "body": ["3:", " What is the worst French insult?"],
+            "answers": [
+                ["A", "I will make castanets out of your testicles."],
+                ["B", "Your father smells of elderberries."],
+                ["C", "I call you a silly thing."],
+                ["D", "I fart in your general direction."]
+            ]
+        },
+        {
+            "object_id": "silly1_gen01_04",
+            "correct": "A",
+            "body": ["4:", " What is the main precursor to armageddon?"],
+            "answers": [
+                ["A", "A friend shall lose a friend's hammer."],
+                ["B", "There will be one government ruling the whole world."],
+                ["C", "Plagues of locusts shall attack every McDonald's in the world and get very sick."],
+                ["D", "Every first-born child shall be infected with a tickly cough."]
+            ]
+        },
+        {
+            "object_id": "silly1_gen01_05",
+            "correct": "C",
+            "body": ["5:", " What's wrong with it, then?"],
+            "answers": [
+                ["A", "It's pining for the fjords."],
+                ["B", "The Norwegian Blue prefers kipping on its back."],
+                ["C", "It's dead."],
+                ["D", "It's stunned."]
+            ]
+        }
+    ]
+}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+<div class="panel panel-default panel-body">
+  <div class="jumbotron">
+    <div class="media">
+      <img class="media-object pull-left" src="{{ url_for('static', filename='images/logo.png') }}">
+      <div class="media-body">
+        <h1 class="media-heading">{{ data.title }}</h1>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <h2>{{ data.subtitle }}</h2>
+    <p>{{ data.intro }}</p>
+    {% for part in data.parts %}
+    <ul>
+      <li>{{ part }}</li>
+    </ul>
+    {% endfor %}
+    {% for text in data.body %}
+    <p>{{ text }}</p>
+    {% endfor %}
+  </div>
+  <p><a class="btn btn-primary" href="/exam/{{ data.exam_id }}/section/{{ data.next_page }}" role="button">Start the exam </a></p>
+</div>
+
+{% endblock %}

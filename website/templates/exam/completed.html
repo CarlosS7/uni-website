@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Finished{% endblock %}
+{% block content %}
+
+<div class="panel panel-default panel-body">
+  <div class="jumbotron">
+    <div class="media">
+      <img class="media-object pull-left" src="{{ url_for('static', filename='images/logo.png') }}">
+      <div class="media-body">
+        <h1 class="media-heading">Payap University English Exam</h1>
+        {% if data %}
+        <h2>{{ data.section }}</h2>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <h2>Payap University English Proficiency Exam</h2>
+    <h4>Well done! You have successfully completed the exam.</h4>
+    <h4>Please contact the office to get your results.</h4>
+  </div>
+</div>
+
+{% endblock %}
