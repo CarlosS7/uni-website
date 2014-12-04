@@ -1,0 +1,21 @@
+{
+    "exam_id": "silly1",
+    "section": "General Knowledge",
+    "next_page": "silly01",
+    "intro": "In this section of the test, you will have an opportunity to demonstrate your general knowledge.",
+    "directions": "Answer each question in this part to the best of your ability.",
+    "questions": [
+        {
+            "object_id": "silly1_introsilly01_01",
+            "heading": "Example",
+            "body": ["Why should the Greeks' goal against the German philosophers have been disallowed?"],
+            "ending": "As any serious student of Marx's theory of alienation would know, it was clearly offside.",
+            "answers": [
+                ["A", "The reality is merely an a priori adjunct of non-naturalistic ethics."],
+                ["B", "Ontologically the goal exists only in the imagination."],
+                ["C", "Visible factors are created by the human mind and are absent from the goal-in-itself."],
+                ["D", "It was offside."]
+            ]
+        }
+    ]
+}
