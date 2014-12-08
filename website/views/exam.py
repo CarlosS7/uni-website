@@ -26,7 +26,7 @@ def index():
 
 @mod.route('/<exam_id>/section/<section_id>', methods=['GET', 'POST'])
 @login_required
-def section(section_id, exam_id):
+def section(exam_id, section_id):
     """Display question pages and get user's answers."""
     if request.method == 'POST':
         get_results(request.form.items(), exam_id)
