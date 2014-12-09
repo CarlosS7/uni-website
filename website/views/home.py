@@ -11,7 +11,3 @@ def index():
 def about():
     data = Content.query.filter_by(content_id='teachers').first().content
     return render_template('home/about.html', data=data)
-
-@mod.route('/courses')
-def courses():
-    return render_template('home/courses.html')
