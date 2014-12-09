@@ -3,8 +3,8 @@
     "title": "Rather Silly Exam",
     "subtitle": "General Knowledge",
     "section": "",
-    "next_page": "silly01",
+    "next_page": "introsilly01",
     "intro": "The exam lasts thirty minutes and has four parts",
     "parts": ["General knowledge", "More general knowledge", "What was the third one, again?", "General knowledge"],
-    "body": ["The score you need to pass the exam depends on what medication you are taking.", "Please read the instructions for each section carefully.", "When you are ready to start the exam, click the button below."]
+    "body": ["Please read the instructions for each section carefully.", "When you are ready to start the exam, click the button below."]
 }
