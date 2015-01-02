@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Check exam{% endblock %}
+{% block content %}
+
+<div class="panel panel-default">
+  <h2 class="page-header">PYU English Exam</h2>
+  <h4>{{ examinee }}</h4>
+  <ul>
+    {% for score in scores %}
+    <li>{{ score }}</li>
+    {% endfor %}
+  </ul>
+</div>
+
+{% endblock %}
