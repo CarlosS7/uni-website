@@ -3,19 +3,21 @@ from website import db
 from sqlalchemy.dialects.postgresql import JSON
 
 
-pwd_ctx = CryptContext(schemes=['bcrypt', 'sha512_crypt', 'pbkdf2_sha256'],
-        default='sha512_crypt')
+pwd_ctx = CryptContext(schemes=['bcrypt', 'sha512_crypt', 'pbkdf2_sha512'],
+        default='pbkdf2_sha512')
 
 class User(db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(32), unique=True)
     password_hash = db.Column(db.String(128))
+    role = db.Column(db.String(32))
     answer_page = db.Column(JSON)
 
-    def __init__(self, username, password, answer_page='{}'):
+    def __init__(self, username, password, role, answer_page='{}'):
         self.username = username
         self.hash_password(password)
+        self.role = role
         self.answer_page = answer_page
 
     def hash_password(self, password):
@@ -35,6 +37,9 @@ class User(db.Model):
 
     def get_id(self):
         return str(self.id)
+
+    def get_role(self):
+        return self.role
 
     def __repr__(self):
         return '<User {}>'.format(self.username)

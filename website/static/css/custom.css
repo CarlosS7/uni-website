@@ -1,10 +1,6 @@
 body {
     padding-top: 70px;
-    background-image:
-    radial-gradient(
-    #99ccff,
-    #6699ff
-    );
+    background-color: #f5f5f5;
 }
 
 #randomquote {
@@ -25,7 +21,7 @@ body {
 .panel {
     padding: 20px;
     border-radius: 24px;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.4);
 }
 
 .carousel-fade .carousel-inner .item {

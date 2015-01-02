@@ -22,6 +22,7 @@ def page_not_found(error):
 from .models import User
 
 login_man.login_view = 'user.login'
+login_man.login_message = 'You are not authorized to view this page.'
 
 @login_man.user_loader
 def load_user(id):
