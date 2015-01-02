@@ -3,7 +3,7 @@ from website import db
 from sqlalchemy.dialects.postgresql import JSON
 
 
-pwd_ctx = CryptContext(schemes=['bcrypt', 'sha512_crypt', 'pbkdf2_sha512'],
+pwd_ctx = CryptContext(schemes=['sha512_crypt', 'pbkdf2_sha512'],
         default='pbkdf2_sha512')
 
 class User(db.Model):

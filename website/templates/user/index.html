@@ -2,12 +2,14 @@
 {% block title %}Admin{% endblock %}
 {% block content %}
 
-<h1>Hiya boss!</h1>
 <div class="panel panel-default">
-  <h2 class="page-header" id="coursesiep" style="padding-top: 70px; margin-top: -50px;">Tasks</h2>
-  <h4>What do you want to do now?</h4>
-  <p></p>
-  <p></p>
+  <h2 class="page-header">Administration</h2>
+  <h4>Exams</h4>
+  <ul>
+    {% for user in check %}
+    <li><a href="{{ url_for('checkexam', examinee=user.username) }}">{{ user.username }}</a></li>
+    {% endfor %}
+  </ul>
 </div>
 
 {% endblock %}

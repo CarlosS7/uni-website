@@ -1,20 +1,13 @@
 import json
 from itertools import groupby
 from flask import Blueprint, render_template, redirect, flash, url_for
-from flask.ext.login import current_user, login_user, logout_user
+from flask.ext.login import login_user, logout_user
 from website import db
 from website.models import User, Questions
 from website.forms import LoginForm
 from website.scripts import login_required
 
 mod = Blueprint('user', __name__, url_prefix='/user')
-
-@mod.route('/')
-def index():
-    """Check user is authenticated."""
-    if current_user and current_user.is_authenticated():
-        return render_template('user/index.html')
-    return redirect(url_for('user.login'))
 
 @mod.route('/login', methods=['GET', 'POST'])
 def login():
@@ -37,25 +30,33 @@ def logout():
     flash('You have been logged out')
     return redirect(url_for('home.index'))
 
+@mod.route('/')
+@login_required(role='admin')
+def index():
+    users = User.query.all()
+    check = [user for user in users if json.loads(user.answer_page)]
+    return render_template('user/index.html', check=check)
+
+@mod.route('/checkexam/<examinee>')
+@login_required(role='admin')
+def checkexam(examinee):
+    scores = calc_score(get_score(examinee))
+    return render_template('user/checkexam.html', examinee=examinee, scores=scores)
+
 @mod.route('/editpage')
 @login_required(role='admin')
 def editpage():
     pass
 
-@mod.route('/examcheck')
-@login_required(role='admin')
-def examcheck():
-    users = User.query.all()
-    check = [user for user in users if json.loads(user.answer_page)]
-    return render_template('user/examcheck.html', check=check)
-
-def get_score(exam_id, username):
+def get_score(username):
     """Return a list of answers that are correct."""
     user = User.query.filter_by(username=username).first()
     answers = json.loads(user.answer_page)
+    exam_id = 'pyueng5'
     data = Questions.query.filter_by(exam_id=exam_id).all()
     dicts = [ans for quest in data for ans in quest.question_page.get('correct', {})]
     correct = [key for d in dicts for key, val in d.items() if val == answers.get(key)]
+    correct.append(dicts.get('{}_write_01'.format(exam_id)))
     return correct
 
 def calc_score(ans_list):
