@@ -37,6 +37,7 @@
   {% endif %}
 
   <form action="/exam/{{ data.exam_id }}/section/{{ data.next_page }}" method="post">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
     {% if data.questions %}
     {% for question in data.questions %}
     <div class="panel panel-default">

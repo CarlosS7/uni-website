@@ -1,4 +1,3 @@
-import random
 import json
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask.ext.login import current_user
@@ -16,14 +15,12 @@ def add_no_cache(response):
     return response
 
 @mod.route('/')
+@login_required(role='examinee')
 def index():
-    """Check user is authenticated and randomly choose exam from database."""
-    if current_user and current_user.is_authenticated():
-        query = db.session.query(Questions.exam_id.distinct().label('exam_id'))
-        exam_id = random.choice([row.exam_id for row in query.all()])
-        data = Questions.query.filter_by(exam_id=exam_id, section_id='initial').first().question_page
-        return render_template('exam/index.html', data=data)
-    return redirect(url_for('user.login'))
+    """Check user is authenticated and set exam."""
+    exam_id = current_user.username.split('_')[0]
+    data = Questions.query.filter_by(exam_id=exam_id, section_id='initial').first().question_page
+    return render_template('exam/index.html', data=data)
 
 @mod.route('/<exam_id>/section/<section_id>', methods=['GET', 'POST'])
 @login_required(role='examinee')

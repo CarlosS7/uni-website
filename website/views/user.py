@@ -34,35 +34,34 @@ def logout():
 @login_required(role='admin')
 def index():
     users = User.query.all()
-    check = [user for user in users if json.loads(user.answer_page)]
-    return render_template('user/index.html', check=check)
-
-@mod.route('/checkexam/<examinee>')
-@login_required(role='admin')
-def checkexam(examinee):
-    scores = calc_score(get_score(examinee))
-    return render_template('user/checkexam.html', examinee=examinee, scores=scores)
+    check = [check_writing(user) for user in users if json.loads(user.answer_page)]
+    return render_template('user/index.html', check=check) # also add signups to this page
 
 @mod.route('/editpage')
 @login_required(role='admin')
 def editpage():
     pass
 
+def check_writing(user):
+    answers = json.loads(user.answer_page)
+    exam_id = user.username.split('_')[0]
+    writing = answers.get('{}_write_01'.format(exam_id))
+    return (user.username, writing)
+
 def get_score(username):
     """Return a list of answers that are correct."""
     user = User.query.filter_by(username=username).first()
     answers = json.loads(user.answer_page)
-    exam_id = 'pyueng5'
+    exam_id = user.username.split('_')[0]
     data = Questions.query.filter_by(exam_id=exam_id).all()
     dicts = [ans for quest in data for ans in quest.question_page.get('correct', {})]
     correct = [key for d in dicts for key, val in d.items() if val == answers.get(key)]
-    correct.append(dicts.get('{}_write_01'.format(exam_id)))
     return correct
 
 def calc_score(ans_list):
     correct = sorted(ans_list)
     groups = []
-    for k, g in groupby(correct, key=lambda x: x.split('_', 1)):
+    for k, g in groupby(correct, key=lambda x: x.split('_')[1]):
         groups.append(list(g))
     return groups
 

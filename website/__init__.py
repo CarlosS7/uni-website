@@ -1,9 +1,11 @@
 from flask import Flask, render_template
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.login import LoginManager
+from flask_wtf.csrf import CsrfProtect
 
 app = Flask(__name__)
 app.config.from_object('config')
+CsrfProtect(app)
 db = SQLAlchemy(app)
 login_man = LoginManager()
 login_man.init_app(app)

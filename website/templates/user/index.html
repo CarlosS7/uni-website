@@ -5,11 +5,12 @@
 <div class="panel panel-default">
   <h2 class="page-header">Administration</h2>
   <h4>Exams</h4>
-  <ul>
-    {% for user in check %}
-    <li><a href="{{ url_for('checkexam', examinee=user.username) }}">{{ user.username }}</a></li>
-    {% endfor %}
-  </ul>
+  {% for needcheck in check %}
+  <h5>{{ needcheck[0] }}</h5>
+  <textarea cols="80" rows="20">
+    {{ needcheck[1] }}
+  </textarea><br>
+  {% endfor %}
 </div>
 
 {% endblock %}
