@@ -1,7 +1,7 @@
 {
     "exam_id": "silly1",
     "section": "General Knowledge",
-    "next_page": "finish",
+    "next_page": "write01",
     "inline": "",
     "questions": [
         {
@@ -54,14 +54,14 @@
                 ["D", "It's stunned."]
             ]
         }
-    ]
-        "correct": [
+    ],
+    "correct": [
         {
             "silly1_list_01": "B",
             "silly1_list_02": "D",
             "silly1_struct_03": "D",
             "silly1_struct_04": "A",
-            "silly1_read_05": "C",
+            "silly1_read_05": "C"
         }
     ]
 }

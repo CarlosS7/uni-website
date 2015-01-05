@@ -10,15 +10,17 @@ class User(db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(32), unique=True)
-    password_hash = db.Column(db.String(128))
+    password_hash = db.Column(db.String(192))
     role = db.Column(db.String(32))
     answer_page = db.Column(JSON)
+    exam_score = db.Column(db.Integer)
 
-    def __init__(self, username, password, role, answer_page='{}'):
+    def __init__(self, username, password, role, answer_page='{}', exam_score=0):
         self.username = username
         self.hash_password(password)
         self.role = role
         self.answer_page = answer_page
+        self.exam_score = exam_score
 
     def hash_password(self, password):
         self.password_hash = pwd_ctx.encrypt(password)

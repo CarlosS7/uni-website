@@ -1,6 +1,6 @@
 import json
 from itertools import groupby
-from flask import Blueprint, render_template, redirect, flash, url_for
+from flask import Blueprint, render_template, request, redirect, flash, url_for
 from flask.ext.login import login_user, logout_user
 from website import db
 from website.models import User, Questions
@@ -42,10 +42,23 @@ def index():
 def editpage():
     pass
 
+@mod.route('/examscores', methods=['POST'])
+@login_required(role='admin')
+def examscores():
+    for user in request.form.items():
+        if user[0] != 'csrf_token':
+            username, writing = user[0], int(user[1])
+            groups = calc_score(get_score(username))
+            listening, structure, reading = len(groups[0]), len(groups[1]), len(groups[2])
+            user = User.query.filter_by(username=username).first()
+            user.exam_score = listening + structure + reading + writing
+            db.session.commit()
+            clear_answers(username)
+    return redirect(url_for('user.index'))
+
 def check_writing(user):
     answers = json.loads(user.answer_page)
-    exam_id = user.username.split('_')[0]
-    writing = answers.get('{}_write_01'.format(exam_id))
+    writing = answers.get('writing')
     return (user.username, writing)
 
 def get_score(username):
@@ -61,7 +74,7 @@ def get_score(username):
 def calc_score(ans_list):
     correct = sorted(ans_list)
     groups = []
-    for k, g in groupby(correct, key=lambda x: x.split('_')[1]):
+    for k, g in groupby(correct, key=lambda x: x.split('_')[1]): # need to work on this
         groups.append(list(g))
     return groups
 

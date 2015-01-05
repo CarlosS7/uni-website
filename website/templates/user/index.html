@@ -3,14 +3,25 @@
 {% block content %}
 
 <div class="panel panel-default">
-  <h2 class="page-header">Administration</h2>
-  <h4>Exams</h4>
-  {% for needcheck in check %}
-  <h5>{{ needcheck[0] }}</h5>
-  <textarea cols="80" rows="20">
-    {{ needcheck[1] }}
-  </textarea><br>
-  {% endfor %}
+  <h2 class="page-header">Jobs to do</h2>
+  {% if check %}
+  <form action="{{ url_for('user.examscores') }}" method="post">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+    <h3>Exams</h3>
+    {% for needcheck in check %}
+    <h4>{{ needcheck[0] }}</h4>
+    <textarea cols="80" rows="10">
+      {{ needcheck[1] }}
+    </textarea><br>
+    <label>
+      Writing score
+      <input type="text" name="{{ needcheck[0] }}">
+    </label>
+    <br>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">Submit writing scores</button>
+  </form>
+  {% endif %}
 </div>
 
 {% endblock %}
