@@ -9,18 +9,18 @@ pwd_ctx = CryptContext(schemes=['sha512_crypt', 'pbkdf2_sha512'],
 class User(db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(32), unique=True)
+    username = db.Column(db.String(64), unique=True)
     password_hash = db.Column(db.String(192))
     role = db.Column(db.String(32))
+    exam_id = db.Column(db.String(32))
     answer_page = db.Column(JSON)
-    exam_score = db.Column(db.Integer)
 
-    def __init__(self, username, password, role, answer_page='{}', exam_score=0):
+    def __init__(self, username, password, role, exam_id='', answer_page='{}'):
         self.username = username
         self.hash_password(password)
         self.role = role
+        self.exam_id = exam_id
         self.answer_page = answer_page
-        self.exam_score = exam_score
 
     def hash_password(self, password):
         self.password_hash = pwd_ctx.encrypt(password)
@@ -42,6 +42,21 @@ class User(db.Model):
 
     def get_role(self):
         return self.role
+
+    def __repr__(self):
+        return '<User {}>'.format(self.username)
+
+class CompletedExams(db.Model):
+    __tablename__ = 'oldexams'
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(32), unique=True)
+    answer_page = db.Column(JSON)
+    exam_score = db.Column(JSON)
+
+    def __init__(self, username, answer_page='{}', exam_score='{}'):
+        self.username = username
+        self.answer_page = answer_page
+        self.exam_score = exam_score
 
     def __repr__(self):
         return '<User {}>'.format(self.username)

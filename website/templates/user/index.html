@@ -4,23 +4,30 @@
 
 <div class="panel panel-default">
   <h2 class="page-header">Jobs to do</h2>
-  {% if check %}
-  <form action="{{ url_for('user.examscores') }}" method="post">
-    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-    <h3>Exams</h3>
-    {% for needcheck in check %}
-    <h4>{{ needcheck[0] }}</h4>
-    <textarea cols="80" rows="10">
-      {{ needcheck[1] }}
-    </textarea><br>
-    <label>
-      Writing score
-      <input type="text" name="{{ needcheck[0] }}">
-    </label>
-    <br>
-    {% endfor %}
-    <button type="submit" class="btn btn-primary">Submit writing scores</button>
+  <h3>Exams</h3>
+  <h4>Add examinee</h4>
+  <form class="form-horizontal" action="{{ url_for('user.index') }}" method="POST" role="form">
+    <fieldset>
+      {{ form.csrf_token() }}
+      <div class="form-group">
+        <label>{{ form.username.label }}</label>
+        {{ form.username(class="form-control", placeholder="Username") }}
+      </div>
+      <div class="form-group">
+        <label>{{ form.password.label }}</label>
+        {{ form.password(class="form-control", placeholder="Password") }}
+      </div>
+      <div class="form-group">
+        <label>{{ form.exam_id.label }}</label>
+        {{ form.exam_id(class="form-control", placeholder="Exam ID") }}
+      </div>
+      <br>
+      <button type="submit" class="btn btn-primary">Add examinee</button>
+    </fieldset>
   </form>
+  {% if check %}
+  <h4>Check exams</h4>
+  <p><a class="btn btn-primary" href="{{ url_for('user.examscores') }}" role="button">Check exams</a></p>
   {% endif %}
 </div>
 

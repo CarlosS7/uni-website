@@ -6,6 +6,12 @@ class LoginForm(Form):
     username = TextField('Username', [valid.Required('Please enter your name')])
     password = PasswordField('Password', [valid.Required('Please enter your password')])
 
+class AddExaminee(Form):
+    username = TextField('Username', [valid.Required('Please enter the examinee\'s name')])
+    password = PasswordField('Password', [valid.Required('Please enter the examinee\'s password')])
+    exam_id = SelectField('Exam ID', choices=[('pyueng5', 'PYU Entrance Exam 5'),
+        ('pyueng8', 'PYU Entrance Exam 8')])
+
 class SignupForm(Form):
     username = TextField('Name', [
         valid.Required('Please enter your name'),

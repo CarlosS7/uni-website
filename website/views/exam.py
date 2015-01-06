@@ -18,7 +18,7 @@ def add_no_cache(response):
 @login_required(role='examinee')
 def index():
     """Check user is authenticated and set exam."""
-    exam_id = current_user.username.split('_')[0]
+    exam_id = current_user.exam_id
     data = Questions.query.filter_by(exam_id=exam_id, section_id='initial').first().question_page
     return render_template('exam/index.html', data=data)
 

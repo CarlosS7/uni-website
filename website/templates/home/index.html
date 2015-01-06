@@ -2,6 +2,23 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 
+<div class="panel panel-default">
+  <div class="carousel slide carousel-fade" data-ride="carousel" id="mainCarousel"><!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li class="active" data-slide-to="0" data-target="#mainCarousel">&nbsp;</li>
+      <li data-slide-to="1" data-target="#mainCarousel">&nbsp;</li>
+      <li data-slide-to="2" data-target="#mainCarousel">&nbsp;</li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="item active"><img alt="First slide" src="{{ url_for('static', filename='images/elec_1.jpg') }}" />
+      </div>
+      <div class="item"><img alt="Second slide" src="{{ url_for('static', filename='images/elec_2.jpg') }}" />
+      </div>
+      <div class="item"><img alt="Third slide" src="{{ url_for('static', filename='images/elec_3.jpg') }}" />
+      </div>
+    </div>
+  </div>
+</div>
 <div class="panel panel-default" id="mainheading">
   <div class="media"><a class="pull-left" href="#"><img class="media-object img-rounded" src="{{ url_for('static', filename='images/elec_logo.png') }}" /> </a>
     <div class="media-body">
@@ -60,46 +77,46 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Registration and payment:</td>
-            <td>1st September 2014 - 9th January 2015</td>
-          </tr>
-          <tr>
-            <td>Last day for late registration and payment:</td>
-            <td>16th January 2015</td>
-          </tr>
-          <tr>
-            <td><strong>First day of classes:</strong></td>
-            <td><strong>5th January 2015</strong></td>
-          </tr>
-          <tr>
-            <td>Midterm examination:</td>
-            <td>2nd - 5th March 2015</td>
-          </tr>
-          <tr>
-            <td>Songkran holiday:</td>
-            <td>13th - 17th April 2015</td>
-          </tr>
-          <tr>
-            <td><strong>Last day of classes:</strong></td>
-            <td><strong>28th April 2015</strong></td>
-          </tr>
-          <tr>
-            <td>Final examination:</td>
-            <td>27th April 2015</td>
-          </tr>
-          <tr>
-            <td>Grade announcement:</td>
-            <td>15th May 2015</td>
-          </tr>
-          <tr>
-            <td><strong>Class times:</strong></td>
-            <td><strong>Mon - Thurs 9 am - 12 noon</strong></td>
-          </tr>
-          <tr>
-            <td><strong>Cost:</strong></td>
-            <td><strong>43,800 THB</strong></td>
-          </tr>
+        <tr>
+          <td>Registration and payment:</td>
+          <td>1st September 2014 - 9th January 2015</td>
+        </tr>
+        <tr>
+          <td>Last day for late registration and payment:</td>
+          <td>16th January 2015</td>
+        </tr>
+        <tr>
+          <td><strong>First day of classes:</strong></td>
+          <td><strong>5th January 2015</strong></td>
+        </tr>
+        <tr>
+          <td>Midterm examination:</td>
+          <td>2nd - 5th March 2015</td>
+        </tr>
+        <tr>
+          <td>Songkran holiday:</td>
+          <td>13th - 17th April 2015</td>
+        </tr>
+        <tr>
+          <td><strong>Last day of classes:</strong></td>
+          <td><strong>28th April 2015</strong></td>
+        </tr>
+        <tr>
+          <td>Final examination:</td>
+          <td>27th April 2015</td>
+        </tr>
+        <tr>
+          <td>Grade announcement:</td>
+          <td>15th May 2015</td>
+        </tr>
+        <tr>
+          <td><strong>Class times:</strong></td>
+          <td><strong>Mon - Thurs 9 am - 12 noon</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Cost:</strong></td>
+          <td><strong>43,800 THB</strong></td>
+        </tr>
         </tbody>
       </table>
     </div>
@@ -127,30 +144,30 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>January</td>
-            <td>5th January - 30th January 2015</td>
-          </tr>
-          <tr>
-            <td>February</td>
-            <td>2nd February - 27th February 2015</td>
-          </tr>
-          <tr>
-            <td>March</td>
-            <td>2nd March - 27th March 2015</td>
-          </tr>
-          <tr>
-            <td>May</td>
-            <td>4th May - 29th May</td>
-          </tr>
-          <tr>
-            <td><strong>Class times:</strong></td>
-            <td><strong>Mon - Fri 9 am - 12 noon and 1 pm - 4 pm</strong></td>
-          </tr>
-          <tr>
-            <td><strong>Cost:</strong></td>
-            <td><strong>35,000 THB</strong></td>
-          </tr>
+        <tr>
+          <td>January</td>
+          <td>5th January - 30th January 2015</td>
+        </tr>
+        <tr>
+          <td>February</td>
+          <td>2nd February - 27th February 2015</td>
+        </tr>
+        <tr>
+          <td>March</td>
+          <td>2nd March - 27th March 2015</td>
+        </tr>
+        <tr>
+          <td>May</td>
+          <td>4th May - 29th May</td>
+        </tr>
+        <tr>
+          <td><strong>Class times:</strong></td>
+          <td><strong>Mon - Fri 9 am - 12 noon and 1 pm - 4 pm</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Cost:</strong></td>
+          <td><strong>35,000 THB</strong></td>
+        </tr>
         </tbody>
       </table>
     </div>
@@ -176,22 +193,22 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>February</td>
-            <td>27th January - 26th February 2015</td>
-          </tr>
-          <tr>
-            <td>March</td>
-            <td>3rd March - 2nd April 2015</td>
-          </tr>
-          <tr>
-            <td><strong>Class times:</strong></td>
-            <td><strong>Tues, Thurs 5 - 7 pm</strong></td>
-          </tr>
-          <tr>
-            <td><strong>Cost:</strong></td>
-            <td><strong>3,975 THB (2,435 THB for Payap students and staff)</strong></td>
-          </tr>
+        <tr>
+          <td>February</td>
+          <td>27th January - 26th February 2015</td>
+        </tr>
+        <tr>
+          <td>March</td>
+          <td>3rd March - 2nd April 2015</td>
+        </tr>
+        <tr>
+          <td><strong>Class times:</strong></td>
+          <td><strong>Tues, Thurs 5 - 7 pm</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Cost:</strong></td>
+          <td><strong>3,975 THB (2,435 THB for Payap students and staff)</strong></td>
+        </tr>
         </tbody>
       </table>
     </div>
@@ -216,22 +233,22 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>February</td>
-            <td>2nd February - 27th February 2015</td>
-          </tr>
-          <tr>
-            <td>March</td>
-            <td>2nd March - 27th March 2015</td>
-          </tr>
-          <tr>
-            <td><strong>Class times:</strong></td>
-            <td><strong>Mon, Wed, Fri 5 - 7 pm</strong></td>
-          </tr>
-          <tr>
-            <td><strong>Cost:</strong></td>
-            <td><strong>4,950 THB (3,465 THB for Payap students and staff)</strong></td>
-          </tr>
+        <tr>
+          <td>February</td>
+          <td>2nd February - 27th February 2015</td>
+        </tr>
+        <tr>
+          <td>March</td>
+          <td>2nd March - 27th March 2015</td>
+        </tr>
+        <tr>
+          <td><strong>Class times:</strong></td>
+          <td><strong>Mon, Wed, Fri 5 - 7 pm</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Cost:</strong></td>
+          <td><strong>4,950 THB (3,465 THB for Payap students and staff)</strong></td>
+        </tr>
         </tbody>
       </table>
     </div>

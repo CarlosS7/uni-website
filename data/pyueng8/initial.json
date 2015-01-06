@@ -1,0 +1,10 @@
+{
+    "exam_id": "pyueng5",
+    "title": "Rather Silly Exam",
+    "subtitle": "General Knowledge",
+    "section": "",
+    "next_page": "introsilly01",
+    "intro": "The exam lasts thirty minutes and has four parts",
+    "parts": ["General knowledge", "More general knowledge", "What was the third one, again?", "General knowledge"],
+    "body": ["Please read the instructions for each section carefully.", "When you are ready to start the exam, click the button below."]
+}

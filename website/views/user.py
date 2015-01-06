@@ -1,10 +1,9 @@
 import json
-from itertools import groupby
 from flask import Blueprint, render_template, request, redirect, flash, url_for
 from flask.ext.login import login_user, logout_user
 from website import db
-from website.models import User, Questions
-from website.forms import LoginForm
+from website.models import User, Questions, CompletedExams
+from website.forms import LoginForm, AddExaminee
 from website.scripts import login_required
 
 mod = Blueprint('user', __name__, url_prefix='/user')
@@ -30,55 +29,74 @@ def logout():
     flash('You have been logged out')
     return redirect(url_for('home.index'))
 
-@mod.route('/')
+@mod.route('/', methods=['GET', 'POST'])
 @login_required(role='admin')
 def index():
+    form = AddExaminee()
+    if form.validate_on_submit():
+        if User.query.filter_by(username=form.username.data).count():
+            flash('That name already exists. Please choose another name.')
+            return redirect(url_for('user.index'))
+        db.session.add(User(form.username.data, form.password.data,
+            'examinee', form.exam_id.data))
+        db.session.commit()
+        flash('Examinee added')
+        return redirect(url_for('user.index'))
     users = User.query.all()
-    check = [check_writing(user) for user in users if json.loads(user.answer_page)]
-    return render_template('user/index.html', check=check) # also add signups to this page
+    check = len([user for user in users if json.loads(user.answer_page)])
+    return render_template('user/index.html', check=check, form=form)
 
 @mod.route('/editpage')
 @login_required(role='admin')
 def editpage():
     pass
 
-@mod.route('/examscores', methods=['POST'])
+@mod.route('/examscores', methods=['GET', 'POST'])
 @login_required(role='admin')
 def examscores():
-    for user in request.form.items():
-        if user[0] != 'csrf_token':
-            username, writing = user[0], int(user[1])
-            groups = calc_score(get_score(username))
-            listening, structure, reading = len(groups[0]), len(groups[1]), len(groups[2])
-            user = User.query.filter_by(username=username).first()
-            user.exam_score = listening + structure + reading + writing
-            db.session.commit()
-            clear_answers(username)
-    return redirect(url_for('user.index'))
+    scores = {}
+    if request.method == 'POST':
+        for userdata in request.form.items():
+            user = User.query.filter_by(username=userdata[0]).first()
+            if user:
+                writing = float(userdata[1] or 0)
+                listening, structure, reading = calc_score(get_score(user))
+                total = round(((listening + structure + reading + 55) * 11.6/3) - 23.5 + (writing * 7.83))
+                scores = {'listening': listening, 'structure': structure,
+                        'reading': reading, 'writing': writing, 'total': total}
+                clear_answers(user, scores)
+                scores['name'] = user.username
+    users = User.query.all()
+    check = [check_writing(username) for username in users if json.loads(username.answer_page)]
+    return render_template('user/examscores.html', check=check, scores=scores)
 
 def check_writing(user):
     answers = json.loads(user.answer_page)
     writing = answers.get('writing')
     return (user.username, writing)
 
-def get_score(username):
+def get_score(user):
     """Return a list of answers that are correct."""
-    user = User.query.filter_by(username=username).first()
     answers = json.loads(user.answer_page)
-    exam_id = user.username.split('_')[0]
+    exam_id = user.exam_id
     data = Questions.query.filter_by(exam_id=exam_id).all()
     dicts = [ans for quest in data for ans in quest.question_page.get('correct', {})]
     correct = [key for d in dicts for key, val in d.items() if val == answers.get(key)]
     return correct
 
 def calc_score(ans_list):
-    correct = sorted(ans_list)
-    groups = []
-    for k, g in groupby(correct, key=lambda x: x.split('_')[1]): # need to work on this
-        groups.append(list(g))
-    return groups
+    listening = structure = reading = 0
+    for ans in ans_list:
+        if ans.split('_')[1] == 'list':
+            listening += 1
+        elif ans.split('_')[1] == 'struct':
+            structure += 1
+        else:
+            reading += 1
+    return listening, structure, reading
 
-def clear_answers(username):
-    user = User.query.filter_by(username=username).first()
-    user.answer_page = json.dumps({})
+def clear_answers(user, exam_score):
+    answer_page = json.loads(user.answer_page)
+    db.session.add(CompletedExams(user.username, answer_page, exam_score))
+    user.answer_page = '{}'
     db.session.commit()
