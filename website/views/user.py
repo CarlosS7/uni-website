@@ -63,9 +63,9 @@ def addexaminee():
 def editpage():
     pass
 
-@mod.route('/examscores', methods=['GET', 'POST'])
+@mod.route('/examwriting', methods=['GET', 'POST'])
 @login_required(role='admin')
-def examscores():
+def examwriting():
     if request.method == 'POST':
         for userdata in request.form.items():
             user = User.query.filter_by(username=userdata[0]).first()
@@ -78,7 +78,7 @@ def examscores():
                 update_db(user, scores)
     users = User.query.all()
     check = [check_writing(username) for username in users if json.loads(username.answer_page)]
-    return render_template('user/examscores.html', check=check)
+    return render_template('user/examwriting.html', check=check)
 
 def check_writing(user):
     answers = json.loads(user.answer_page)
