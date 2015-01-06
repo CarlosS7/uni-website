@@ -53,7 +53,7 @@ class CompletedExams(db.Model):
     answer_page = db.Column(JSON)
     exam_score = db.Column(JSON)
 
-    def __init__(self, username, answer_page='{}', exam_score='{}'):
+    def __init__(self, username, answer_page, exam_score):
         self.username = username
         self.answer_page = answer_page
         self.exam_score = exam_score

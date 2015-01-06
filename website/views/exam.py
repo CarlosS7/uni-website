@@ -29,7 +29,7 @@ def section(exam_id, section_id):
     if request.method == 'POST':
         get_results(request.form.items(), exam_id)
         if section_id == 'finish':
-            return redirect(url_for('exam.completed'))
+            return redirect(url_for('user.logout'))
         return redirect(url_for('exam.section', exam_id=exam_id, section_id=section_id))
     data = Questions.query.filter_by(exam_id=exam_id, section_id=section_id).first().question_page
     return render_template('exam/questions.html', data=data)
@@ -41,7 +41,3 @@ def get_results(items, exam_id):
     answers.update(results)
     current_user.answer_page = json.dumps(answers)
     db.session.commit()
-
-@mod.route('/completed')
-def completed():
-    return render_template('exam/completed.html')

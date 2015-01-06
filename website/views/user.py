@@ -1,12 +1,19 @@
 import json
 from flask import Blueprint, render_template, request, redirect, flash, url_for
-from flask.ext.login import login_user, logout_user
+from flask.ext.login import login_user, logout_user, current_user
 from website import db
 from website.models import User, Questions, CompletedExams
 from website.forms import LoginForm, AddExaminee
 from website.scripts import login_required
 
 mod = Blueprint('user', __name__, url_prefix='/user')
+
+@mod.after_request
+def add_no_cache(response):
+    """Make sure that pages are not cached."""
+    if current_user.is_authenticated():
+        response.headers.add('Cache-Control', 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0')
+    return response
 
 @mod.route('/login', methods=['GET', 'POST'])
 def login():
@@ -64,7 +71,7 @@ def examscores():
                 total = round(((listening + structure + reading + 55) * 11.6/3) - 23.5 + (writing * 7.83))
                 scores = {'listening': listening, 'structure': structure,
                         'reading': reading, 'writing': writing, 'total': total}
-                clear_answers(user, scores)
+                update_db(user, scores)
                 scores['name'] = user.username
     users = User.query.all()
     check = [check_writing(username) for username in users if json.loads(username.answer_page)]
@@ -95,8 +102,8 @@ def calc_score(ans_list):
             reading += 1
     return listening, structure, reading
 
-def clear_answers(user, exam_score):
+def update_db(user, exam_score):
     answer_page = json.loads(user.answer_page)
     db.session.add(CompletedExams(user.username, answer_page, exam_score))
-    user.answer_page = '{}'
+    db.session.delete(user)
     db.session.commit()
