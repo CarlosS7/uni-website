@@ -39,6 +39,13 @@ def logout():
 @mod.route('/', methods=['GET', 'POST'])
 @login_required(role='admin')
 def index():
+    users = User.query.all()
+    check = len([user for user in users if json.loads(user.answer_page)])
+    return render_template('user/index.html', check=check)
+
+@mod.route('/addexaminee', methods=['GET', 'POST'])
+@login_required(role='admin')
+def addexaminee():
     form = AddExaminee()
     if form.validate_on_submit():
         if User.query.filter_by(username=form.username.data).count():
@@ -48,10 +55,8 @@ def index():
             'examinee', form.exam_id.data))
         db.session.commit()
         flash('Examinee added')
-        return redirect(url_for('user.index'))
-    users = User.query.all()
-    check = len([user for user in users if json.loads(user.answer_page)])
-    return render_template('user/index.html', check=check, form=form)
+        return redirect(url_for('user.addexaminee'))
+    return render_template('user/addexaminee.html', form=form)
 
 @mod.route('/editpage')
 @login_required(role='admin')
@@ -61,7 +66,6 @@ def editpage():
 @mod.route('/examscores', methods=['GET', 'POST'])
 @login_required(role='admin')
 def examscores():
-    scores = {}
     if request.method == 'POST':
         for userdata in request.form.items():
             user = User.query.filter_by(username=userdata[0]).first()
@@ -72,10 +76,9 @@ def examscores():
                 scores = {'listening': listening, 'structure': structure,
                         'reading': reading, 'writing': writing, 'total': total}
                 update_db(user, scores)
-                scores['name'] = user.username
     users = User.query.all()
     check = [check_writing(username) for username in users if json.loads(username.answer_page)]
-    return render_template('user/examscores.html', check=check, scores=scores)
+    return render_template('user/examscores.html', check=check)
 
 def check_writing(user):
     answers = json.loads(user.answer_page)
