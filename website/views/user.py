@@ -4,7 +4,7 @@ from flask import Blueprint, render_template, request, redirect, flash, url_for
 from flask.ext.login import login_user, logout_user, current_user
 from website import db
 from website.models import User, Questions, CompletedExams
-from website.forms import LoginForm, AddExaminee
+from website.forms import LoginForm, AddExaminee, GetScore
 from website.scripts import login_required
 
 mod = Blueprint('user', __name__, url_prefix='/user')
@@ -81,6 +81,15 @@ def examwriting():
     users = User.query.all()
     check = [check_writing(username) for username in users if json.loads(username.answer_page)]
     return render_template('user/examwriting.html', check=check)
+
+@mod.route('/examscore', methods=['GET', 'POST'])
+@login_required(role='admin')
+def examscore():
+    form = GetScore()
+    exams = []
+    if form.validate_on_submit():
+        exams = CompletedExams.query.filter_by(username=form.username.data).all()
+    return render_template('user/examscore.html', exams=exams, form=form)
 
 def check_writing(user):
     answers = json.loads(user.answer_page)

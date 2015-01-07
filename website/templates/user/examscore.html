@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Exam score{% endblock %}
+{% block content %}
+<div class="panel panel-default">
+  <h2 class="page-header">PYU Entrance Exam</h2>
+  {% if exams %}
+  {% for exam in exams %}
+  <h4>{{ exam.username }}</h4>
+  <h5>{{ exam.taken_date }}</h5>
+  <ul>
+    <li>Listening {{ exam.exam_score['listening'] }}</li>
+    <li>Structure {{ exam.exam_score['structure'] }}</li>
+    <li>Reading {{ exam.exam_score['reading'] }}</li>
+    <li>Writing {{ exam.exam_score['writing'] }}</li>
+    <li>Total {{ exam.exam_score['total'] }}</li>
+  </ul>
+  {% endfor %}
+  {% else %}
+  <form action="{{ url_for('user.examscore') }}" method="POST" role="form">
+    <fieldset>
+      {{ form.csrf_token() }}
+      <div class="form-group">
+        <label>{{ form.username.label }}</label>
+        {{ form.username(class="form-control", placeholder="Username") }}
+      </div>
+      <br>
+      <button type="submit" class="btn btn-primary">Get scores</button>
+    </fieldset>
+  </form>
+  {% endif %}
+</div>
+{% endblock %}
