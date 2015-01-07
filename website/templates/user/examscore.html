@@ -6,7 +6,7 @@
   {% if exams %}
   {% for exam in exams %}
   <h4>{{ exam.username }}</h4>
-  <h5>{{ exam.taken_date }}</h5>
+  <h5>{{ exam.taken_date.strftime('%d %b %Y') }}</h5>
   <ul>
     <li>Listening {{ exam.exam_score['listening'] }}</li>
     <li>Structure {{ exam.exam_score['structure'] }}</li>
