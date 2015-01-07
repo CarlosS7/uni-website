@@ -12,11 +12,6 @@ class AddExaminee(Form):
     exam_id = SelectField('Exam ID', choices=[('pyueng5', 'PYU Entrance Exam 5'),
         ('pyueng8', 'PYU Entrance Exam 8')])
 
-class WritingScore(Form):
-    score = SelectField('Writing score', choices=[(0, 0) (0.5, 0.5) (1, 1), (1.5, 1.5),
-        (2, 2), (2.5, 2.5), (3, 3), (3.5, 3.5), (4, 4), (4.5, 4.5), (5, 5),
-        (5.5, 5.5), (6, 6)])
-
 class SignupForm(Form):
     username = TextField('Name', [
         valid.Required('Please enter your name'),

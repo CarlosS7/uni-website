@@ -1,4 +1,5 @@
 import json
+from datetime import datetime
 from flask import Blueprint, render_template, request, redirect, flash, url_for
 from flask.ext.login import login_user, logout_user, current_user
 from website import db
@@ -50,7 +51,7 @@ def addexaminee():
     if form.validate_on_submit():
         if User.query.filter_by(username=form.username.data).count():
             flash('That name already exists. Please choose another name.')
-            return redirect(url_for('user.index'))
+            return redirect(url_for('user.addexaminee'))
         db.session.add(User(form.username.data, form.password.data,
             'examinee', form.exam_id.data))
         db.session.commit()
@@ -71,6 +72,7 @@ def examwriting():
             user = User.query.filter_by(username=userdata[0]).first()
             if user:
                 writing = float(userdata[1] or 0)
+                writing = writing if writing <= 6 else 0
                 listening, structure, reading = calc_score(get_score(user))
                 total = round(((listening + structure + reading + 55) * 11.6/3) - 23.5 + (writing * 7.83))
                 scores = {'listening': listening, 'structure': structure,
@@ -107,6 +109,7 @@ def calc_score(ans_list):
 
 def update_db(user, exam_score):
     answer_page = json.loads(user.answer_page)
-    db.session.add(CompletedExams(user.username, answer_page, exam_score))
+    taken_date = datetime.utcnow()
+    db.session.add(CompletedExams(user.username, taken_date, answer_page, exam_score))
     db.session.delete(user)
     db.session.commit()
