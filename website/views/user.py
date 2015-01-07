@@ -25,6 +25,7 @@ def login():
             flash('Invalid credentials.')
             return redirect(url_for('user.login'))
         login_user(user)
+        flash('You have been logged in.')
         if user.role == 'admin':
             return redirect(url_for('user.index'))
         else:
@@ -34,7 +35,7 @@ def login():
 @mod.route('/logout')
 def logout():
     logout_user()
-    flash('You have been logged out')
+    flash('You have been logged out.')
     return redirect(url_for('home.index'))
 
 @mod.route('/', methods=['GET', 'POST'])

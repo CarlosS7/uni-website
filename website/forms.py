@@ -1,27 +1,27 @@
 from flask.ext.wtf import Form
-from wtforms import TextField, PasswordField, SelectField
+from wtforms import StringField, PasswordField, SelectField
 from wtforms import validators as valid
 
 class LoginForm(Form):
-    username = TextField('Username', [valid.Required('Please enter your name')])
+    username = StringField('Username', [valid.Required('Please enter your name')])
     password = PasswordField('Password', [valid.Required('Please enter your password')])
 
 class AddExaminee(Form):
-    username = TextField('Username', [valid.Required('Please enter the examinee\'s name')])
+    username = StringField('Username', [valid.Required('Please enter the examinee\'s name')])
     password = PasswordField('Password', [valid.Required('Please enter the examinee\'s password')])
     exam_id = SelectField('Exam ID', choices=[('pyueng5', 'PYU Entrance Exam 5'),
         ('pyueng8', 'PYU Entrance Exam 8')])
 
 class GetScore(Form):
-    username = TextField('Username', [valid.Required('Please enter the examinee\'s name')])
+    username = StringField('Username', [valid.Required('Please enter the examinee\'s name')])
 
 class SignupForm(Form):
-    username = TextField('Name', [
+    username = StringField('Name', [
         valid.Required('Please enter your name'),
         valid.Length(max=35, message='The name should be less than 35 characters long'),
         valid.Regexp('[a-zA-Z]+', message=('Name can only contain letters.'))])
-    email = TextField('Email', [valid.Email()])
-    phone = TextField('Phone number', [
+    email = StringField('Email', [valid.Email()])
+    phone = StringField('Phone number', [
         valid.Required('Please enter your phone number'),
         valid.Length(max=15, message='The name should be less than 15 numbers long'),
         valid.Regexp('[0-9]+', message=('Phone number can only contain numbers.'))])
