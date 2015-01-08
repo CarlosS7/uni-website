@@ -5,8 +5,9 @@
   <h2 class="page-header">PYU Entrance Exam</h2>
   {% if exams %}
   {% for exam in exams %}
-  <h4>{{ exam.username }}</h4>
-  <h5>{{ exam.taken_date.strftime('%d %b %Y') }}</h5>
+  <h3>{{ exam.username }}</h3>
+  <h4>{{ exam.taken_date.strftime('%d %b %Y') }}</h4>
+  <h4>{{ exam.exam_id }}</h4>
   <ul>
     <li>Listening {{ exam.exam_score['listening'] }}</li>
     <li>Structure {{ exam.exam_score['structure'] }}</li>
