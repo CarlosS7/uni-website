@@ -23,16 +23,8 @@
   {% if data.reading %}
   <div class="panel panel-default">
     {% for text in data.reading %}
-    <label>{{ text }}</label>
+    <label>{{ text|safe }}</label>
     {% endfor %}
-  </div>
-  {% endif %}
-
-  {% if data.intro %}
-  <div class="panel panel-default">
-    <p>{{ data.intro }}</p>
-    <h3>Directions</h3>
-    <p>{{ data.directions }}</p>
   </div>
   {% endif %}
 
@@ -71,7 +63,7 @@
 
     {% if data.writing %}
     <div class="panel panel-default">
-      <textarea id="writingarea" name="writing" cols="80" rows="20"></textarea><br>
+      <textarea id="writingarea" name="writing" cols="100" rows="20"></textarea><br>
     </div>
     <input type="submit" class="btn btn-primary pull-right" role="button" value="Finish the exam">
     {% else %}

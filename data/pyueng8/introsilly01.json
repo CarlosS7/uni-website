@@ -2,8 +2,7 @@
     "exam_id": "pyueng5",
     "section": "General Knowledge",
     "next_page": "silly01",
-    "intro": "In this section of the test, you will have an opportunity to demonstrate your general knowledge.",
-    "directions": "Answer each question in this part to the best of your ability.",
+    "reading": ["In this section of the test, you will have an opportunity to demonstrate your general knowledge.", "<b>Directions</b>", "Answer each question in this part to the best of your ability."],
     "questions": [
         {
             "object_id": "silly1_introsilly01_01",

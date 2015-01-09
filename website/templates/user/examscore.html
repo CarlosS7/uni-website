@@ -7,14 +7,14 @@
   {% for exam in exams %}
   <h3>{{ exam.username }}</h3>
   <h4>{{ exam.taken_date.strftime('%d %b %Y') }}</h4>
-  <h4>{{ exam.exam_id }}</h4>
+  <h5>{{ exam.exam_score['exam_id'] }}</h5>
   <ul>
     <li>Listening {{ exam.exam_score['listening'] }}</li>
     <li>Structure {{ exam.exam_score['structure'] }}</li>
     <li>Reading {{ exam.exam_score['reading'] }}</li>
     <li>Writing {{ exam.exam_score['writing'] }}</li>
-    <li>Total {{ exam.exam_score['total'] }}</li>
   </ul>
+  <h4>Total {{ exam.exam_score['total'] }}</h4>
   {% endfor %}
   {% else %}
   <form action="{{ url_for('user.examscore') }}" method="POST" role="form">
