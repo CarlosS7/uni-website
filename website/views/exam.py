@@ -36,7 +36,7 @@ def section(exam_id, section_id):
 
 def get_results(items, exam_id):
     """Add the user's answers to the database."""
-    results = {item[0]: item[1] for item in items}
+    results = {item[0]: item[1] for item in items if item[1]}
     answers = json.loads(current_user.answer_page)
     answers.update(results)
     current_user.answer_page = json.dumps(answers)

@@ -5,13 +5,13 @@ from functools import wraps
 from website import login_man, db
 from website.models import Questions, CompletedExams
 
-def login_required(role='any'):
+def login_required(role):
     def wrapper(fn):
         @wraps(fn)
         def decorated_view(*args, **kwargs):
             if not current_user.is_authenticated():
               return login_man.unauthorized()
-            if ((current_user.role != role) and (role != 'any')):
+            if current_user.role != role:
                 return login_man.unauthorized()
             return fn(*args, **kwargs)
         return decorated_view
