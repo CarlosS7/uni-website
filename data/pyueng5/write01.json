@@ -4,7 +4,6 @@
     "next_page": "finish",
     "inline": "",
     "object_id": "silly1_write_01",
-    "writetitle": "Read and think about the following statement:",
-    "writequestion": "How could a swallow bring a coconut to such a temperate zone?",
+    "intro": ["Read and think about the following statement:", "How could a swallow bring a coconut to such a temperate zone?"],
     "writing": "true"
 }
