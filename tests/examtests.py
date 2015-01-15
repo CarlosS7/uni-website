@@ -1,6 +1,8 @@
+import os
+import json
 import unittest
 from website import app, db
-from website.models import User
+from website.models import User, Questions
 
 class TestExaminee(unittest.TestCase):
     @classmethod
@@ -11,6 +13,7 @@ class TestExaminee(unittest.TestCase):
         self.examinee = User('examinee', 'hard2guess', 'examinee', 'pyueng5')
         db.session.add(self.examinee)
         db.session.commit()
+        self.add_questions(self)
 
     @classmethod
     def tearDownClass(self):
@@ -22,6 +25,15 @@ class TestExaminee(unittest.TestCase):
 
     def tearDown(self):
         self.logout()
+
+    def add_questions(self):
+        for path in os.listdir('tests/testdata/pyueng5'):
+            if path.endswith('json'):
+                section_id = path.rstrip('.json')
+                with open(os.path.join('tests/testdata/pyueng5', path)) as f:
+                    question_page = json.load(f)
+                db.session.add(Questions('pyueng5', section_id, question_page))
+        db.session.commit()
 
     def login(self, username, password):
         """Login helper function"""

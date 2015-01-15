@@ -21,7 +21,7 @@ def add_questions(dirname):
             db.session.add(Questions(dirname, section_id, question_page))
     db.session.commit()
 
-os.chdir('data')
+os.chdir('tests/testdata')
 with open('teachers.json') as f:
     content = json.load(f)
 db.session.add(Content('teachers', content))
