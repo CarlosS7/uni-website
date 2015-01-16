@@ -14,7 +14,6 @@ sudo pip3 install Flask Flask-Login Flask-SQLAlchemy Flask-WTF Jinja2 SQLAlchemy
 python3 db_create.py
 sudo cp uni_web.conf /etc/apache2/sites-available/
 sudo cp -r /home/$USER/uni_web /var/www/uni_web
-sudo chown -R www-data:www-data /var/www/uni_web
 sudo a2ensite uni_web
 sudo a2dissite 000-default
 sudo service apache2 restart
