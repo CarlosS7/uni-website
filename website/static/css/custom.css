@@ -1,9 +1,9 @@
 #randomquote {
-    text-align: center;
+  text-align: center;
 }
 #mainheading {
-    height: 180px;
-    overflow: hidden;
+  height: 180px;
+  overflow: hidden;
 }
 #introtext {
   max-width: 100%;
@@ -12,39 +12,39 @@
   font-weight: normal;
 }
 #writingarea {
-    width: 100%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+  width: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 .carousel-fade .carousel-inner .item {
-    opacity: 0;
-    -webkit-transition-property: opacity;
-    -moz-transition-property: opacity;
-    -o-transition-property: opacity;
-    transition-property: opacity;
+  opacity: 0;
+  -webkit-transition-property: opacity;
+  -moz-transition-property: opacity;
+  -o-transition-property: opacity;
+  transition-property: opacity;
 }
 .carousel-fade .carousel-inner .active {
-    opacity: 1;
+  opacity: 1;
 }
 .carousel-fade .carousel-inner .active.left,
 .carousel-fade .carousel-inner .active.right {
-    left: 0;
-    opacity: 0;
-    z-index: 1;
+  left: 0;
+  opacity: 0;
+  z-index: 1;
 }
 .carousel-fade .carousel-inner .next.left,
 .carousel-fade .carousel-inner .prev.right {
-    opacity: 1;
+  opacity: 1;
 }
 .carousel-fade .carousel-control {
-    z-index: 2;
+  z-index: 2;
 }
 .footer {
-    padding-top: 20px;
-    margin-top: 40px;
-    margin-bottom: 20px;
-    border-top: 1px solid #eee;
+  padding-top: 20px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  border-top: 1px solid #eee;
 }
 @media (max-width: 480px) {
   #mainheading {
