@@ -9,7 +9,7 @@ pwd_ctx = CryptContext(schemes=['sha512_crypt', 'pbkdf2_sha512'],
 class User(db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(64), unique=True)
+    username = db.Column(db.String(32), unique=True)
     password_hash = db.Column(db.String(192))
     role = db.Column(db.String(32))
     exam_id = db.Column(db.String(32))
@@ -45,6 +45,23 @@ class User(db.Model):
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
+
+class SignupCourses(db.Model):
+    __tablename__ = 'signupcourses'
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(32))
+    email = db.Column(db.String(32))
+    phone = db.Column(db.String(32))
+    coursename = db.Column(db.String(32))
+
+    def __init__(self, username, email, phone, coursename):
+        self.username = username
+        self.email = email
+        self.phone = phone
+        self.coursename = coursename
+
+    def __repr__(self):
+        return '<User {}>'.format(self.username, self.coursename)
 
 class CompletedExams(db.Model):
     __tablename__ = 'oldexams'

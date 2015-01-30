@@ -2,7 +2,7 @@ import json
 from flask import Blueprint, render_template, request, redirect, flash, url_for
 from flask.ext.login import login_user, logout_user, current_user
 from website import db
-from website.models import User, CompletedExams
+from website.models import User, CompletedExams, SignupCourses
 from website.forms import LoginForm, AddExaminee, GetScore
 from website.scripts import login_required, record_scores
 
@@ -42,7 +42,8 @@ def logout():
 def index():
     users = User.query.all()
     check = len([user for user in users if json.loads(user.answer_page)])
-    return render_template('user/index.html', check=check)
+    signup = SignupCourses.query.all()
+    return render_template('user/index.html', check=check, signup=signup)
 
 @mod.route('/addexaminee', methods=['GET', 'POST'])
 @login_required(role='admin')

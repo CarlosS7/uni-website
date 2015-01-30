@@ -3,7 +3,14 @@
 {% block content %}
 
 <div class="panel panel-default">
-  <h2 class="page-header">Jobs to do</h2>
+  <h2 class="page-header">Admin</h2>
+  <h3>Students</h3>
+  {% for username in signup %}
+  <h4>{{ username.username }}</h4>
+  <p>Email: {{ username.email }}</p>
+  <p>Phone: {{ username.phone }}</p>
+  <p>Email: {{ username.coursename }}</p>
+  {% endfor %}
   <h3>PYU Entrance Exam</h3>
   <a class="btn btn-primary" href="{{ url_for('user.addexaminee') }}" role="button">Add examinee</a>
   {% if check %}
