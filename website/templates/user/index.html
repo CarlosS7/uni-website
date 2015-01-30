@@ -6,10 +6,14 @@
   <h2 class="page-header">Admin</h2>
   <h3>Students</h3>
   {% for username in signup %}
-  <h4>{{ username.username }}</h4>
-  <p>Email: {{ username.email }}</p>
-  <p>Phone: {{ username.phone }}</p>
-  <p>Email: {{ username.coursename }}</p>
+  <div class="row">
+    <div class="col-sm-4 col-md-4">
+      <h4>{{ username.username }}</h4>
+      <p>Email: {{ username.email }}</p>
+      <p>Phone: {{ username.phone }}</p>
+      <p>Email: {{ username.coursename }}</p>
+    </div>
+  </div>
   {% endfor %}
   <h3>PYU Entrance Exam</h3>
   <a class="btn btn-primary" href="{{ url_for('user.addexaminee') }}" role="button">Add examinee</a>
