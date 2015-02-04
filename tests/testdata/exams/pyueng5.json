@@ -1,0 +1,91 @@
+{
+    "exam_id": "pyueng5",
+    "pages": [
+        {
+            "title": "Rather Silly Exam",
+            "section": "General Knowledge",
+            "intro": "The exam lasts thirty minutes and has four parts",
+            "parts": ["General knowledge", "More general knowledge", "What was the third one, again?", "General knowledge"],
+            "body": ["Please read the instructions for each section carefully.", "When you are ready to start the exam, click the button below."]
+        },
+        {
+            "section": "General Knowledge",
+            "intro": ["In this section of the test, you will have an opportunity to demonstrate your general knowledge.", "<b>Directions</b>", "Answer each question in this part to the best of your ability."],
+            "questions": [
+                {
+                    "object_id": "silly1_introsilly01_01",
+                    "heading": "Example",
+                    "body": ["Why should the Greeks' goal against the German philosophers have been disallowed?"],
+                    "ending": "As any serious student of Marx's theory of alienation would know, it was clearly offside.",
+                    "answers": [
+                        "The reality is merely an a priori adjunct of non-naturalistic ethics.",
+                        "Ontologically the goal exists only in the imagination.",
+                        "Visible factors are created by the human mind and are absent from the goal-in-itself.",
+                        "It was offside."
+                    ]
+                }
+            ]
+        },
+        {
+            "section": "General Knowledge",
+            "questions": [
+                {
+                    "object_id": "silly1_list_01",
+                    "body": ["1:", " What is the answer to life, the universe and everything?"],
+                    "answers": [
+                        "Whatever you want it to be, baby",
+                        "42",
+                        "A quarter to three",
+                        "Never mind the meaning of life, dear, let's have a nice cup of tea"
+                    ]
+                },
+                {
+                    "object_id": "silly1_list_02",
+                    "body": ["2:", " How did the knights escape from the monster?"],
+                    "answers": [
+                        "They tunneled their way out.",
+                        "They threw sand in its eyes.",
+                        "They sought an injunction against the monster.",
+                        "The animator had a heart attack."
+                    ]
+                },
+                {
+                    "object_id": "silly1_struct_03",
+                    "body": ["3:", " What is the worst French insult?"],
+                    "answers": [
+                        "I will make castanets out of your testicles.",
+                        "Your father smells of elderberries.",
+                        "I call you a silly thing.",
+                        "I fart in your general direction."
+                    ]
+                },
+                {
+                    "object_id": "silly1_struct_04",
+                    "body": ["4:", " What is the main precursor to armageddon?"],
+                    "answers": [
+                        "A friend shall lose a friend's hammer.",
+                        "There will be one government ruling the whole world.",
+                        "Plagues of locusts shall attack every McDonald's in the world and get very sick.",
+                        "Every first-born child shall be infected with a tickly cough."
+                    ]
+                },
+                {
+                    "object_id": "silly1_read_05",
+                    "body": ["5:", " What's wrong with it, then?"],
+                    "answers": [
+                        "It's pining for the fjords.",
+                        "The Norwegian Blue prefers kipping on its back.",
+                        "It's dead.",
+                        "It's stunned."
+                    ]
+                }
+            ]
+        },
+        {
+            "section": "Writing",
+            "object_id": "silly1_write_01",
+            "intro": ["Read and think about the following statement:", "How could a swallow bring a coconut to such a temperate zone?"],
+            "writing": "true"
+        }
+    ]
+}

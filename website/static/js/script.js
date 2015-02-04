@@ -1,6 +1,4 @@
-/* Author:
-
-*/
+// show quotes on startup
 
 var quotes = [
 {q: 'I am very thankful to have taken this course -- it gave me a solid base from which to teach.', a: 'Alison, TESOL Certificate' },

@@ -19,20 +19,22 @@ def add_no_cache(response):
 def index():
     """Check user is authenticated and set exam."""
     exam_id = current_user.exam_id
-    data = Questions.query.filter_by(exam_id=exam_id, section_id='initial').first().question_page
-    return render_template('exam/index.html', data=data)
+    data = Questions.query.filter_by(exam_id=exam_id).first().pages
+    return render_template('exam/index.html', welcome=data['pages'][0], pages=data['pages'][1:])
 
-@mod.route('/<exam_id>/section/<section_id>', methods=['GET', 'POST'])
+@mod.route('/<exam_id>', methods=['POST'])
 @login_required(role='examinee')
-def section(exam_id, section_id):
-    """Display question pages and get user's answers."""
-    if request.method == 'POST':
-        get_results(request.form.items(), exam_id)
-        if section_id == 'finish':
-            return redirect(url_for('user.logout'))
-        return redirect(url_for('exam.section', exam_id=exam_id, section_id=section_id))
-    data = Questions.query.filter_by(exam_id=exam_id, section_id=section_id).first().question_page
-    return render_template('exam/questions.html', data=data)
+def section(exam_id):
+    """Get user's answers."""
+    get_results(request.form.items(), exam_id)
+    return
+
+@mod.route('/finish', methods=['POST'])
+@login_required(role='examinee')
+def finish(exam_id):
+    """Get user's answers and logout user."""
+    get_results(request.form.items(), exam_id)
+    return redirect(url_for('user.logout'))
 
 def get_results(items, exam_id):
     """Add the user's answers to the database."""

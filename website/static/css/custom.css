@@ -1,3 +1,9 @@
+#main-panel {
+  margin-bottom: 80px;
+}
+#exam-body {
+  display: none;
+}
 #randomquote {
   text-align: center;
 }

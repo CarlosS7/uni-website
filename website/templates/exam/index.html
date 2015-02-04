@@ -1,29 +1,88 @@
-{% extends "base.html" %}
-{% block title %}Exam start{% endblock %}
+{% extends "exam/exam_base.html" %}
 {% block content %}
 
-<div class="panel panel-default panel-body">
+<div class="panel panel-default panel-body" id="main-panel">
   <div class="jumbotron">
     <div class="media">
       <img class="media-object pull-left" src="{{ url_for('static', filename='images/logo.png') }}">
       <div class="media-body">
-        <h1 class="media-heading">{{ data.title }}</h1>
+        <h1 class="media-heading">{{ welcome.title }}</h1>
+        <h2>{{ welcome.section }}</h2>
       </div>
     </div>
   </div>
-  <div class="panel panel-default">
-    <h2>{{ data.subtitle }}</h2>
-    <p>{{ data.intro }}</p>
-    {% for part in data.parts %}
+
+  <div class="panel panel-default" id="welcome-panel">
+    <p>{{ welcome.intro }}</p>
+    {% for part in welcome.parts %}
     <ul>
       <li>{{ part }}</li>
     </ul>
     {% endfor %}
-    {% for text in data.body %}
+    {% for text in welcome.body %}
     <p>{{ text }}</p>
     {% endfor %}
   </div>
-  <p><a class="btn btn-primary" href="/exam/{{ data.exam_id }}/section/{{ data.next_page }}" role="button">Start the exam </a></p>
+  <p><div class="btn btn-primary" href="#" id="startexam" role="button">Start the exam </div></p>
 </div>
+
+<div id="exam-body">
+  {% for data in pages %}
+  <div class="panel panel-default panel-body" id="main-panel">
+
+    {% if data.section %}
+    <div class="jumbotron">
+      <h2>{{ data.section }}</h2>
+    </div>
+    {% endif %}
+
+    <audio src="/static/media/{{ data.audio }}" autoplay="false"></audio>
+
+    {% if data.intro %}
+    <div class="panel panel-default">
+      {% for text in data.intro %}
+      <h4 id="introtext">{{ text|safe }}</h4>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% for question in data.questions %}
+    <div class="panel panel-default">
+      <h3>{{ question.heading }}</h3>
+      {% for text in question.body %}
+      <h4>{{ text|safe }}</h4>
+      {% endfor %}
+
+      {% for item in question.answers %}
+      <label>
+        <input type="radio" name="{{ question.object_id }}" value="{{ question.answers.index(item) + 1}}">
+        {{ item }} 
+      </label>
+      {% if data.inline %}&nbsp;&nbsp;{% else %}<br>{% endif %}
+      {% endfor %}
+
+      {% if question.ending %}
+      <label>{{ question.ending }}</label>
+      {% endif %}
+    </div>
+    {% endfor %}
+
+    {% if data.writing %}
+    <div class="panel panel-default">
+      <textarea id="writingarea" name="writing" cols="80" rows="20"></textarea><br>
+    </div>
+    <input type="submit" class="btn btn-primary pull-right" role="button" value="Finish the exam">
+    {% endif %}
+
+  </div>
+  {% endfor %}
+</div>
+
+<script>
+$("#startexam").click(function () {
+  $("#exam-body").show();
+  $("#welcome-panel").slideUp("slow");
+});
+</script>
 
 {% endblock %}

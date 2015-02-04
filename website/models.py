@@ -97,13 +97,11 @@ class Questions(db.Model):
     __tablename__ = 'questions'
     id = db.Column(db.Integer, primary_key=True)
     exam_id = db.Column(db.String())
-    section_id = db.Column(db.String())
-    question_page = db.Column(JSON)
+    pages = db.Column(JSON)
 
-    def __init__(self, exam_id, section_id, question_page):
+    def __init__(self, exam_id, pages):
         self.exam_id = exam_id
-        self.section_id = section_id
-        self.question_page = question_page
+        self.pages = pages
 
     def __repr__(self):
-        return '<Exam {}, section {}>'.format(self.exam_id, self.section_id)
+        return '<Exam {}, section {}>'.format(self.exam_id)
