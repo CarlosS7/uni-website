@@ -22,21 +22,20 @@ def index():
     data = Questions.query.filter_by(exam_id=exam_id).first().pages
     return render_template('exam/index.html', welcome=data['pages'][0], pages=data['pages'][1:])
 
-@mod.route('/<exam_id>', methods=['POST'])
+@mod.route('/update_results', methods=['POST'])
 @login_required(role='examinee')
-def section(exam_id):
+def update_results():
     """Get user's answers."""
-    get_results(request.form.items(), exam_id)
-    return
+    get_results(request.form.items())
 
 @mod.route('/finish', methods=['POST'])
 @login_required(role='examinee')
-def finish(exam_id):
+def finish():
     """Get user's answers and logout user."""
-    get_results(request.form.items(), exam_id)
+    get_results(request.form.items())
     return redirect(url_for('user.logout'))
 
-def get_results(items, exam_id):
+def get_results(items):
     """Add the user's answers to the database."""
     results = {item[0]: item[1] for item in items if item[1]}
     answers = json.loads(current_user.answer_page)

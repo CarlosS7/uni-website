@@ -1,4 +1,7 @@
-#main-panel {
+#top-panel {
+  margin-bottom: 80px;
+}
+.main-panel {
   margin-bottom: 80px;
 }
 #exam-body {

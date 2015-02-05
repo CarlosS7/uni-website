@@ -98,10 +98,12 @@ class Questions(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     exam_id = db.Column(db.String())
     pages = db.Column(JSON)
+    correct = db.Column(JSON)
 
-    def __init__(self, exam_id, pages):
+    def __init__(self, exam_id, pages, correct):
         self.exam_id = exam_id
         self.pages = pages
+        self.correct = correct
 
     def __repr__(self):
         return '<Exam {}, section {}>'.format(self.exam_id)

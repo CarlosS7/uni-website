@@ -1,0 +1,25 @@
+{
+    "exam_id": "silly1",
+    "correct": [
+    {
+        "object_id": "silly1_list_01",
+        "correct": 2
+    },
+    {
+        "object_id": "silly1_list_02",
+        "correct": 4
+    },
+    {
+        "object_id": "silly1_struct_03",
+        "correct": 4
+    },
+    {
+        "object_id": "silly1_struct_04",
+        "correct": 1
+    },
+    {
+        "object_id": "silly1_read_05",
+        "correct": 3
+    }
+    ]
+}

@@ -4,7 +4,7 @@ from flask.ext.login import login_user, logout_user, current_user
 from website import db
 from website.models import User, CompletedExams, SignupCourses
 from website.forms import LoginForm, AddExaminee, GetScore
-from website.scripts import login_required, record_scores
+from website.scripts import login_required, record_scores, rand_password
 
 mod = Blueprint('user', __name__, url_prefix='/user')
 
@@ -53,10 +53,11 @@ def addexaminee():
         if User.query.filter_by(username=form.username.data).count():
             flash('That name already exists. Please choose another name.')
             return redirect(url_for('user.addexaminee'))
-        db.session.add(User(form.username.data, form.password.data,
-            'examinee', form.exam_id.data))
+        name = form.username.data
+        password = rand_password()
+        db.session.add(User(name, password, 'examinee', form.exam_id.data))
         db.session.commit()
-        flash('Examinee added')
+        flash('Examinee {} with password {} added'.format(name, password))
         return redirect(url_for('user.addexaminee'))
     return render_template('user/addexaminee.html', form=form)
 

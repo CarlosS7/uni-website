@@ -1,4 +1,5 @@
 import json
+import random
 from datetime import datetime
 from flask.ext.login import current_user
 from functools import wraps
@@ -22,7 +23,7 @@ def get_score(user):
     answers = json.loads(user.answer_page)
     exam_id = user.exam_id
     data = Questions.query.filter_by(exam_id=exam_id).all()
-    dicts = [ans for quest in data for ans in quest.question_page.get('correct', {})]
+    dicts = [ans for quest in data for ans in quest.correct.get()]
     correct = [key for d in dicts for key, val in d.items() if val == answers.get(key)]
     return correct
 
@@ -52,3 +53,9 @@ def record_scores(user, writing):
     exam_score = {'exam_id': exam_id, 'listening': listening, 'structure': structure,
             'reading': reading, 'writing': writing, 'total': total}
     update_db(user, exam_score)
+
+def rand_password():
+    alphabet = '1234567890;:!@#$%^&*()abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    myrg = random.SystemRandom()
+    length = 10
+    return ''.join(myrg.choice(alphabet) for i in range(length))

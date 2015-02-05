@@ -8,7 +8,6 @@ class LoginForm(Form):
 
 class AddExaminee(Form):
     username = StringField('Username', [valid.Required('Please enter the examinee\'s name')])
-    password = PasswordField('Password', [valid.Required('Please enter the examinee\'s password')])
     exam_id = SelectField('Exam ID', choices=[('pyueng5', 'PYU Entrance Exam 5'),
         ('pyueng8', 'PYU Entrance Exam 8')])
 

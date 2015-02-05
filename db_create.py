@@ -9,16 +9,16 @@ db.create_all()
 
 def add_users(namelist):
     for name in namelist:
-        db.session.add(User(name[0], name[1], name[2]))
+        db.session.add(User(*name))
     db.session.commit()
 
-def add_questions(dirname='exams'):
-    for path in os.listdir(dirname):
-        if path.endswith('min.json'):
-            exam_id = path.rstrip('.min.json')
-            with open(os.path.join(dirname, path)) as f:
-                question_page = json.load(f)
-            db.session.add(Questions(exam_id, question_page))
+def add_questions(exams):
+    for exam_id in exams:
+        with open(os.path.join('exams', '{}.json'.format(exam_id))) as questions:
+            pages = json.load(questions)
+        with open(os.path.join('exams', '{}_answers.json'.format(exam_id))) as answers:
+            correct = json.load(answers)
+        db.session.add(Questions(exam_id, pages, correct))
     db.session.commit()
 
 os.chdir('tests/testdata')
@@ -27,6 +27,6 @@ with open('teachers.json') as f:
 db.session.add(Content('teachers', content))
 db.session.commit()
 
-add_users([['admin', 'default', 'admin']])
-add_questions()
+add_users([['admin', 'default', 'admin'], ['humpty', 'dumpty', 'examinee', 'silly1']])
+add_questions(['silly1'])
 db.session.commit()
