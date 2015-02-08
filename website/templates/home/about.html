@@ -2,7 +2,7 @@
 {% block title %}About us{% endblock %}
 {% block content %}
 
-<div class="panel panel-default">
+<div class="panel">
   <h2 class="page-header">English Language Enhancement Center</h2>
   <h4>We are on the second floor of the library at Payap University's Mae Khao Campus, which is east of the city ring road.</h4>
   <div class="carousel slide carousel-fade" data-ride="carousel" id="contactCarousel"><!-- Indicators -->
@@ -32,7 +32,7 @@
   </ul>
   <h3>&nbsp;</h3>
 </div>
-<div class="panel panel-default">
+<div class="panel">
   <h4>The English Language Enhancement Center (ELEC), at Payap University, offers English Language courses to help you develop your communication skills in the international language.</h4>
   <p>We offer:</p>
   <ul>
@@ -56,7 +56,7 @@
   <p>Please remember that the exam starts at 10:00 am. If you are late, you will not be able to get a good score.</p>
 </div>
 <h3 class="page-header">Teachers</h3>
-<div class="panel panel-default">
+<div class="panel">
   {% for teacher in data.teachers %}
   <div class="media"><a class="pull-left" href="#"><img class="media-object img-rounded" src="{{ url_for('static', filename='images/') }}{{ teacher.pic }}" /> </a>
     <div class="media-body">

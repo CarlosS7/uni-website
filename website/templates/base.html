@@ -1,85 +1,85 @@
 <!doctype html>
 <head>
-<title>ELEC - Learn English at Payap University - {% block title %}{% endblock %}</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
-<link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.png') }}">
+  <title>ELEC - Learn English at Payap University - {% block title %}{% endblock %}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.png') }}">
 </head>
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/"><img src="{{ url_for('static', filename='images/logo_navbar.png') }}" />
-        Learn English in Chiang Mai</a>
-    </div>
-    <div class="navbar-collapse collapse">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="{{ url_for('home.index') }}">Home</a></li>
-        <li><a href="{{ url_for('home.about') }}">About Elec</a></li>
-        <li><a href="/#coursesiep">Courses</a></li>
-        <li><a href="{{ url_for('home.signup') }}">Sign up</a></li>
-        <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Links <span class="caret"></span></a>
-        <ul class="dropdown-menu" role="menu">
-          <li><a href="http://ic.payap.ac.th/">International College</a></li>
-          <li><a href="http://www.payap.ac.th/">มหาวิทยาลัยพายัพ</a></li>
-          <li class="divider"></li>
-          <li><a href="http://learnenglish.britishcouncil.org/en/">British Council</a></li>
-          <li><a href="http://www.learn-english-online.org/">Learn English Online</a></li>
-          <li><a href="http://funenglishgames.com/">Fun English Games</a></li>
-        </ul>
-        </li>
-        {% if current_user.is_authenticated() %}
-        <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-          Logged in as {{ current_user.username }}<span class="caret"></span></a>
-        <ul class="dropdown-menu" role="menu">
-          {% if current_user.role == 'admin' %}
-          <li><a href="{{ url_for('user.index') }}">Admin page</a></li>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/"><img src="{{ url_for('static', filename='images/logo_navbar.png') }}" />
+          Learn English in Chiang Mai</a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="{{ url_for('home.index') }}">Home</a></li>
+          <li><a href="{{ url_for('home.about') }}">About Elec</a></li>
+          <li><a href="/#coursesiep">Courses</a></li>
+          <li><a href="{{ url_for('home.signup') }}">Sign up</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Links <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="http://ic.payap.ac.th/">International College</a></li>
+              <li><a href="http://www.payap.ac.th/">มหาวิทยาลัยพายัพ</a></li>
+              <li class="divider"></li>
+              <li><a href="http://learnenglish.britishcouncil.org/en/">British Council</a></li>
+              <li><a href="http://www.learn-english-online.org/">Learn English Online</a></li>
+              <li><a href="http://funenglishgames.com/">Fun English Games</a></li>
+            </ul>
+          </li>
+          {% if current_user.is_authenticated() %}
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Logged in as {{ current_user.username }}<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              {% if current_user.role == 'admin' %}
+              <li><a href="{{ url_for('user.index') }}">Admin page</a></li>
+              {% else %}
+              <li><a href="{{ url_for('exam.index') }}">Take the English exam</a></li>
+              {% endif %}
+              <li class="divider"></li>
+              <li><a href="{{ url_for('user.logout') }}">Logout</a></li>
+            </ul>
+          </li>
           {% else %}
-          <li><a href="{{ url_for('exam.index') }}">Take the English exam</a></li>
+          <li><a href="{{ url_for('user.login') }}">Login</a></li>
           {% endif %}
-          <li class="divider"></li>
-          <li><a href="{{ url_for('user.logout') }}">Logout</a></li>
         </ul>
-        </li>
-        {% else %}
-        <li><a href="{{ url_for('user.login') }}">Login</a></li>
-        {% endif %}
-      </ul>
-    </div><!--/.nav-collapse -->
+      </div><!--/.nav-collapse -->
+    </div>
+  </nav>
+
+  <div class="container">
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-info" role="alert">
+      <label>{{ message }}</label>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+
+    <div class="footer">
+      <p>© ELEC - Payap University 2014</p>
+    </div>
   </div>
-</nav>
 
-<div class="container">
-
-  {% with messages = get_flashed_messages() %}
-  {% if messages %}
-  {% for message in messages %}
-  <div class="alert alert-info" role="alert">
-    <label>{{ message }}</label>
-  </div>
-  {% endfor %}
-  {% endif %}
-  {% endwith %}
-
-  {% block content %}{% endblock %}
-
-  <div class="footer">
-    <p>© ELEC - Payap University 2014</p>
-  </div>
-</div>
-
-<script src="{{ url_for('static', filename='js/jquery-1.11.2.min.js') }}"></script>
-<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
-<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery-1.11.2.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>
