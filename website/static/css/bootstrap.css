@@ -3814,6 +3814,10 @@ tbody.collapse.in {
   line-height: 20px;
   height: 50px;
 }
+.navbar-brand:hover,
+.navbar-brand:focus {
+  text-decoration: none;
+}
 @media (min-width: 768px) {
   .navbar > .container .navbar-brand,
   .navbar > .container-fluid .navbar-brand {
@@ -4222,7 +4226,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   display: inline;
   padding: .2em .6em .3em;
   font-size: 75%;
-  font-weight: bold;
+  font-weight: normal;
   line-height: 1;
   color: #ffffff;
   text-align: center;
@@ -4284,45 +4288,6 @@ a.label:focus {
 .label-danger[href]:hover,
 .label-danger[href]:focus {
   background-color: #c9302c;
-}
-.jumbotron {
-  padding: 30px 15px;
-  margin-bottom: 30px;
-  color: inherit;
-  background-color: #eeeeee;
-}
-.jumbotron h1,
-.jumbotron .h1 {
-  color: inherit;
-}
-.jumbotron p {
-  margin-bottom: 15px;
-  font-size: 21px;
-  font-weight: 200;
-}
-.jumbotron > hr {
-  border-top-color: #d5d5d5;
-}
-.container .jumbotron,
-.container-fluid .jumbotron {
-  border-radius: 6px;
-}
-.jumbotron .container {
-  max-width: 100%;
-}
-@media screen and (min-width: 768px) {
-  .jumbotron {
-    padding: 48px 0;
-  }
-  .container .jumbotron,
-  .container-fluid .jumbotron {
-    padding-left: 60px;
-    padding-right: 60px;
-  }
-  .jumbotron h1,
-  .jumbotron .h1 {
-    font-size: 63px;
-  }
 }
 .alert {
   padding: 15px;
@@ -4844,6 +4809,7 @@ button.close {
   width: 100%;
 }
 .carousel-inner > .item {
+  margin: auto;
   display: none;
   position: relative;
   -webkit-transition: 0.6s ease-in-out left;
@@ -4852,7 +4818,6 @@ button.close {
 }
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
-  margin: auto;
   line-height: 1;
 }
 @media all and (transform-3d), (-webkit-transform-3d) {
