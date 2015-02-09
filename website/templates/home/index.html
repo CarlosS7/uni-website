@@ -2,7 +2,7 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 
-<div class="panel panel-default">
+<div class="panel">
   <div class="carousel slide carousel-fade" data-ride="carousel" id="mainCarousel"><!-- Indicators -->
     <ol class="carousel-indicators">
       <li class="active" data-slide-to="0" data-target="#mainCarousel">&nbsp;</li>
@@ -19,7 +19,7 @@
     </div>
   </div>
 </div>
-<div class="panel panel-default" id="mainheading">
+<div class="panel" id="mainheading">
   <div class="media"><a class="pull-left" href="#"><img class="media-object img-rounded" src="{{ url_for('static', filename='images/elec_logo.png') }}" /> </a>
     <div class="media-body">
       <blockquote class="media-heading"><p id="randomquote"></p>
@@ -30,7 +30,7 @@
 </div>
 <div class="row">
   <div class="col-sm-4 col-md-4">
-    <div class="panel panel-default">
+    <div class="panel">
       <h3>Intensive English Program - Study English Full-Time</h3>
       <p>An intensive 180-hour course which gives you a great chance to become a lot better at English.</p>
       <p>Ideal for students who want to study a university course in English.</p>
@@ -38,7 +38,7 @@
     </div>
   </div>
   <div class="col-sm-4 col-md-4">
-    <div class="panel panel-default">
+    <div class="panel">
       <h3>TESOL Certificate - Teacher Training</h3>
       <p>We offer 120-hour TESOL Certificate courses</p>
       <p>The TESOL Certificate is an internationally recognized qualification for teachers of English to nonnative speakers.</p>
@@ -46,7 +46,7 @@
     </div>
   </div>
   <div class="col-sm-4 col-md-4">
-    <div class="panel panel-default">
+    <div class="panel">
       <h3>IELTS / TOEFL Preparation</h3>
       <p>We can help you prepare for your IELTS, or TOEFL, exam</p>
       <p>For students who want to study abroad and need to prepare for an IELTS, or TOEFL, test, we also offer IELTS / TOEFL preparation courses.</p>
@@ -56,7 +56,7 @@
 </div>
 
 <h2 class="page-header">Courses</h2>
-<div class="panel panel-default">
+<div class="panel">
   <h2 class="page-header" id="coursesiep" style="padding-top: 70px; margin-top: -50px;">Intensive English Program</h2>
   <h4>Ideal for students who want to study a university course in English</h4>
   <h4>An intensive 180-hour course which gives you a great chance to become a lot better at English.</h4>
@@ -65,7 +65,7 @@
   <h4>To apply for the Intensive English Program course, <a href="{{ url_for('home.signup') }}">fill in the registration form</a>, or come in to our office any time from Monday to Friday 8:30 am to 4:30 pm.</h4>
   <p><button class="btn btn-primary" data-target="#iepfees" data-toggle="collapse" type="button">Schedule and Fees</button></p>
   <div class="collapse" id="iepfees">
-    <div class="panel panel-default">
+    <div class="panel">
       <div class="table-responsive">
         <table class="table table-striped">
           <thead>
@@ -107,7 +107,7 @@
         </table>
       </div>
     </div>
-    <div class="panel panel-default">
+    <div class="panel">
       <div class="table-responsive">
         <table class="table table-striped">
           <thead>
@@ -160,7 +160,7 @@
     <p>&nbsp;</p>
   </div>
 </div>
-<div class="panel panel-default">
+<div class="panel">
   <h2 class="page-header" id="coursestesol" style="padding-top: 70px; margin-top: -50px;">TESOL Certificate</h2>
   <h4>Teacher training for both native and nonnative speakers</h4>
   <h4>The TESOL Certificate is an internationally recognized qualification for teachers of English.</h4>
@@ -169,7 +169,7 @@
   <h4>To apply for the TESOL Certificate course, <a href="{{ url_for('home.signup') }}">fill in the registration form</a>, or come in to our office any time from Monday to Friday 8:30 am to 4:30 pm.</h4>
   <p><button class="btn btn-primary" data-target="#tesolfees" data-toggle="collapse" type="button">Schedule and Fees</button></p>
   <div class="collapse" id="tesolfees">
-    <div class="panel panel-default">
+    <div class="panel">
       <div class="table-responsive">
         <table class="table table-striped">
           <thead>
@@ -206,7 +206,7 @@
     <p>&nbsp;</p>
   </div>
 </div>
-<div class="panel panel-default">
+<div class="panel">
   <h2 class="page-header" id="coursesielts" style="padding-top: 70px; margin-top: -50px;">IELTS / TOEFL Preparation</h2>
   <h4>For students who want to study abroad</h4>
   <p>For students who want to study abroad and need to prepare for an IELTS, or TOEFL, test, we also offer IELTS / TOEFL preparation courses.</p>
@@ -214,7 +214,7 @@
   <h4>To apply for the IELTS / TOEFL preparation course, <a href="{{ url_for('home.signup') }}">fill in the registration form</a>, or come in to our office any time from Monday to Friday 8:30 am to 4:30 pm.</h4>
   <p><button class="btn btn-primary" data-target="#ieltsfees" data-toggle="collapse" type="button">Schedule and Fees</button></p>
   <div class="collapse" id="ieltsfees">
-    <div class="panel panel-default">
+    <div class="panel">
       <div class="table-responsive">
         <table class="table table-striped">
           <thead>
@@ -243,14 +243,14 @@
     <p>&nbsp;</p>
   </div>
 </div>
-<div class="panel panel-default">
+<div class="panel">
   <h2 class="page-header" id="geninfo" style="padding-top: 80px; margin-top: -80px;">General English Conversation</h2>
   <h4>Improve your General English</h4>
   <p>If you take our General English Conversation courses, you can improve your English and have fun at the same time.</p>
   <h4>To apply for the General English conversation course, <a href="{{ url_for('home.signup') }}">fill in the registration form</a>, or come in to our office any time from Monday to Friday 8:30 am to 4:30 pm.</h4>
   <p><button class="btn btn-primary" data-target="#genfees" data-toggle="collapse" type="button">Schedule and Fees</button></p>
   <div class="collapse" id="genfees">
-    <div class="panel panel-default">
+    <div class="panel">
       <div class="table-responsive">
         <table class="table table-striped">
           <thead>
