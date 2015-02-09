@@ -8,6 +8,10 @@ body {
 .main-panel {
   margin-bottom: 80px;
 }
+.blue-heading {
+  color: #3333cc;
+  text-align: center;
+}
 #exam-body {
   display: none;
 }
@@ -27,6 +31,7 @@ body {
 #writingarea {
   width: 100%;
   display: block;
+  background-color: #fff;
   margin-left: auto;
   margin-right: auto;
 }

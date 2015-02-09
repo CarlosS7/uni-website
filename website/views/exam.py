@@ -1,5 +1,5 @@
 import json
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, jsonify
 from flask.ext.login import current_user
 from website import db
 from website.models import Questions
@@ -27,6 +27,7 @@ def index():
 def update_results():
     """Get user's answers."""
     get_results(request.form.items())
+    return jsonify({'error': ''})
 
 @mod.route('/finish', methods=['POST'])
 @login_required(role='examinee')

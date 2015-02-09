@@ -4809,7 +4809,7 @@ button.close {
   width: 100%;
 }
 .carousel-inner > .item {
-  margin: auto;
+  margin: 0 auto;
   display: none;
   position: relative;
   -webkit-transition: 0.6s ease-in-out left;

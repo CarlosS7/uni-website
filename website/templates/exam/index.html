@@ -5,8 +5,8 @@
     <div class="media">
       <img class="media-object pull-left" src="{{ url_for('static', filename='images/logo.png') }}">
       <div class="media-body">
-        <h1 class="media-heading">{{ welcome.title }}</h1>
-        <h2>{{ welcome.section }}</h2>
+        <h1 class="media-heading blue-heading">{{ welcome.title }}</h1>
+        <h2 class="blue-heading">{{ welcome.section }}</h2>
       </div>
   </div>
 
@@ -28,13 +28,9 @@
   <form action="/exam/finish" method="post">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
     {% for data in pages %}
-    <div class="panel panel-body main-panel">
+      <div class="panel main-panel">
 
-      {% if data.section %}
-      <div class="panel">
-        <h2>{{ data.section }}</h2>
-      </div>
-      {% endif %}
+      <h2 class="blue-heading">{{ data.section }}</h2>
 
       {% if data.audio %}
         <audio id="listening" src="/static/media/{{ data.audio }}"></audio>
@@ -71,12 +67,12 @@
 
       {% if data.writing %}
       <div class="panel">
-        <textarea id="writingarea" name="writing" cols="80" rows="20"></textarea><br>
-      </div>
+        <textarea id="writingarea" name="writing" cols="80" rows="20"></textarea>
       <input type="submit" class="btn btn-primary pull-right" role="button" value="Finish the exam">
+      </div>
       {% endif %}
 
-    </div>
+      </div>
     {% endfor %}
   </form>
 </div>
