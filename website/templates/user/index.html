@@ -2,27 +2,66 @@
 {% block title %}Admin{% endblock %}
 {% block content %}
 
-<div class="panel">
-  <h2 class="page-header">Admin</h2>
-  <h3>Students</h3>
-  {% for username in signup %}
-  <div class="row">
-    <div class="col-sm-4 col-md-4">
-      <h4>{{ username.username }}</h4>
-      <p>Email: {{ username.email }}</p>
-      <p>Phone: {{ username.phone }}</p>
-      <p>Email: {{ username.coursename }}</p>
-    </div>
+<h2 class="page-header">Admin</h2>
+<h3>Students</h3>
+{% for username in signup %}
+<div class="row">
+  <div class="col-sm-4 col-md-4">
+    <h4>{{ username.username }}</h4>
+    <p>Email: {{ username.email }}</p>
+    <p>Phone: {{ username.phone }}</p>
+    <p>Email: {{ username.coursename }}</p>
   </div>
-  {% endfor %}
-  <h3>PYU Entrance Exam</h3>
-  <a class="btn btn-primary" href="{{ url_for('user.addexaminee') }}" role="button">Add examinee</a>
-  {% if check %}
-  &nbsp;&nbsp;
-  <a class="btn btn-primary" href="{{ url_for('user.examwriting') }}" role="button">Check exams</a>
-  {% endif %}
-  &nbsp;&nbsp;
-  <a class="btn btn-primary" href="{{ url_for('user.examscore') }}" role="button">Get exam score</a>
 </div>
+{% endfor %}
+<h3>PYU Entrance Exam</h3>
+<form class="form-inline" action="/user/addexaminee" id="examineeForm" method="post">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+  <div class="form-group">
+    <label for="addexam">Student's name</label>
+    <input type="text" class="form-control" name="addexam">
+    <button type="submit" id="exam-btn" class="btn btn-primary">Add examinee</button>
+  </div>
+</form>
+<div id="addexam-results"></div>
+{% if check %}
+&nbsp;&nbsp;
+<a class="btn btn-primary" href="{{ url_for('user.examwriting') }}" role="button">Check exams</a>
+{% endif %}
+&nbsp;&nbsp;
+<form class="form-inline" action="/user/examscore" id="examscore" method="post">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+  <div class="form-group">
+    <label for="getscore">Student's name</label>
+    <input type="text" class="form-control" name="getscore">
+    <button type="submit" class="btn btn-primary">Get exam score</button>
+  </div>
+</form>
+<div id="getscore-results"></div>
+
+<script>
+$(document).ready(function() {
+    $("#exam-btn").click(function () {
+      //e.preventDefault();
+      var formData = {
+      'name': $("input[name='addexam']").val()
+      };
+      var posting = $.post("/user/addexaminee", formData);
+      posting.done(function (data) {
+        $("#addexam-results").html(data);
+        });
+      });
+    $("#examScore").submit(function (e) {
+      e.preventDefault();
+      var formData = {
+      'name': $("input[name='getscore']").val()
+      };
+      var posting = $.post("/user/examscore", formData)
+      posting.done(function (data) {
+        $("#getscore-results").html(data);
+        });
+      });
+});
+</script>
 
 {% endblock %}

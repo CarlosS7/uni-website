@@ -29,4 +29,3 @@ db.session.commit()
 
 add_users([['admin', 'default', 'admin'], ['humpty', 'dumpty', 'examinee', 'silly1']])
 add_questions(['silly1'])
-db.session.commit()

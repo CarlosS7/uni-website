@@ -2,70 +2,64 @@
 {% block title %}About us{% endblock %}
 {% block content %}
 
-<div class="panel">
-  <h2 class="page-header">English Language Enhancement Center</h2>
-  <h4>We are on the second floor of the library at Payap University's Mae Khao Campus, which is east of the city ring road.</h4>
-  <div class="carousel slide carousel-fade" data-ride="carousel" id="contactCarousel"><!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li class="active" data-slide-to="0" data-target="#contactCarousel">&nbsp;</li>
-      <li data-slide-to="1" data-target="#contactCarousel">&nbsp;</li>
-      <li data-slide-to="2" data-target="#contactCarousel">&nbsp;</li>
-    </ol>
-    <div class="carousel-inner">
-      <div class="item active"><img alt="First slide" src="{{ url_for('static', filename='images/about_1.jpg') }}" />
-      </div>
-      <div class="item"><img alt="Second slide" src="{{ url_for('static', filename='images/about_2.jpg') }}" />
-      </div>
-      <div class="item"><img alt="Third slide" src="{{ url_for('static', filename='images/about_3.jpg') }}" />
-      </div>
+<h2 class="page-header">English Language Enhancement Center</h2>
+<h4>We are on the second floor of the library at Payap University's Mae Khao Campus, which is east of the city ring road.</h4>
+<div class="carousel slide carousel-fade" data-ride="carousel" id="contactCarousel"><!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li class="active" data-slide-to="0" data-target="#contactCarousel">&nbsp;</li>
+    <li data-slide-to="1" data-target="#contactCarousel">&nbsp;</li>
+    <li data-slide-to="2" data-target="#contactCarousel">&nbsp;</li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="item active"><img alt="First slide" src="{{ url_for('static', filename='images/about_1.jpg') }}" />
+    </div>
+    <div class="item"><img alt="Second slide" src="{{ url_for('static', filename='images/about_2.jpg') }}" />
+    </div>
+    <div class="item"><img alt="Third slide" src="{{ url_for('static', filename='images/about_3.jpg') }}" />
     </div>
   </div>
-  <h3>Contact details</h3>
-  <h4>Telephone:</h4>
-  <ul>
-    <li>053 851 478 ext. 7419</li>
-  </ul>
-  <h4>Email:</h4>
-  <ul>
-    <li>Simon Allen, Academic Director: <a href="mailto:simon_c@payap.ac.th">simon_c@payap.ac.th</a></li>
-    <li>Pinkvana Thaworn, Director's Assistant/Lecturer: <a href="mailto:pinkvana_t@payap.ac.th">pinkvana_t@payap.ac.th</a></li>
-  </ul>
-  <h3>&nbsp;</h3>
 </div>
-<div class="panel">
-  <h4>The English Language Enhancement Center (ELEC), at Payap University, offers English Language courses to help you develop your communication skills in the international language.</h4>
-  <p>We offer:</p>
-  <ul>
-    <li>Intensive English programs for students who want to study in English at university.</li>
-    <li>Teacher training - TESOL certificate courses.</li>
-    <li>IELTS / TOEFL preparation courses.</li>
-    <li>Entrance exams every Friday.</li>
-    <li>A self-access center, where you can improve your English in a fun and relaxed environment.</li>
-    <li>Other English courses according to your needs.</li>
-  </ul>
-  <h3 class="page-header">Entrance exam for future Payap International College students</h3>
-  <p>For students who want to study at the Payap International College, and who are not native speakers, we provide an entrance exam every Friday at 10:00 in the morning.</p>
-  <p>The exam lasts three hours and has four parts:</p>
-  <ul>
-    <li>Listening</li>
-    <li>Structure (grammar)</li>
-    <li>Reading</li>
-    <li>Writing</li>
-  </ul>
-  <p>The score you need to pass the exam depends on the course you are applying for.</p>
-  <p>Please remember that the exam starts at 10:00 am. If you are late, you will not be able to get a good score.</p>
-</div>
+<h3>Contact details</h3>
+<h4>Telephone:</h4>
+<ul>
+  <li>053 851 478 ext. 7419</li>
+</ul>
+<h4>Email:</h4>
+<ul>
+  <li>Simon Allen, Academic Director: <a href="mailto:simon_c@payap.ac.th">simon_c@payap.ac.th</a></li>
+  <li>Pinkvana Thaworn, Director's Assistant/Lecturer: <a href="mailto:pinkvana_t@payap.ac.th">pinkvana_t@payap.ac.th</a></li>
+</ul>
+<h3>&nbsp;</h3>
+<h4>The English Language Enhancement Center (ELEC), at Payap University, offers English Language courses to help you develop your communication skills in the international language.</h4>
+<p>We offer:</p>
+<ul>
+  <li>Intensive English programs for students who want to study in English at university.</li>
+  <li>Teacher training - TESOL certificate courses.</li>
+  <li>IELTS / TOEFL preparation courses.</li>
+  <li>Entrance exams every Friday.</li>
+  <li>A self-access center, where you can improve your English in a fun and relaxed environment.</li>
+  <li>Other English courses according to your needs.</li>
+</ul>
+<h3 class="page-header">Entrance exam for future Payap International College students</h3>
+<p>For students who want to study at the Payap International College, and who are not native speakers, we provide an entrance exam every Friday at 10:00 in the morning.</p>
+<p>The exam lasts three hours and has four parts:</p>
+<ul>
+  <li>Listening</li>
+  <li>Structure (grammar)</li>
+  <li>Reading</li>
+  <li>Writing</li>
+</ul>
+<p>The score you need to pass the exam depends on the course you are applying for.</p>
+<p>Please remember that the exam starts at 10:00 am. If you are late, you will not be able to get a good score.</p>
 <h3 class="page-header">Teachers</h3>
-<div class="panel">
-  {% for teacher in data.teachers %}
-  <div class="media"><a class="pull-left" href="#"><img class="media-object img-rounded" src="{{ url_for('static', filename='images/') }}{{ teacher.pic }}" /> </a>
-    <div class="media-body">
-      <h4 class="media-heading">{{ teacher.title }}</h4>
-      <h5>{{ teacher.subtitle }}</h5>
-      <p>{{ teacher.body }}</p>
-    </div>
+{% for teacher in data.teachers %}
+<div class="media"><a class="pull-left" href="#"><img class="media-object img-rounded" src="{{ url_for('static', filename='images/') }}{{ teacher.pic }}" /> </a>
+  <div class="media-body">
+    <h4 class="media-heading">{{ teacher.title }}</h4>
+    <h5>{{ teacher.subtitle }}</h5>
+    <p>{{ teacher.body }}</p>
   </div>
-  {% endfor %}
 </div>
+{% endfor %}
 
 {% endblock %}

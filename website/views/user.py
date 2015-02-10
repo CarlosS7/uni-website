@@ -1,10 +1,9 @@
 import json
-from flask import Blueprint, render_template, request, redirect, flash, url_for
+from flask import Blueprint, render_template, request, redirect, flash, url_for, jsonify
 from flask.ext.login import login_user, logout_user, current_user
-from website import db
-from website.models import User, CompletedExams, SignupCourses
-from website.forms import LoginForm, AddExaminee, GetScore
-from website.scripts import login_required, record_scores, rand_password
+from website.models import User, SignupCourses
+from website.forms import LoginForm
+from website.scripts import login_required, record_scores
 
 mod = Blueprint('user', __name__, url_prefix='/user')
 
@@ -37,7 +36,7 @@ def logout():
     flash('You have been logged out.')
     return redirect(url_for('home.index'))
 
-@mod.route('/', methods=['GET', 'POST'])
+@mod.route('/')
 @login_required(role='admin')
 def index():
     users = User.query.all()
@@ -45,21 +44,12 @@ def index():
     signup = SignupCourses.query.all()
     return render_template('user/index.html', check=check, signup=signup)
 
-@mod.route('/addexaminee', methods=['GET', 'POST'])
+@mod.route('/addexaminee', methods=['POST'])
 @login_required(role='admin')
 def addexaminee():
-    form = AddExaminee()
-    if form.validate_on_submit():
-        if User.query.filter_by(username=form.username.data).count():
-            flash('That name already exists. Please choose another name.')
-            return redirect(url_for('user.addexaminee'))
-        name = form.username.data
-        password = rand_password()
-        db.session.add(User(name, password, 'examinee', form.exam_id.data))
-        db.session.commit()
-        flash('Examinee {} with password {} added'.format(name, password))
-        return redirect(url_for('user.addexaminee'))
-    return render_template('user/addexaminee.html', form=form)
+    for item in request.form.items():
+        print(item)
+    return jsonify({'status': 'ok'})
 
 @mod.route('/editpage')
 @login_required(role='admin')
@@ -80,14 +70,12 @@ def examwriting():
     check = [check_writing(username) for username in users if json.loads(username.answer_page)]
     return render_template('user/examwriting.html', check=check)
 
-@mod.route('/examscore', methods=['GET', 'POST'])
+@mod.route('/examscore', methods=['POST'])
 @login_required(role='admin')
 def examscore():
-    form = GetScore()
-    exams = []
-    if form.validate_on_submit():
-        exams = CompletedExams.query.filter_by(username=form.username.data).all()
-    return render_template('user/examscore.html', exams=exams, form=form)
+    for item in request.form.items():
+        print(item)
+    return jsonify({'status': 'ok'})
 
 def check_writing(user):
     answers = json.loads(user.answer_page)
