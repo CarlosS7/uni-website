@@ -27,7 +27,7 @@ def index():
 def update_results():
     """Get user's answers."""
     get_results(request.form.items())
-    return jsonify({'error': ''})
+    return jsonify({'status': 'ok'})
 
 @mod.route('/finish', methods=['POST'])
 @login_required(role='examinee')

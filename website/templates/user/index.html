@@ -39,29 +39,24 @@
 </form>
 <div id="getscore-results"></div>
 
+<script src="{{ url_for('static', filename='js/jquery-1.11.2.min.js') }}"></script>
 <script>
-$(document).ready(function() {
-    $("#exam-btn").click(function () {
-      //e.preventDefault();
-      var formData = {
-      'name': $("input[name='addexam']").val()
-      };
-      var posting = $.post("/user/addexaminee", formData);
-      posting.done(function (data) {
-        $("#addexam-results").html(data);
-        });
+$(function () {
+  $("#examineeForm").submit(function (e) {
+    e.preventDefault();
+    $.post("/user/addexaminee", $("#examineeForm").serializeArray(),
+    function (data) {
+      $("#addexam-results").html(data);
       });
-    $("#examScore").submit(function (e) {
-      e.preventDefault();
-      var formData = {
-      'name': $("input[name='getscore']").val()
-      };
-      var posting = $.post("/user/examscore", formData)
-      posting.done(function (data) {
-        $("#getscore-results").html(data);
-        });
+    });
+  $("#examScore").submit(function (e) {
+    e.preventDefault();
+    $.post("/user/examscore", $("#examscore").serializeArray(),
+    function (data) {
+      $("#getscore-results").html(data);
       });
-});
+    });
+  });
 </script>
 
 {% endblock %}

@@ -51,6 +51,13 @@ def addexaminee():
         print(item)
     return jsonify({'status': 'ok'})
 
+@mod.route('/examscore', methods=['POST'])
+@login_required(role='admin')
+def examscore():
+    for item in request.form.items():
+        print(item)
+    return jsonify({'status': 'ok'})
+
 @mod.route('/editpage')
 @login_required(role='admin')
 def editpage():
@@ -69,13 +76,6 @@ def examwriting():
     users = User.query.all()
     check = [check_writing(username) for username in users if json.loads(username.answer_page)]
     return render_template('user/examwriting.html', check=check)
-
-@mod.route('/examscore', methods=['POST'])
-@login_required(role='admin')
-def examscore():
-    for item in request.form.items():
-        print(item)
-    return jsonify({'status': 'ok'})
 
 def check_writing(user):
     answers = json.loads(user.answer_page)
