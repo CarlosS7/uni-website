@@ -1,6 +1,10 @@
 body {
   background-color: #f5f5f5;
-  padding-top: 20px;
+}
+#mainarea {
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 0 30px gray;
 }
 .course-info {
   margin-bottom: 40px;

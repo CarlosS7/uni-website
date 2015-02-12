@@ -23,8 +23,8 @@ def login():
             flash('Invalid credentials.')
             return redirect(url_for('user.login'))
         login_user(user)
-        flash('You have been logged in.')
         if user.role == 'admin':
+            flash('You have been logged in as an administrator.')
             return redirect(url_for('user.index'))
         else:
             return redirect(url_for('exam.index'))

@@ -1,11 +1,11 @@
-{% extends "exam/exam_base.html" %}
+{% extends "base.html" %}
 {% block content %}
 
 <div id="top-panel">
   <div class="media">
     <img class="media-object pull-left" src="{{ url_for('static', filename='images/logo.png') }}">
     <div class="media-body">
-      <h1 class="media-heading>{{ welcome.title }}</h1>
+      <h1 class="media-heading">{{ welcome.title }}</h1>
       <h2>{{ welcome.section }}</h2>
     </div>
   </div>
@@ -21,6 +21,19 @@
   {% endfor %}
   <p><a class="btn btn-primary" href="#" id="startexam" role="button">Start the exam </a></p>
 </div>
+
+<script>
+$(function() {
+    $("#startexam").click(function () {
+        $("#exam-body").show();
+        $("#top-panel").slideUp("slow");
+        $("#listening").trigger("play");
+        setInterval(function() {
+            $.post("/exam/update_results", $("form").serializeArray());
+        }, 1000 * 60 * 5);
+    });
+});
+</script>
 
 <div id="exam-body">
   <form action="/exam/finish" method="post">
@@ -59,7 +72,7 @@
     {% endfor %}
 
     {% if data.writing %}
-    <textarea id="writingarea" name="writing" cols="80" rows="20"></textarea>
+    <textarea id="writingarea" name="writing" cols="80" rows="20"></textarea><br>
     <input type="submit" class="btn btn-primary pull-right" role="button" value="Finish the exam">
     {% endif %}
 

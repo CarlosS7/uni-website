@@ -15,7 +15,7 @@
 </div>
 {% endfor %}
 <h3>PYU Entrance Exam</h3>
-<form class="form-inline" action="/user/addexaminee" id="examineeForm" method="post">
+<form class="form-inline" id="examineeForm" method="post">
   <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
   <div class="form-group">
     <label for="addexam">Student's name</label>
@@ -29,7 +29,7 @@
 <a class="btn btn-primary" href="{{ url_for('user.examwriting') }}" role="button">Check exams</a>
 {% endif %}
 &nbsp;&nbsp;
-<form class="form-inline" action="/user/examscore" id="examscore" method="post">
+<form class="form-inline" id="examscore" method="post">
   <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
   <div class="form-group">
     <label for="getscore">Student's name</label>
@@ -39,24 +39,21 @@
 </form>
 <div id="getscore-results"></div>
 
-<script src="{{ url_for('static', filename='js/jquery-1.11.2.min.js') }}"></script>
 <script>
 $(function () {
   $("#examineeForm").submit(function (e) {
     e.preventDefault();
-    $.post("/user/addexaminee", $("#examineeForm").serializeArray(),
-    function (data) {
-      $("#addexam-results").html(data);
-      });
-    });
-  $("#examScore").submit(function (e) {
-    e.preventDefault();
-    $.post("/user/examscore", $("#examscore").serializeArray(),
-    function (data) {
-      $("#getscore-results").html(data);
-      });
-    });
+    var form = $(this).serialize();
+    $.post("{{ url_for('user.addexaminee') }}",
+        JSON.stringify(form))
+        .done(function(resp) {
+            console.log(resp);
+        },
+       'application/json;charset=UTF-8'
+       );
   });
+});
+
 </script>
 
 {% endblock %}
