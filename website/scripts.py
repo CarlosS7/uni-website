@@ -22,10 +22,9 @@ def get_score(user):
     """Return a list of answers that are correct."""
     answers = json.loads(user.answer_page)
     exam_id = user.exam_id
-    data = Questions.query.filter_by(exam_id=exam_id).all()
-    dicts = [ans for quest in data for ans in quest.correct.get()]
-    correct = [key for d in dicts for key, val in d.items() if val == answers.get(key)]
-    return correct
+    data = Questions.query.filter_by(exam_id=exam_id).first().correct
+    score = [key for key, val in data.items() if str(val) == answers.get(key)]
+    return score
 
 def calc_score(ans_list):
     listening = structure = reading = 0
@@ -55,7 +54,7 @@ def record_scores(user, writing):
     update_db(user, exam_score)
 
 def rand_password():
-    alphabet = '1234567890;:!@#$%^&*()abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    alphabet = '23456789;:!@#$%^&*()abcdefghijkmnopqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ'
     myrg = random.SystemRandom()
     length = 10
     return ''.join(myrg.choice(alphabet) for i in range(length))

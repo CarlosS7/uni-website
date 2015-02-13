@@ -49,7 +49,7 @@ def index():
 def addexaminee():
     for item in request.form.items():
         print(item)
-    return 'success'
+    return jsonify({'status': 'ok'})
 
 @mod.route('/examscore', methods=['POST'])
 @login_required(role='admin')

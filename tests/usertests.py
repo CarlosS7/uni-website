@@ -14,13 +14,13 @@ class TestUnauthorized(unittest.TestCase):
 
     def test_user_pages(self):
         rv = self.app.get('/user', follow_redirects=True)
-        assert b'You are not authorized to view this page' in rv.data
+        assert b'are not authorized to view this page' in rv.data
         rv = self.app.get('/user/addexaminee', follow_redirects=True)
-        assert b'You are not authorized to view this page' in rv.data
+        assert b'are not authorized to view this page' in rv.data
         rv = self.app.get('/user/examscore', follow_redirects=True)
-        assert b'You are not authorized to view this page' in rv.data
+        assert b'are not authorized to view this page' in rv.data
         rv = self.app.get('/user/examwriting', follow_redirects=True)
-        assert b'You are not authorized to view this page' in rv.data
+        assert b'are not authorized to view this page' in rv.data
 
     def test_exam_pages(self):
         rv = self.app.get('/exam', follow_redirects=True)

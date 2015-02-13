@@ -106,4 +106,4 @@ class Questions(db.Model):
         self.correct = correct
 
     def __repr__(self):
-        return '<Exam {}, section {}>'.format(self.exam_id)
+        return '<Exam {}>'.format(self.exam_id)
