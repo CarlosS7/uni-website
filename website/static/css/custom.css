@@ -9,6 +9,10 @@ body {
 .course-info {
   margin-bottom: 40px;
 }
+.exam-box {
+  padding: 30px;
+  margin-bottom: 40px;
+}
 .radio-label {
   font-weight: normal;
 }

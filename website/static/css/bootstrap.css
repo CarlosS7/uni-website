@@ -2471,7 +2471,7 @@ label {
   display: inline-block;
   max-width: 100%;
   margin-bottom: 5px;
-  font-weight: bold;
+  font-weight: normal;
 }
 input[type="search"] {
   -webkit-box-sizing: border-box;
@@ -2597,8 +2597,9 @@ input[type="search"] {
 .radio label,
 .checkbox label {
   min-height: 20px;
+  padding-left: 20px;
   margin-bottom: 0;
-  font-weight: normal;
+  font-weight: bold;
   cursor: pointer;
 }
 .radio input[type="radio"],
@@ -2616,6 +2617,7 @@ input[type="search"] {
 .radio-inline,
 .checkbox-inline {
   display: inline-block;
+  padding-left: 20px;
   margin-bottom: 0;
   vertical-align: middle;
   font-weight: normal;
