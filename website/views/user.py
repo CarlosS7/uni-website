@@ -57,8 +57,7 @@ def examscore():
     name = next(request.form.items())[-1]
     exams = CompletedExams.query.filter_by(username=name).all()
     scores = [exam.exam_score for exam in exams]
-    print(scores)
-    return render_template('user/showscore.html', name=name, scores=scores)
+    return render_template('partials/showscore.html', name=name, scores=scores)
 
 @mod.route('/editpage')
 @login_required(role='admin')

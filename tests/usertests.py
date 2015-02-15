@@ -15,9 +15,9 @@ class TestUnauthorized(unittest.TestCase):
     def test_user_pages(self):
         rv = self.app.get('/user', follow_redirects=True)
         self.assertIn(b'are not authorized to view this page', rv.data)
-        rv = self.app.get('/user/addexaminee', follow_redirects=True)
+        rv = self.app.post('/user/addexaminee', follow_redirects=True)
         self.assertIn(b'are not authorized to view this page', rv.data)
-        rv = self.app.get('/user/examscore', follow_redirects=True)
+        rv = self.app.post('/user/examscore', follow_redirects=True)
         self.assertIn(b'are not authorized to view this page', rv.data)
         rv = self.app.get('/user/examwriting', follow_redirects=True)
         self.assertIn(b'are not authorized to view this page', rv.data)
@@ -65,7 +65,7 @@ class TestUser(unittest.TestCase):
     def test_login_logout(self):
         """Test login and logout using helper functions"""
         rv = self.login('admin', 'default')
-        self.assertIn(b'You have been logged in', rv.data)
+        self.assertIn(b'Students interested in courses', rv.data)
         rv = self.logout()
         self.assertIn(b'You have been logged out', rv.data)
         rv = self.login('adxmin', 'default')
