@@ -1,9 +1,9 @@
 import json
-from flask import Blueprint, render_template, request, redirect, flash, url_for, jsonify
+from flask import Blueprint, render_template, request, redirect, flash, url_for
 from flask.ext.login import login_user, logout_user, current_user
-from website.models import User, SignupCourses
+from website.models import User, SignupCourses, CompletedExams
 from website.forms import LoginForm
-from website.scripts import login_required, record_scores
+from website.scripts import login_required, record_scores, rand_password
 
 mod = Blueprint('user', __name__, url_prefix='/user')
 
@@ -24,7 +24,6 @@ def login():
             return redirect(url_for('user.login'))
         login_user(user)
         if user.role == 'admin':
-            flash('You have been logged in as an administrator.')
             return redirect(url_for('user.index'))
         else:
             return redirect(url_for('exam.index'))
@@ -42,21 +41,24 @@ def index():
     users = User.query.all()
     check = len([user for user in users if json.loads(user.answer_page)])
     signup = SignupCourses.query.all()
-    return render_template('user/index.html', check=check, signup=signup)
+    old = [exam.username for exam in CompletedExams.query.all()]
+    return render_template('user/index.html', check=check, signup=signup, old=old)
 
 @mod.route('/addexaminee', methods=['POST'])
 @login_required(role='admin')
 def addexaminee():
-    for item in request.form.items():
-        print(item)
-    return jsonify({'status': 'ok'})
+    name = next(request.form.items())[-1]
+    password = rand_password()
+    return '<label>Name: {} Password: {}</label>'.format(name, password)
 
 @mod.route('/examscore', methods=['POST'])
 @login_required(role='admin')
 def examscore():
-    for item in request.form.items():
-        print(item)
-    return jsonify({'status': 'ok'})
+    name = next(request.form.items())[-1]
+    exams = CompletedExams.query.filter_by(username=name).all()
+    scores = [exam.exam_score for exam in exams]
+    print(scores)
+    return render_template('user/showscore.html', name=name, scores=scores)
 
 @mod.route('/editpage')
 @login_required(role='admin')

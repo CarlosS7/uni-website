@@ -58,34 +58,34 @@ class TestExaminee(unittest.TestCase):
 
     def test_initial(self):
         rv = self.app.get('/exam', follow_redirects=True)
-        assert b'read the instructions for each section carefully' in rv.data
-        assert b'Ontologically the goal exists only in the imagination' in rv.data
-        assert b'fart in your general direction' in rv.data
-        assert b'a swallow bring a coconut to such a temperate zone' in rv.data
+        self.assertIn(b'read the instructions for each section carefully', rv.data)
+        self.assertIn(b'Ontologically the goal exists only in the imagination', rv.data)
+        self.assertIn(b'fart in your general direction', rv.data)
+        self.assertIn(b'a swallow bring a coconut to such a temperate zone', rv.data)
 
     def test_full(self):
         self.mock_test(2, 4, 4, 1, 3)
         user = User.query.filter_by(username='examinee').first()
         score = get_score(user)
         listening, structure, reading = calc_score(score)
-        assert len(score) == 5
-        assert listening == 2
-        assert structure == 2
-        assert reading == 1
+        self.assertEqual(len(score), 5)
+        self.assertEqual(listening, 2)
+        self.assertEqual(structure, 2)
+        self.assertEqual(reading, 1)
 
     def test_not_full(self):
         self.mock_test(2, 2, 4, 3, 3)
         user = User.query.filter_by(username='examinee').first()
         score = get_score(user)
         listening, structure, reading = calc_score(score)
-        assert len(score) == 3
-        assert listening == 1
-        assert structure == 1
-        assert reading == 1
+        self.assertEqual(len(score), 3)
+        self.assertEqual(listening, 1)
+        self.assertEqual(structure, 1)
+        self.assertEqual(reading, 1)
 
     def test_finish(self):
         rv = self.app.post('/exam/finish', follow_redirects=True)
-        assert b'have been logged out' in rv.data
+        self.assertIn(b'have been logged out', rv.data)
 
 if __name__ == '__main__':
     unittest.main()

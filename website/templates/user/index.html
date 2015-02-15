@@ -3,7 +3,8 @@
 {% block content %}
 
 <h2 class="page-header">Admin</h2>
-<h3>Students</h3>
+<h3>Students interested in courses</h3>
+{% if signup %}
 {% for username in signup %}
 <div class="row">
   <div class="col-sm-4 col-md-4">
@@ -14,31 +15,38 @@
   </div>
 </div>
 {% endfor %}
+{% else %}
+<p>No students to contact.</p>
+{% endif %}
 <h3>PYU Entrance Exam</h3>
-<form class="form-inline" id="examineeForm">
-  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+<form class="form-inline" id="examineeForm" method="post">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <div class="form-group">
     <label for="addexam">Student's name</label>
     <input type="text" class="form-control" name="addexam">
-    <button type="submit" id="exam-btn" class="btn btn-primary">Add examinee</button>
+    <button type="submit" class="btn btn-primary">Add examinee</button>
   </div>
-</form>
+</form><br>
 <div id="addexam-results"></div>
 {% if check %}
-&nbsp;&nbsp;
-<a class="btn btn-primary" href="{{ url_for('user.examwriting') }}" role="button">Check exams</a>
+<p><a class="btn btn-primary" href="{{ url_for('user.examwriting') }}" role="button">Check exams</a></p>
 {% endif %}
-&nbsp;&nbsp;
-<form class="form-inline" id="examscore">
-  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+<form class="form-inline" id="examscoreForm" method="post">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <div class="form-group">
     <label for="getscore">Student's name</label>
-    <input type="text" class="form-control" name="getscore">
+    <select class="form-control" name="getscore">
+      <option selected="selected">Choose the student</option>
+      {% for exam in old %}
+      <option>{{ exam }}</option>
+      {% endfor %}
+    </select>
     <button type="submit" class="btn btn-primary">Get exam score</button>
   </div>
-</form>
+</form><br>
 <div id="getscore-results"></div>
 
 <script src="{{ url_for('static', filename='js/user_script.js') }}"></script>
 
 {% endblock %}
+

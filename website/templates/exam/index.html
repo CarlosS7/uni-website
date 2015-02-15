@@ -59,7 +59,7 @@ $(function() {
     {% endfor %}
 
     {% for item in question.answers %}
-    <label>
+    <label class="radio-label">
       <input type="radio" name="{{ question.object_id }}" value="{{ question.answers.index(item) + 1}}">
       {{ item }} 
     </label>
@@ -67,7 +67,7 @@ $(function() {
     {% endfor %}
 
     {% if question.ending %}
-    <label>{{ question.ending }}</label>
+    <p>{{ question.ending }}</p>
     {% endif %}
     {% endfor %}
 

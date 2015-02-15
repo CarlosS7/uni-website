@@ -14,17 +14,17 @@ class TestUnauthorized(unittest.TestCase):
 
     def test_user_pages(self):
         rv = self.app.get('/user', follow_redirects=True)
-        assert b'are not authorized to view this page' in rv.data
+        self.assertIn(b'are not authorized to view this page', rv.data)
         rv = self.app.get('/user/addexaminee', follow_redirects=True)
-        assert b'are not authorized to view this page' in rv.data
+        self.assertIn(b'are not authorized to view this page', rv.data)
         rv = self.app.get('/user/examscore', follow_redirects=True)
-        assert b'are not authorized to view this page' in rv.data
+        self.assertIn(b'are not authorized to view this page', rv.data)
         rv = self.app.get('/user/examwriting', follow_redirects=True)
-        assert b'are not authorized to view this page' in rv.data
+        self.assertIn(b'are not authorized to view this page', rv.data)
 
     def test_exam_pages(self):
         rv = self.app.get('/exam', follow_redirects=True)
-        assert b'You are not authorized to view this page' in rv.data
+        self.assertIn(b'are not authorized to view this page', rv.data)
 
 class TestUser(unittest.TestCase):
     def setUp(self):
@@ -43,13 +43,13 @@ class TestUser(unittest.TestCase):
         db.drop_all()
 
     def test_create_user(self):
-        assert self.user.is_authenticated() is True
-        assert self.user.role == 'admin'
-        assert self.user.id == int(self.user.get_id())
-        assert self.examinee.is_authenticated() is True
-        assert self.examinee.role == 'examinee'
-        assert self.examinee.exam_id == 'pyueng5'
-        assert self.examinee.id == int(self.examinee.get_id())
+        self.assertTrue(self.user.is_authenticated())
+        self.assertEqual(self.user.role, 'admin')
+        self.assertEqual(self.user.id, int(self.user.get_id()))
+        self.assertTrue(self.examinee.is_authenticated())
+        self.assertEqual(self.examinee.role, 'examinee')
+        self.assertEqual(self.examinee.exam_id, 'pyueng5')
+        self.assertEqual(self.examinee.id, int(self.examinee.get_id()))
 
     def login(self, username, password):
         """Login helper function"""
@@ -65,13 +65,13 @@ class TestUser(unittest.TestCase):
     def test_login_logout(self):
         """Test login and logout using helper functions"""
         rv = self.login('admin', 'default')
-        assert b'You have been logged in' in rv.data
+        self.assertIn(b'You have been logged in', rv.data)
         rv = self.logout()
-        assert b'You have been logged out' in rv.data
+        self.assertIn(b'You have been logged out', rv.data)
         rv = self.login('adxmin', 'default')
-        assert b'Invalid credentials' in rv.data
+        self.assertIn(b'Invalid credentials', rv.data)
         rv = self.login('admin', 'dxefault')
-        assert b'Invalid credentials' in rv.data
+        self.assertIn(b'Invalid credentials', rv.data)
 
 if __name__ == '__main__':
     unittest.main()
