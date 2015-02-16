@@ -10,6 +10,8 @@ body {
   margin-bottom: 40px;
 }
 .exam-box {
+  border: 2px solid gray;
+  border-radius: 12px;
   padding: 30px;
   margin-bottom: 40px;
 }

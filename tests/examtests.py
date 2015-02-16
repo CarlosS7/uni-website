@@ -64,7 +64,7 @@ class TestExaminee(unittest.TestCase):
         self.assertIn(b'a swallow bring a coconut to such a temperate zone', rv.data)
 
     def test_full(self):
-        self.mock_test(2, 4, 4, 1, 3)
+        self.mock_test("B", "D", "D", "A", "C")
         user = User.query.filter_by(username='examinee').first()
         score = get_score(user)
         listening, structure, reading = calc_score(score)
@@ -74,7 +74,7 @@ class TestExaminee(unittest.TestCase):
         self.assertEqual(reading, 1)
 
     def test_not_full(self):
-        self.mock_test(2, 2, 4, 3, 3)
+        self.mock_test("B", "B", "D", "C", "C")
         user = User.query.filter_by(username='examinee').first()
         score = get_score(user)
         listening, structure, reading = calc_score(score)

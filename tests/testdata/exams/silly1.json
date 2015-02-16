@@ -17,12 +17,10 @@
                     "heading": "Example",
                     "body": ["Why should the Greeks' goal against the German philosophers have been disallowed?"],
                     "ending": "As any serious student of Marx's theory of alienation would know, it was clearly offside.",
-                    "answers": [
-                        "The reality is merely an a priori adjunct of non-naturalistic ethics.",
-                        "Ontologically the goal exists only in the imagination.",
-                        "Visible factors are created by the human mind and are absent from the goal-in-itself.",
-                        "It was offside."
-                    ]
+                    "answers": {"A": "The reality is merely an a priori adjunct of non-naturalistic ethics.",
+                        "B": "Ontologically the goal exists only in the imagination.",
+                        "C": "Visible factors are created by the human mind and are absent from the goal-in-itself.",
+                        "D": "It was offside."}
                 }
             ]
         },
@@ -31,52 +29,42 @@
                 {
                     "object_id": "silly1_list_01",
                     "body": ["Question 1:", " What is the answer to life, the universe and everything?"],
-                    "answers": [
-                        "Whatever you want it to be, baby",
-                        "42",
-                        "A quarter to three",
-                        "Never mind the meaning of life, dear, let's have a nice cup of tea"
-                    ]
+                    "answers": {"A": "Whatever you want it to be, baby",
+                        "B": "42",
+                        "C": "A quarter to three",
+                        "D": "Never mind the meaning of life, dear, let's have a nice cup of tea"}
                 },
                 {
                     "object_id": "silly1_list_02",
                     "body": ["Question 2:", " How did the knights escape from the monster?"],
-                    "answers": [
-                        "They tunneled their way out.",
-                        "They threw sand in its eyes.",
-                        "They sought an injunction against the monster.",
-                        "The animator had a heart attack."
-                    ]
+                    "answers": {"A": "They tunneled their way out.",
+                        "B": "They threw sand in its eyes.",
+                        "C": "They sought an injunction against the monster.",
+                        "D": "The animator had a heart attack."}
                 },
                 {
                     "object_id": "silly1_struct_03",
                     "body": ["Question 3:", " What is the worst French insult?"],
-                    "answers": [
-                        "I will make castanets out of your testicles.",
-                        "Your father smells of elderberries.",
-                        "I call you a silly thing.",
-                        "I fart in your general direction."
-                    ]
+                    "answers": {"A": "I will make castanets out of your testicles.",
+                        "B": "Your father smells of elderberries.",
+                        "C": "I call you a silly thing.",
+                        "D": "I fart in your general direction."}
                 },
                 {
                     "object_id": "silly1_struct_04",
                     "body": ["Question 4:", " What is the main precursor to armageddon?"],
-                    "answers": [
-                        "A friend shall lose a friend's hammer.",
-                        "There will be one government ruling the whole world.",
-                        "Plagues of locusts shall attack every McDonald's in the world and get very sick.",
-                        "Every first-born child shall be infected with a tickly cough."
-                    ]
+                    "answers": {"A": "A friend shall lose a friend's hammer.",
+                        "B": "There will be one government ruling the whole world.",
+                        "C": "Plagues of locusts shall attack every McDonald's in the world and get very sick.",
+                        "D": "Every first-born child shall be infected with a tickly cough."}
                 },
                 {
                     "object_id": "silly1_read_05",
                     "body": ["Question 5:", " What's wrong with it, then?"],
-                    "answers": [
-                        "It's pining for the fjords.",
-                        "The Norwegian Blue prefers kipping on its back.",
-                        "It's dead.",
-                        "It's stunned."
-                    ]
+                    "answers": {"A": "It's pining for the fjords.",
+                        "B": "The Norwegian Blue prefers kipping on its back.",
+                        "C": "It's dead.",
+                        "D": "It's stunned."}
                 }
             ]
         },

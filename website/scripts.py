@@ -23,7 +23,7 @@ def get_score(user):
     answers = json.loads(user.answer_page)
     exam_id = user.exam_id
     data = Questions.query.filter_by(exam_id=exam_id).first().correct
-    score = [key for key, val in data.items() if str(val) == answers.get(key)]
+    score = [key for key, val in data.items() if val == answers.get(key)]
     return score
 
 def calc_score(ans_list):
