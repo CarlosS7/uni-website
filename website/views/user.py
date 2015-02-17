@@ -55,7 +55,7 @@ def addexaminee():
     password = rand_password()
     db.session.add(User(name, password, 'examinee', exam_id))
     db.session.commit()
-    return '<label>Name: {} Password: {}</label>'.format(name, password)
+    return '<h4 class="text-primary">Name: {} Password: {}</h4>'.format(name, password)
 
 @mod.route('/examscore', methods=['POST'])
 @login_required(role='admin')
