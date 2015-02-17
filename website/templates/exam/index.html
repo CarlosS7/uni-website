@@ -22,18 +22,7 @@
   <p><a class="btn btn-primary" href="#" id="startexam" role="button">Start the exam </a></p>
 </div>
 
-<script>
-$(function() {
-  $("#startexam").click(function () {
-    $("#exam-body").show();
-    $("#top-panel").slideUp("slow");
-    $("#listening").trigger("play");
-    setInterval(function() {
-      $.post("/exam/update_results", $("form").serializeArray());
-    }, 1000 * 60 * 5);
-  });
-});
-</script>
+<script src="{{ url_for('static', filename='js/exam_script.js') }}"></script>
 
 <div id="exam-body">
   <form action="/exam/finish" method="post">
@@ -49,7 +38,14 @@ $(function() {
 
       {% if data.intro %}
       {% for text in data.intro %}
-      <h4 id="introtext">{{ text|safe }}</h4>
+      <h4>{{ text }}</h4>
+      {% endfor %}
+      {% endif %}
+
+      {% if data.directions %}
+      {% for text in data.directions %}
+      <h3>Directions</h3>
+      <h4>{{ text }}</h4>
       {% endfor %}
       {% endif %}
 
@@ -59,16 +55,32 @@ $(function() {
       <h4>{{ text|safe }}</h4>
       {% endfor %}
 
-      {% for key, val in question.answers.items() %}
       <label class="radio-label">
-        <input type="radio" name="{{ question.object_id }}" value="{{ key }}">
-        {{ val }} 
+        <input type="radio" name="{{ question.object_id }}" value="A">
+        {{ question.answers['A'] }} 
       </label>
       {% if data.inline %}&nbsp;&nbsp;{% else %}<br>{% endif %}
-      {% endfor %}
+
+      <label class="radio-label">
+        <input type="radio" name="{{ question.object_id }}" value="B">
+        {{ question.answers['B'] }} 
+      </label>
+      {% if data.inline %}&nbsp;&nbsp;{% else %}<br>{% endif %}
+
+      <label class="radio-label">
+        <input type="radio" name="{{ question.object_id }}" value="C">
+        {{ question.answers['C'] }} 
+      </label>
+      {% if data.inline %}&nbsp;&nbsp;{% else %}<br>{% endif %}
+
+      <label class="radio-label">
+        <input type="radio" name="{{ question.object_id }}" value="D">
+        {{ question.answers['D'] }} 
+      </label>
+      {% if data.inline %}&nbsp;&nbsp;{% else %}<br>{% endif %}
 
       {% if question.ending %}
-      <p>{{ question.ending }}</p>
+      <h5>{{ question.ending }}</h5>
       {% endif %}
       {% endfor %}
 

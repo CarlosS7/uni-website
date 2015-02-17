@@ -1,7 +1,8 @@
 import json
 from flask import Blueprint, render_template, request, redirect, flash, url_for
 from flask.ext.login import login_user, logout_user, current_user
-from website.models import User, SignupCourses, CompletedExams
+from website import db
+from website.models import User, Questions, SignupCourses, CompletedExams
 from website.forms import LoginForm
 from website.scripts import login_required, record_scores, rand_password
 
@@ -41,20 +42,26 @@ def index():
     users = User.query.all()
     check = len([user for user in users if json.loads(user.answer_page)])
     signup = SignupCourses.query.all()
-    old = [exam.username for exam in CompletedExams.query.all()]
-    return render_template('user/index.html', check=check, signup=signup, old=old)
+    exams = [q.exam_id for q in Questions.query.all()]
+    old = [(exam.username, exam.taken_date) for exam in CompletedExams.query.all()]
+    return render_template('user/index.html', check=check, signup=signup, exams=exams, old=old)
 
 @mod.route('/addexaminee', methods=['POST'])
 @login_required(role='admin')
 def addexaminee():
-    name = next(request.form.items())[-1]
+    items = dict(request.form.items())
+    name = items.get('addname')
+    exam_id = items.get('getexam')
     password = rand_password()
+    db.session.add(User(name, password, 'examinee', exam_id))
+    db.session.commit()
     return '<label>Name: {} Password: {}</label>'.format(name, password)
 
 @mod.route('/examscore', methods=['POST'])
 @login_required(role='admin')
 def examscore():
-    name = next(request.form.items())[-1]
+    items = dict(request.form.items())
+    name = items.get('getscore').split(' -- ')[0]
     exams = CompletedExams.query.filter_by(username=name).all()
     scores = [exam.exam_score for exam in exams]
     return render_template('partials/showscore.html', name=name, scores=scores)

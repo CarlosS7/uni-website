@@ -22,8 +22,14 @@
 <form class="form-inline" id="examineeForm" method="post">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <div class="form-group">
-    <label for="addexam">Student's name</label>
-    <input type="text" class="form-control" name="addexam">
+    <label for="addname">Student's name</label>
+    <input type="text" class="form-control" name="addname">
+    <select class="form-control" name="getexam">
+      <option selected="selected">Choose the exam</option>
+      {% for exam in exams %}
+      <option>{{ exam }}</option>
+      {% endfor %}
+    </select>
     <button type="submit" class="btn btn-primary">Add examinee</button>
   </div>
 </form><br>
@@ -36,9 +42,9 @@
   <div class="form-group">
     <label for="getscore">Student's name</label>
     <select class="form-control" name="getscore">
-      <option selected="selected">Choose the student</option>
+      <option selected="selected">Choose the student and date</option>
       {% for exam in old %}
-      <option>{{ exam }}</option>
+      <option>{{ exam[0] }} -- {{ exam[1] }}</option>
       {% endfor %}
     </select>
     <button type="submit" class="btn btn-primary">Get exam score</button>

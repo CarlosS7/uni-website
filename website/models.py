@@ -67,7 +67,7 @@ class CompletedExams(db.Model):
     __tablename__ = 'oldexams'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(32))
-    taken_date = db.Column(db.DateTime)
+    taken_date = db.Column(db.Date)
     answer_page = db.Column(JSON)
     exam_score = db.Column(JSON)
 

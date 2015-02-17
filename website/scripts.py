@@ -39,7 +39,7 @@ def calc_score(ans_list):
 
 def update_db(user, exam_score):
     answer_page = json.loads(user.answer_page)
-    taken_date = datetime.utcnow()
+    taken_date = datetime.now().date()
     db.session.add(CompletedExams(user.username, taken_date, answer_page, exam_score))
     db.session.delete(user)
     db.session.commit()
@@ -56,5 +56,5 @@ def record_scores(user, writing):
 def rand_password():
     alphabet = '23456789;:!@#$%^&*()abcdefghijkmnopqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ'
     myrg = random.SystemRandom()
-    length = 10
+    length = 8
     return ''.join(myrg.choice(alphabet) for i in range(length))

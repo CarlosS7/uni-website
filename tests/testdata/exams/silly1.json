@@ -10,7 +10,8 @@
         },
         {
             "section": "General Knowledge",
-            "intro": ["In this section of the test, you will have an opportunity to demonstrate your general knowledge.", "<h3>Directions</h3>", "Answer each question in this part to the best of your ability."],
+            "intro": ["In this section of the test, you will have an opportunity to demonstrate your general knowledge."],
+            "directions": ["Answer each question in this part to the best of your ability."],
             "questions": [
                 {
                     "object_id": "silly1_introsilly01_01",
