@@ -786,6 +786,7 @@ tbody.collapse.in {
   font-weight: bold;
   color: #fff;
   text-align: center;
+  white-space: nowrap;
   border-bottom: 1px solid #4c91cc;
 }
 .nav-justified > .dropdown .dropdown-menu {
@@ -793,6 +794,9 @@ tbody.collapse.in {
   left: auto;
 }
 @media (min-width: 768px) {
+  .nav-justified {
+    max-height: 52px;
+  }
   .nav-justified > li {
     display: table-cell;
     width: 1%;
