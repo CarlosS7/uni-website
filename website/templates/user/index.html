@@ -34,9 +34,6 @@
   </div>
 </form><br>
 <div id="addexam-results"></div>
-{% if check %}
-<p><a class="btn btn-primary" href="{{ url_for('user.examwriting') }}" role="button">Check exams</a></p>
-{% endif %}
 <form class="form-inline" id="examscoreForm" method="post">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <div class="form-group">
@@ -51,6 +48,9 @@
   </div>
 </form><br>
 <div id="getscore-results"></div>
+{% if check %}
+<p><a class="btn btn-primary" href="{{ url_for('user.examwriting') }}" role="button">Check exams</a></p>
+{% endif %}
 
 <script src="{{ url_for('static', filename='js/user_script.js') }}"></script>
 

@@ -53,9 +53,12 @@ def addexaminee():
     name = items.get('addname')
     exam_id = items.get('getexam')
     password = rand_password()
-    db.session.add(User(name, password, 'examinee', exam_id))
-    db.session.commit()
-    return '<h4 class="text-primary">Name: {} Password: {}</h4>'.format(name, password)
+    try:
+        db.session.add(User(name, password, 'examinee', exam_id))
+        db.session.commit()
+    except:
+        return '<h4>That name seems to have been used. Please choose another name.</h4>'
+    return '<h4>Name: {} Password: {}</h4>'.format(name, password)
 
 @mod.route('/examscore', methods=['POST'])
 @login_required(role='admin')
@@ -67,7 +70,7 @@ def examscore():
     return render_template('partials/showscore.html', name=name, scores=scores)
 
 @mod.route('/editpage')
-@login_required(role='admin')
+#@login_required(role='admin')
 def editpage():
     pass
 
