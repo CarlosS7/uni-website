@@ -58,7 +58,7 @@ def addexaminee():
         db.session.commit()
     except:
         return '<h4>That name seems to have been used. Please choose another name.</h4>'
-    return '<h4>Name: {} Password: {}</h4>'.format(name, password)
+    return render_template('partials/shownamepass.html', name=name, password=password)
 
 @mod.route('/examscore', methods=['POST'])
 @login_required(role='admin')
@@ -70,7 +70,7 @@ def examscore():
     return render_template('partials/showscore.html', name=name, scores=scores)
 
 @mod.route('/editpage')
-#@login_required(role='admin')
+@login_required(role='admin')
 def editpage():
     pass
 

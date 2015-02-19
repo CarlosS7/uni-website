@@ -1,12 +1,27 @@
 {% for exam in scores %}
-<h4>{{ name }}</h4>
-<h4>
-  Exam: {{ exam.exam_id }}
-  Listening: {{ exam.listening }}
-  Structure: {{ exam.structure }}
-  Reading: {{ exam.reading }}
-  Writing: {{ exam.writing }}
-  Total: {{ exam.total }}
-  <button type="button" class="btn btn-primary">Remove</button>
-</h4>
+<table class="table">
+  <thead>
+    <tr>
+      <th>{{ name }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Exam:</td>
+      <td>{{ exam.exam_id }}</td>
+      <td>Listening: {{ exam.listening }}</td>
+      <td>Structure: {{ exam.structure }}</td>
+      <td>Reading: {{ exam.reading }}</td>
+      <td>Writing: {{ exam.writing }}</td>
+      <td>Total: {{ exam.total }}</td>
+    </tr>
+  </tbody>
+</table>
+<button type="button" class="btn btn-default" id="remove-scores">Remove scores</button>
 {% endfor %}
+
+<script>
+$("#remove-scores").click(function () {
+  $("#getscore-results").fadeOut("slow");
+});
+</script>

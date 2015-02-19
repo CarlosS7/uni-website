@@ -8,21 +8,25 @@ $.ajaxSetup({
 })
 
 $("#examineeForm").submit(function (e) {
-  e.preventDefault();
-  formdata = $(this).serialize();
-  $.post("/user/addexaminee", formdata)
+    e.preventDefault();
+    formdata = $(this).serialize();
+    $.post("/user/addexaminee", formdata)
     .done(function (resp) {
-      console.log(resp);
-      $("#addexam-results").append(resp);
+        console.log(resp);
+        if( $("#addexam-results").is(":empty")) {
+            $("#addexam-results").html(
+                '<button type="button" class="btn btn-default" id="remove-add">Remove names</button>');
+        }
+        $("#addexam-results").prepend(resp);
     });
 });
 
 $("#examscoreForm").submit(function (e) {
-  e.preventDefault();
-  formdata = $(this).serialize();
-  $.post("/user/examscore", formdata)
+    e.preventDefault();
+    formdata = $(this).serialize();
+    $.post("/user/examscore", formdata)
     .done(function (resp) {
-      console.log(resp);
-      $("#getscore-results").html(resp);
+        console.log(resp);
+        $("#getscore-results").html(resp);
     });
 });
