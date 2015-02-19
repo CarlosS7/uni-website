@@ -40,7 +40,7 @@ def logout():
 @login_required(role='admin')
 def index():
     users = User.query.all()
-    check = len([user for user in users if json.loads(user.answer_page)])
+    check = [check_writing(username) for username in users if json.loads(username.answer_page)]
     signup = SignupCourses.query.all()
     exams = [q.exam_id for q in Questions.query.all()]
     old = [(exam.username, exam.taken_date) for exam in CompletedExams.query.all()]
@@ -69,26 +69,23 @@ def examscore():
     scores = [exam.exam_score for exam in exams]
     return render_template('partials/showscore.html', name=name, scores=scores)
 
-@mod.route('/editpage')
-@login_required(role='admin')
-def editpage():
-    pass
-
-@mod.route('/examwriting', methods=['GET', 'POST'])
+@mod.route('/examwriting', methods=['POST'])
 @login_required(role='admin')
 def examwriting():
-    if request.method == 'POST':
-        for userdata in request.form.items():
-            user = User.query.filter_by(username=userdata[0]).first()
-            if user:
-                writing = float(userdata[1] or 0)
-                writing = writing if writing <= 6 else 0
-                record_scores(user, writing)
-    users = User.query.all()
-    check = [check_writing(username) for username in users if json.loads(username.answer_page)]
-    return render_template('user/examwriting.html', check=check)
+    for data in request.form.items():
+        user = User.query.filter_by(username=data[0]).first()
+        if user:
+            writing = float(data[1] or 0)
+            writing = writing if writing <= 6 else 0
+            record_scores(user, writing)
+    return 'ok'
 
 def check_writing(user):
     answers = json.loads(user.answer_page)
     writing = answers.get('writing')
     return (user.username, writing)
+
+@mod.route('/editpage')
+@login_required(role='admin')
+def editpage():
+    pass

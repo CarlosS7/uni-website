@@ -49,7 +49,23 @@
 </form><br>
 <div id="getscore-results"></div>
 {% if check %}
-<p><a class="btn btn-primary" href="{{ url_for('user.examwriting') }}" role="button">Check exams</a></p>
+<div id="checkwrite">
+  <form id="writescoreForm" method="post">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    {% for chk in check %}
+    <h4>{{ chk[0] }}</h4>
+    <textarea cols="80" rows="10">
+      {{ chk[1] }}
+    </textarea><br>
+    <label>
+      Writing score
+      <input type="text" name="{{ chk[0] }}">
+    </label>
+    <br>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">Submit writing scores</button>
+  </form>
+</div>
 {% endif %}
 
 <script src="{{ url_for('static', filename='js/user_script.js') }}"></script>

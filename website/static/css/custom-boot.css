@@ -886,6 +886,11 @@ tbody.collapse.in {
 .media-object {
   display: block;
 }
+@media (max-width: 480px) {
+  .media-object {
+    display: none;
+  }
+}
 .media > .pull-left {
   padding-right: 10px;
 }
