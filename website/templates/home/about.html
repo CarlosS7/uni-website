@@ -4,21 +4,13 @@
 
 <h2 class="page-header">English Language Enhancement Center</h2>
 <h4>We are on the second floor of the library at Payap University's Mae Khao Campus, which is east of the city ring road.</h4>
-<div class="carousel slide carousel-fade" data-ride="carousel" id="contactCarousel"><!-- Indicators -->
-  <ol class="carousel-indicators">
-    <li class="active" data-slide-to="0" data-target="#contactCarousel">&nbsp;</li>
-    <li data-slide-to="1" data-target="#contactCarousel">&nbsp;</li>
-    <li data-slide-to="2" data-target="#contactCarousel">&nbsp;</li>
-  </ol>
-  <div class="carousel-inner">
-    <div class="item active"><img alt="First slide" src="{{ url_for('static', filename='images/about_1.jpg') }}" />
-    </div>
-    <div class="item"><img alt="Second slide" src="{{ url_for('static', filename='images/about_2.jpg') }}" />
-    </div>
-    <div class="item"><img alt="Third slide" src="{{ url_for('static', filename='images/about_3.jpg') }}" />
-    </div>
-  </div>
+
+<div class="css-slider">
+  <img class="slider-img" src="{{ url_for('static', filename='images/about_1.jpg') }}" />
+  <img class="slider-img" src="{{ url_for('static', filename='images/about_2.jpg') }}" />
+  <img class="slider-img" src="{{ url_for('static', filename='images/about_3.jpg') }}" />
 </div>
+
 <h3>Contact details</h3>
 <h4>Telephone:</h4>
 <ul>
