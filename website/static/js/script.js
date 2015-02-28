@@ -10,32 +10,29 @@ var quotes = [
 
 $(document).ready(function() {
     randQuotes(quotes);
-    fadeQuotes('#randomquote, #author', quotes, 5000);
+    fadeQuotes(quotes, 5000);
 });
 
 function randQuotes(quotes) {
     var i = Math.floor(Math.random()*quotes.length);
-    $('#randomquote').text(quotes[i].q);
-    $('#author').text(quotes[i].a);
+    document.getElementById('randomquote').innerHTML = (quotes[i].q);
+    document.getElementById('author').innerHTML = (quotes[i].a);
 }
 
-function fadeQuotes(divID, quotes, interval) {
+function fadeQuotes(quotes, interval) {
     setInterval(function() {
-        $(divID).fadeOut('slow', function() {
-            randQuotes(quotes);
-            $(this).fadeIn('slow');
-        });
+        randQuotes(quotes);
     }, interval);
 }
 
 function toggleDiv(showHideDiv) {
     var el = document.getElementById(showHideDiv);
-    if(el.style.display == "block") {
-        el.style.display = "none";
-        el.style.visibility = "hidden";
+    if(el.style.display == 'block') {
+        el.style.display = 'none';
+        el.style.visibility = 'hidden';
     }
     else {
-        el.style.display = "block";
-        el.style.visibility = "visible";
+        el.style.display = 'block';
+        el.style.visibility = 'visible';
     }
 } 

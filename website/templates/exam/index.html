@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
 
+<nav class="fixed-navbar">
+  <ul class="nav">
+    <li>Logged in as {{ current_user.username }}</li>
+  </ul>
+</nav>
+
 <div id="top-panel">
   <div class="media">
     <img class="media-object pull-left" src="{{ url_for('static', filename='images/logo.png') }}">
@@ -19,7 +25,7 @@
   {% for text in welcome.body %}
   <p>{{ text }}</p>
   {% endfor %}
-  <p><a class="btn btn-primary" href="#" id="startexam" role="button">Start the exam </a></p>
+  <p><button class="btn btn-primary" onclick="startExam()" type="button">Start the exam </button></p>
 </div>
 
 <script src="{{ url_for('static', filename='js/exam_script.js') }}"></script>
@@ -33,7 +39,9 @@
       <h2>{{ data.section }}</h2>
 
       {% if data.audio %}
-      <audio id="listening" src="/static/media/{{ data.audio }}"></audio>
+      <audio id="listening">
+        <src="/static/media/{{ data.audio }}">
+      </audio>
       {% endif %}
 
       {% if data.intro %}

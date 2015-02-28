@@ -974,9 +974,24 @@ tbody.collapse.in {
 }
 #top-panel {
   margin-bottom: 80px;
+  padding-top: 70px;
 }
 #exam-body {
   display: none;
+  padding-top: 70px;
+}
+.fixed-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 50px;
+  padding: 10px;
+  font-size: 18px;
+  text-align: center;
+  color: #428bca;
+  background-color: #e8e8e8;
 }
 #randomquote {
   text-align: center;
