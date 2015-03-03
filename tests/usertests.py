@@ -19,8 +19,6 @@ class TestUnauthorized(unittest.TestCase):
         self.assertIn(b'are not authorized to view this page', rv.data)
         rv = self.app.post('/user/examscore', follow_redirects=True)
         self.assertIn(b'are not authorized to view this page', rv.data)
-        rv = self.app.get('/user/examwriting', follow_redirects=True)
-        self.assertIn(b'are not authorized to view this page', rv.data)
 
     def test_exam_pages(self):
         rv = self.app.get('/exam', follow_redirects=True)

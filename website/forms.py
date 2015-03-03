@@ -6,13 +6,9 @@ class LoginForm(Form):
     username = StringField('Username', [valid.Required('Please enter your name')])
     password = PasswordField('Password', [valid.Required('Please enter your password')])
 
-class AddExaminee(Form):
-    username = StringField('Username', [valid.Required('Please enter the examinee\'s name')])
-    exam_id = SelectField('Exam ID', choices=[('pyueng5', 'PYU Entrance Exam 5'),
-        ('pyueng8', 'PYU Entrance Exam 8')])
-
-class GetScore(Form):
-    username = StringField('Username', [valid.Required('Please enter the examinee\'s name')])
+class SigninForm(Form):
+    code = StringField('Student Id', [valid.Required('Please enter your student id')])
+    password = PasswordField('Password', [valid.Required('Please enter your password')])
 
 class SignupForm(Form):
     username = StringField('Name', [

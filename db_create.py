@@ -27,5 +27,5 @@ with open('teachers.json') as f:
 db.session.add(Content('teachers', content))
 db.session.commit()
 
-add_users([['admin', 'default', 'admin'], ['humpty', 'dumpty', 'examinee', 'silly1']])
+add_users([['admin', 'default', 'admin'], ['fred', 'password', 'examinee', 12345678, 'silly1']])
 add_questions(['silly1'])

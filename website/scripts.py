@@ -56,5 +56,8 @@ def record_scores(user, writing):
 def rand_password():
     alphabet = '23456789;:!@#$%^&*()abcdefghijkmnopqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ'
     myrg = random.SystemRandom()
-    length = 8
+    length = 24
     return ''.join(myrg.choice(alphabet) for i in range(length))
+
+def rand_code():
+    return random.randrange(10000000, 19999999)

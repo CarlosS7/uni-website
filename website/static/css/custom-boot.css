@@ -972,9 +972,17 @@ tbody.collapse.in {
 .radio-label {
   font-weight: normal;
 }
-#top-panel {
-  margin-bottom: 80px;
+.slide {
+  margin-bottom: 20px;
   padding-top: 70px;
+}
+.slide-up {
+  max-height: 0px;
+  -webkit-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
+  transform: translateY(-100%);
+  overflow: hidden;
 }
 #exam-body {
   display: none;
@@ -987,18 +995,19 @@ tbody.collapse.in {
   z-index: 1000;
   width: 100%;
   height: 50px;
-  padding: 10px;
-  font-size: 18px;
+  padding-top: 10px;
+  font-size: 24px;
+  font-weight: bold;
   text-align: center;
   color: #428bca;
-  background-color: #e8e8e8;
-}
-#randomquote {
-  text-align: center;
+  background-color: transparent;
 }
 #mainheading {
   height: 180px;
   overflow: hidden;
+}
+#randomquote {
+  text-align: center;
 }
 #writingarea {
   width: 100%;

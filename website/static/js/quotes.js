@@ -8,10 +8,10 @@ var quotes = [
 {q:'My TESOL training has given me invaluable resources for working with my students. I\'m continuously pulling from things I learned in my training to find the most effective teaching technique with each particular student.', a:'Katie, TESOL Certificate'}
 ];
 
-$(document).ready(function() {
+(function() {
     randQuotes(quotes);
     fadeQuotes(quotes, 5000);
-});
+})();
 
 function randQuotes(quotes) {
     var i = Math.floor(Math.random()*quotes.length);
@@ -24,15 +24,3 @@ function fadeQuotes(quotes, interval) {
         randQuotes(quotes);
     }, interval);
 }
-
-function toggleDiv(showHideDiv) {
-    var el = document.getElementById(showHideDiv);
-    if(el.style.display == 'block') {
-        el.style.display = 'none';
-        el.style.visibility = 'hidden';
-    }
-    else {
-        el.style.display = 'block';
-        el.style.visibility = 'visible';
-    }
-} 
