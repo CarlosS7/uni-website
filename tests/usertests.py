@@ -32,7 +32,7 @@ class TestUser(unittest.TestCase):
         self.user = User('admin', 'default', 'admin')
         db.session.add(self.user)
         db.session.commit()
-        self.examinee = User('examinee', 'hard2guess', 'examinee', 'pyueng5')
+        self.examinee = User('12345678', 'hard2guess', 'examinee', 'Charles Dickens', 'silly1')
         db.session.add(self.examinee)
         db.session.commit()
 
@@ -46,7 +46,7 @@ class TestUser(unittest.TestCase):
         self.assertEqual(self.user.id, int(self.user.get_id()))
         self.assertTrue(self.examinee.is_authenticated())
         self.assertEqual(self.examinee.role, 'examinee')
-        self.assertEqual(self.examinee.exam_id, 'pyueng5')
+        self.assertEqual(self.examinee.exam_id, 'silly1')
         self.assertEqual(self.examinee.id, int(self.examinee.get_id()))
 
     def login(self, username, password):

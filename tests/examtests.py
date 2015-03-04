@@ -11,7 +11,7 @@ class TestExaminee(unittest.TestCase):
         app.config['WTF_CSRF_ENABLED'] = False
         self.app = app.test_client()
         db.create_all()
-        self.examinee = User('examinee', 'hard2guess', 'examinee', 'silly1')
+        self.examinee = User('12345678', 'hard2guess', 'examinee', 'Charles Dickens', 'silly1')
         db.session.add(self.examinee)
         db.session.commit()
         self.add_questions(self)
@@ -22,7 +22,7 @@ class TestExaminee(unittest.TestCase):
         db.drop_all()
 
     def setUp(self):
-        self.login('examinee', 'hard2guess')
+        self.login('12345678', 'hard2guess')
 
     def tearDown(self):
         self.logout()
@@ -65,7 +65,7 @@ class TestExaminee(unittest.TestCase):
 
     def test_full(self):
         self.mock_test("B", "D", "D", "A", "C")
-        user = User.query.filter_by(username='examinee').first()
+        user = User.query.filter_by(username='12345678').first()
         score = get_score(user)
         listening, structure, reading = calc_score(score)
         self.assertEqual(len(score), 5)
@@ -75,7 +75,7 @@ class TestExaminee(unittest.TestCase):
 
     def test_not_full(self):
         self.mock_test("B", "B", "D", "C", "C")
-        user = User.query.filter_by(username='examinee').first()
+        user = User.query.filter_by(username='12345678').first()
         score = get_score(user)
         listening, structure, reading = calc_score(score)
         self.assertEqual(len(score), 3)

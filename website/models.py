@@ -12,15 +12,15 @@ class User(db.Model):
     username = db.Column(db.String(32), unique=True)
     password_hash = db.Column(db.String(192))
     role = db.Column(db.String(32))
-    code = db.Column(db.Integer)
+    fullname = db.Column(db.String(32))
     exam_id = db.Column(db.String(32))
     answer_page = db.Column(JSON)
 
-    def __init__(self, username, password, role, code=0, exam_id='', answer_page='{}'):
+    def __init__(self, username, password, role, fullname='', exam_id='', answer_page='{}'):
         self.username = username
         self.hash_password(password)
         self.role = role
-        self.code = code
+        self.fullname = fullname
         self.exam_id = exam_id
         self.answer_page = answer_page
 

@@ -1,9 +1,8 @@
 import json
-from flask import Blueprint, render_template, request, redirect, flash, url_for
-from flask.ext.login import login_user, current_user
+from flask import Blueprint, render_template, request, redirect, url_for
+from flask.ext.login import current_user
 from website import db
-from website.models import User, Questions
-from website.forms import SigninForm
+from website.models import Questions
 from website.scripts import login_required
 
 mod = Blueprint('exam', __name__, url_prefix='/exam')
@@ -14,18 +13,6 @@ def add_no_cache(response):
     if current_user.is_authenticated():
         response.headers.add('Cache-Control', 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0')
     return response
-
-@mod.route('/signin', methods=['GET', 'POST'])
-def signin():
-    form = SigninForm()
-    if form.validate_on_submit():
-        user = User.query.filter_by(code=form.code.data).first()
-        if not user or user.role != 'examinee' or not user.check_password(form.password.data):
-            flash('Invalid credentials.')
-            return redirect(url_for('exam.signin'))
-        login_user(user)
-        return redirect(url_for('exam.index'))
-    return render_template('exam/signin.html', form=form)
 
 @mod.route('/')
 @login_required(role='examinee')
@@ -55,7 +42,6 @@ def get_results(items):
         results = items
     else:
         results = {item[0]: item[1] for item in items if item[0] != 'csrf_token'}
-    print(results)
     answers = json.loads(current_user.answer_page)
     answers.update(results)
     current_user.answer_page = json.dumps(answers)

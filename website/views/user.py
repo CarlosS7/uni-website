@@ -20,11 +20,14 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
-        if not user or user.role != 'admin' or not user.check_password(form.password.data):
+        if not user or not user.check_password(form.password.data):
             flash('Invalid credentials.')
             return redirect(url_for('user.login'))
         login_user(user)
-        return redirect(url_for('user.index'))
+        if user.role == 'admin':
+            return redirect(url_for('user.index'))
+        else:
+            return redirect(url_for('exam.index'))
     return render_template('user/login.html', form=form)
 
 @mod.route('/logout')
@@ -47,16 +50,16 @@ def index():
 @login_required(role='admin')
 def addexaminee():
     items = dict(request.form.items())
-    name = items.get('addname')
+    fullname = items.get('addname')
     exam_id = items.get('getexam')
+    name = str(rand_code())
     password = rand_password()
-    code = rand_code()
     try:
-        db.session.add(User(name, password, 'examinee', code, exam_id))
+        db.session.add(User(name, password, 'examinee', fullname, exam_id))
         db.session.commit()
     except:
         return '<h4>That name seems to have been used. Please choose another name.</h4>'
-    return render_template('partials/shownamepass.html', code=code, password=password)
+    return render_template('partials/shownamepass.html', name=name, password=password)
 
 @mod.route('/examscore', methods=['POST'])
 @login_required(role='admin')

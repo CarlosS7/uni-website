@@ -6,14 +6,14 @@
     {{ form.csrf_token() }}
     <div class="form-group">
       <label>{{ form.username.label }}</label>
-      {{ form.username(class="form-control", placeholder="Username") }}
+      {{ form.username(class="form-control", placeholder="Student Id") }}
     </div>
     <div class="form-group">
       <label>{{ form.password.label }}</label>
       {{ form.password(class="form-control", placeholder="Password") }}
     </div>
     <br>
-    <button type="submit" class="btn btn-primary">Log in</button>
+    <button type="submit" class="btn btn-primary">Login</button>
   </fieldset>
 </form>
 {% endblock %}

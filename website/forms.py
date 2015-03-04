@@ -6,10 +6,6 @@ class LoginForm(Form):
     username = StringField('Username', [valid.Required('Please enter your name')])
     password = PasswordField('Password', [valid.Required('Please enter your password')])
 
-class SigninForm(Form):
-    code = StringField('Student Id', [valid.Required('Please enter your student id')])
-    password = PasswordField('Password', [valid.Required('Please enter your password')])
-
 class SignupForm(Form):
     username = StringField('Name', [
         valid.Required('Please enter your name'),
