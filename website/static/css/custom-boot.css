@@ -593,7 +593,7 @@ output {
 @media (min-width: 768px) {
   .form-inline .form-group {
     display: inline-block;
-    margin-bottom: 0;
+    margin-bottom: 10px;
     vertical-align: middle;
   }
   .form-inline .form-control {
@@ -973,11 +973,12 @@ tbody.collapse.in {
   font-weight: normal;
 }
 .slide {
-  margin-bottom: 20px;
+  margin-bottom: 80px;
   padding-top: 70px;
 }
 .slide-up {
   max-height: 0px;
+  margin-bottom: 0px;
   -webkit-transition: all 1s ease;
   -o-transition: all 1s ease;
   transition: all 1s ease;

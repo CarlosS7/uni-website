@@ -69,12 +69,14 @@ class CompletedExams(db.Model):
     __tablename__ = 'oldexams'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(32))
+    code = db.Column(db.String(32))
     taken_date = db.Column(db.Date)
     answer_page = db.Column(JSON)
     exam_score = db.Column(JSON)
 
-    def __init__(self, username, taken_date, answer_page, exam_score):
+    def __init__(self, username, code, taken_date, answer_page, exam_score):
         self.username = username
+        self.code = code
         self.taken_date = taken_date
         self.answer_page = answer_page
         self.exam_score = exam_score

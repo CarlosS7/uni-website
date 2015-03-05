@@ -8,7 +8,7 @@ function startExam() {
     }
     setInterval(function() {
         updateResults();
-    }, 1000 * 60 * 1);
+    }, 1000 * 60 * 5);
 }
 
 function updateResults() {

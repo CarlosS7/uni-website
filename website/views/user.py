@@ -49,22 +49,23 @@ def index():
 @mod.route('/addexaminee', methods=['POST'])
 @login_required(role='admin')
 def addexaminee():
-    items = dict(request.form.items())
-    fullname = items.get('addname')
+    items = dict(request.get_json())
+    fullname = items.get('fullname')
     exam_id = items.get('getexam')
-    name = str(rand_code())
+    name = items.get('name', str(rand_code()))
     password = rand_password()
     try:
         db.session.add(User(name, password, 'examinee', fullname, exam_id))
         db.session.commit()
     except:
         return '<h4>That name seems to have been used. Please choose another name.</h4>'
-    return render_template('partials/shownamepass.html', name=name, password=password)
+    return render_template('partials/shownamepass.html',
+            fullname=fullname, name=name, password=password)
 
 @mod.route('/examscore', methods=['POST'])
 @login_required(role='admin')
 def examscore():
-    items = dict(request.form.items())
+    items = dict(request.get_json())
     name = items.get('getscore').split(' -- ')[0]
     exams = CompletedExams.query.filter_by(username=name).all()
     scores = [exam.exam_score for exam in exams]
@@ -73,7 +74,7 @@ def examscore():
 @mod.route('/examwriting', methods=['POST'])
 @login_required(role='admin')
 def examwriting():
-    for data in request.form.items():
+    for data in request.get_json():
         user = User.query.filter_by(username=data[0]).first()
         if user:
             writing = float(data[1] or 0)

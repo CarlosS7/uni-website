@@ -3,7 +3,7 @@ from wtforms import StringField, PasswordField, SelectField
 from wtforms import validators as valid
 
 class LoginForm(Form):
-    username = StringField('Username', [valid.Required('Please enter your name')])
+    username = StringField('Student Id', [valid.Required('Please enter your name')])
     password = PasswordField('Password', [valid.Required('Please enter your password')])
 
 class SignupForm(Form):

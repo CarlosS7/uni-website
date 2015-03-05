@@ -19,39 +19,41 @@
 <p>No students to contact.</p>
 {% endif %}
 <h3>PYU Entrance Exam</h3>
-<form class="form-inline" id="examineeForm" method="post">
-  <meta name="csrf-token" content="{{ csrf_token() }}">
+<form class="form-inline" id="examinee-form" method="post">
+  <input type="hidden" id="examinee-token" name="csrf_token" value="{{ csrf_token() }}" />
   <div class="form-group">
     <label for="addname">Student's name</label>
-    <input type="text" class="form-control" name="addname">
-    <select class="form-control" name="getexam">
+    <input type="text" class="form-control" id="addexaminee" name="addname">
+    <label for="addcode">Student Id</label>
+    <input type="text" class="form-control" id="studentcode" name="addcode">
+    <select class="form-control" id="selectexam" name="getexam">
       <option selected="selected">Choose the exam</option>
       {% for exam in exams %}
       <option>{{ exam }}</option>
       {% endfor %}
     </select>
-    <button type="submit" class="btn btn-primary">Add examinee</button>
+    <button class="btn btn-primary" onclick="addExaminee()" type="button">Add examinee</button>
   </div>
 </form><br>
-<div id="addexam-results"></div>
-<form class="form-inline" id="examscoreForm" method="post">
-  <meta name="csrf-token" content="{{ csrf_token() }}">
+<div id="addexaminee-results"></div>
+<form class="form-inline" id="examscore-form" method="post">
+  <input type="hidden" id="score-token" name="csrf_token" value="{{ csrf_token() }}" />
   <div class="form-group">
     <label for="getscore">Student's name</label>
-    <select class="form-control" name="getscore">
+    <select class="form-control" id="getexamscore" name="getscore">
       <option selected="selected">Choose the student and date</option>
       {% for exam in old %}
       <option>{{ exam[0] }} -- {{ exam[1] }}</option>
       {% endfor %}
     </select>
-    <button type="submit" class="btn btn-primary">Get exam score</button>
+    <button class="btn btn-primary" onclick="getExamScore()" type="button">Get exam score</button>
   </div>
 </form><br>
 <div id="getscore-results"></div>
 {% if check %}
 <div id="checkwrite">
-  <form id="writescoreForm" method="post">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+  <form id="writescore-form" method="post">
+    <input type="hidden" id="write-token" name="csrf_token" value="{{ csrf_token() }}" />
     {% for chk in check %}
     <h4>{{ chk[0] }}</h4>
     <textarea cols="80" rows="10">
@@ -63,7 +65,7 @@
     </label>
     <br>
     {% endfor %}
-    <button type="submit" class="btn btn-primary">Submit writing scores</button>
+    <button class="btn btn-primary" onclick="sendWriteScore()" type="button">Submit writing scores</button>
   </form>
 </div>
 {% endif %}
