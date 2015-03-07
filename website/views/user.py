@@ -43,7 +43,7 @@ def index():
     check = [check_writing(username) for username in users if json.loads(username.answer_page)]
     signup = SignupCourses.query.all()
     exams = [q.exam_id for q in Questions.query.all()]
-    old = [(exam.username, exam.taken_date) for exam in CompletedExams.query.all()]
+    old = [exam.taken_date for exam in CompletedExams.query.all()]
     return render_template('user/index.html', check=check, signup=signup, exams=exams, old=old)
 
 @mod.route('/addexaminee', methods=['POST'])
@@ -52,7 +52,8 @@ def addexaminee():
     items = dict(request.get_json())
     fullname = items.get('fullname')
     exam_id = items.get('getexam')
-    name = items.get('name', str(rand_code()))
+    name = items.get('name') or str(rand_code())
+    print(exam_id, name)
     password = rand_password()
     try:
         db.session.add(User(name, password, 'examinee', fullname, exam_id))
@@ -66,21 +67,22 @@ def addexaminee():
 @login_required(role='admin')
 def examscore():
     items = dict(request.get_json())
-    name = items.get('getscore').split(' -- ')[0]
-    exams = CompletedExams.query.filter_by(username=name).all()
-    scores = [exam.exam_score for exam in exams]
-    return render_template('partials/showscore.html', name=name, scores=scores)
+    date = items.get('getscore')
+    exams = CompletedExams.query.filter_by(taken_date=date).all()
+    scores = [(exam.username, exam.exam_score) for exam in exams]
+    return render_template('partials/showscore.html', scores=scores)
 
 @mod.route('/examwriting', methods=['POST'])
 @login_required(role='admin')
 def examwriting():
-    for data in request.get_json():
-        user = User.query.filter_by(username=data[0]).first()
+    items = dict(request.get_json())
+    for data in items:
+        user = User.query.filter_by(username=data).first()
         if user:
-            writing = float(data[1] or 0)
+            writing = float(items.get(data) or 0)
             writing = writing if writing <= 6 else 0
             record_scores(user, writing)
-    return 'ok'
+    return ''
 
 def check_writing(user):
     answers = json.loads(user.answer_page)

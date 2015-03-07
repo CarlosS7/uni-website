@@ -1,17 +1,16 @@
-function postJSON(url, token, data) {
+function postJSON(url, token, data, callback) {
     var xhr = new XMLHttpRequest();
     xhr.open('POST', url, true);
     xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
     xhr.setRequestHeader('X-CSRF-Token', token);
+    xhr.onload = callback;
     xhr.send(JSON.stringify(data));
-    xhr.onload = displayExaminee;
 }
 
-function displayExaminee(data) {
+function showAddexaminee() {
     var output = document.getElementById('addexaminee-results');
-    output.innerHTML = '<h4>Name: ' + data.name +
-        'Student Id: ' + data.code +
-        'Password: ' + data.password + '</h4>';
+    var data = this.responseText;
+    output.innerHTML += data;
 }
 
 function addExaminee() {
@@ -23,8 +22,14 @@ function addExaminee() {
 
     data['fullname'] = fullname.value;
     data['name'] = code.value;
-    data['getexam'] = exams.selectedIndex.value;
-    postJSON('/user/addexaminee', token, data);
+    data['getexam'] = exams.value;
+    postJSON('/user/addexaminee', token, data, showAddexaminee);
+}
+
+function showGetscore() {
+    var output = document.getElementById('getscore-results');
+    var data = this.responseText;
+    output.innerHTML += data;
 }
 
 function getExamScore() {
@@ -32,8 +37,13 @@ function getExamScore() {
     var token = document.getElementById('score-token').value;
     var data = {};
 
-    data['getscore'] = exams.selectedIndex.value;
-    postJSON('/user/examscore', token, data);
+    data['getscore'] = exams.value;
+    postJSON('/user/examscore', token, data, showGetscore);
+}
+
+function showWrite() {
+    var output = document.getElementById('checkwrite');
+    output.innerHTML = '';
 }
 
 function sendWriteScore() {
@@ -48,5 +58,5 @@ function sendWriteScore() {
         }
     }
 
-    postJSON('/user/examwriting', token, data);
+    postJSON('/user/examwriting', token, data, showWrite);
 }

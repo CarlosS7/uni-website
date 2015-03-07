@@ -2,14 +2,14 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 
-<div class="css-slider">
-  <img class="slider-img" src="{{ url_for('static', filename='images/home_1.jpg') }}" />
-  <img class="slider-img" src="{{ url_for('static', filename='images/home_2.jpg') }}" />
-  <img class="slider-img" src="{{ url_for('static', filename='images/home_3.jpg') }}" />
+<div class="carousel">
+  <img src="{{ url_for('static', filename='images/home_1.jpg') }}">
+  <img src="{{ url_for('static', filename='images/home_2.jpg') }}">
+  <img src="{{ url_for('static', filename='images/home_3.jpg') }}">
 </div>
 
 <div id="mainheading">
-  <div class="media"><a class="pull-left" href="#"><img class="media-object img-rounded" src="{{ url_for('static', filename='images/elec_logo.png') }}" /> </a>
+  <div class="media"><a class="pull-left" href="#"><img class="media-object img-rounded" src="{{ url_for('static', filename='images/elec_logo.png') }}"> </a>
     <div class="media-body">
       <blockquote class="media-heading"><p id="randomquote"></p>
         <small id="author"><cite></cite></small>

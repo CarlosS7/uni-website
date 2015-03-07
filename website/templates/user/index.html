@@ -42,8 +42,8 @@
     <label for="getscore">Student's name</label>
     <select class="form-control" id="getexamscore" name="getscore">
       <option selected="selected">Choose the student and date</option>
-      {% for exam in old %}
-      <option>{{ exam[0] }} -- {{ exam[1] }}</option>
+      {% for exam_date in old %}
+      <option>{{ exam_date }}</option>
       {% endfor %}
     </select>
     <button class="btn btn-primary" onclick="getExamScore()" type="button">Get exam score</button>

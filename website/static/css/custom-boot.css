@@ -593,7 +593,6 @@ output {
 @media (min-width: 768px) {
   .form-inline .form-group {
     display: inline-block;
-    margin-bottom: 10px;
     vertical-align: middle;
   }
   .form-inline .form-control {
@@ -906,7 +905,7 @@ tbody.collapse.in {
 .pull-left {
   float: left !important;
 }
-.css-slider {
+.carousel {
   width: 100%;
   height: 350px;
   position: relative;
@@ -914,7 +913,7 @@ tbody.collapse.in {
   margin-bottom: 40px;
   overflow: hidden;
 }
-.css-slider .slider-img {
+.carousel img {
   max-width: 100%;
   position: absolute;
   margin: 0 auto;
@@ -926,13 +925,13 @@ tbody.collapse.in {
   -ms-animation: css-slider-fade 15s linear infinite;
   animation: css-slider-fade 15s linear infinite;
 }
-.css-slider .slider-img:nth-child(2) {
+.carousel img:nth-child(2) {
   -webkit-animation-delay: 5s;
   -moz-animation-delay: 5s;
   -ms-animation-delay: 5s;
   animation-delay: 5s;
 }
-.css-slider .slider-img:nth-child(3) {
+.carousel img:nth-child(3) {
   -webkit-animation-delay: 10s;
   -moz-animation-delay: 10s;
   -ms-animation-delay: 10s;
