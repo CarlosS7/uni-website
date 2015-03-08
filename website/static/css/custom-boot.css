@@ -1016,6 +1016,9 @@ tbody.collapse.in {
   margin-left: auto;
   margin-right: auto;
 }
+#signup-info {
+  margin-bottom: 20px;
+}
 #addexaminee-names {
   margin-bottom: 20px;
 }

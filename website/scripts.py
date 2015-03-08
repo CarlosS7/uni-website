@@ -4,7 +4,7 @@ from datetime import datetime
 from flask.ext.login import current_user
 from functools import wraps
 from website import login_man, db
-from website.models import Questions, CompletedExams
+from website.models import User, Questions, CompletedExams
 
 def login_required(role):
     def wrapper(fn):
@@ -54,10 +54,14 @@ def record_scores(user, writing):
     update_db(user, exam_score)
 
 def rand_password():
-    alphabet = '23456789;:!@#$%^&*()abcdefghijkmnopqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ'
+    alphabet = '23456789;:!@#$%^&*()abcdefghijkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ'
     myrg = random.SystemRandom()
     length = 8
     return ''.join(myrg.choice(alphabet) for i in range(length))
 
-def rand_code():
-    return random.randrange(10000000, 19999999)
+def get_user_id(user_id):
+    user_id = str(user_id)
+    if User.query.filter_by(username=user_id).count():
+        return get_user_id(random.randrange(10000000, 19999999))
+    password = rand_password()
+    return user_id, password

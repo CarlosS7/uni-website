@@ -4,21 +4,23 @@
 
 <h2 class="page-header">Admin</h2>
 <h3>Students interested in courses</h3>
-{% if signup %}
-{% for username in signup %}
-<div class="row">
-  <div class="col-sm-4 col-md-4">
-    <h4>{{ username.username }}</h4>
-    <p>Email: {{ username.email }}</p>
-    <p>Phone: {{ username.phone }}</p>
-    <p>Email: {{ username.coursename }}</p>
+<div id="signup-info">
+  {% if signup %}
+  {% for username in signup %}
+  <div class="row">
+    <div class="col-sm-4 col-md-4">
+      <h4>{{ username.username }}</h4>
+      <p>Email: {{ username.email }}</p>
+      <p>Phone: {{ username.phone }}</p>
+      <p>Email: {{ username.coursename }}</p>
+    </div>
   </div>
+  {% endfor %}
+  <button class="btn btn-default" onclick="clearDiv('signup-info')" type="button">Remove student names</button>
+  {% else %}
+  <p>No students to contact.</p>
+  {% endif %}
 </div>
-{% endfor %}
-<button class="btn btn-default" onclick="clearDiv('signup-info')" type="button">Remove student names</button>
-{% else %}
-<p>No students to contact.</p>
-{% endif %}
 <h3>PYU Entrance Exam</h3>
 <form class="form-inline" id="examinee-form" method="post">
   <input type="hidden" id="examinee-token" name="csrf_token" value="{{ csrf_token() }}" />

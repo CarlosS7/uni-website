@@ -4,7 +4,7 @@ from flask.ext.login import login_user, logout_user, current_user
 from website import db
 from website.models import User, Questions, SignupCourses, CompletedExams
 from website.forms import LoginForm
-from website.scripts import login_required, record_scores, rand_password, rand_code
+from website.scripts import login_required, record_scores, get_user_id
 
 mod = Blueprint('user', __name__, url_prefix='/user')
 
@@ -52,13 +52,9 @@ def addexaminee():
     items = dict(request.get_json())
     fullname = items.get('fullname')
     exam_id = items.get('getexam')
-    name = items.get('name') or str(rand_code())
-    password = rand_password()
-    try:
-        db.session.add(User(name, password, 'examinee', fullname, exam_id))
-        db.session.commit()
-    except:
-        return '<h4>That name seems to have been used. Please choose another name.</h4>'
+    name, password = get_user_id(items.get('name'))
+    db.session.add(User(name, password, 'examinee', fullname, exam_id))
+    db.session.commit()
     return render_template('partials/shownamepass.html',
             fullname=fullname, name=name, password=password)
 
