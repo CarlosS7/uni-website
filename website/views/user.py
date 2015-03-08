@@ -53,7 +53,6 @@ def addexaminee():
     fullname = items.get('fullname')
     exam_id = items.get('getexam')
     name = items.get('name') or str(rand_code())
-    print(exam_id, name)
     password = rand_password()
     try:
         db.session.add(User(name, password, 'examinee', fullname, exam_id))

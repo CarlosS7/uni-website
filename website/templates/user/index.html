@@ -15,6 +15,7 @@
   </div>
 </div>
 {% endfor %}
+<button class="btn btn-default" onclick="clearDiv('signup-info')" type="button">Remove student names</button>
 {% else %}
 <p>No students to contact.</p>
 {% endif %}
@@ -27,7 +28,6 @@
     <label for="addcode">Student Id</label>
     <input type="text" class="form-control" id="studentcode" name="addcode">
     <select class="form-control" id="selectexam" name="getexam">
-      <option selected="selected">Choose the exam</option>
       {% for exam in exams %}
       <option>{{ exam }}</option>
       {% endfor %}
@@ -35,13 +35,12 @@
     <button class="btn btn-primary" onclick="addExaminee()" type="button">Add examinee</button>
   </div>
 </form><br>
-<div id="addexaminee-results"></div>
+<div id="addexaminee-names"></div>
 <form class="form-inline" id="examscore-form" method="post">
   <input type="hidden" id="score-token" name="csrf_token" value="{{ csrf_token() }}" />
   <div class="form-group">
     <label for="getscore">Student's name</label>
     <select class="form-control" id="getexamscore" name="getscore">
-      <option selected="selected">Choose the student and date</option>
       {% for exam_date in old %}
       <option>{{ exam_date }}</option>
       {% endfor %}
@@ -49,7 +48,7 @@
     <button class="btn btn-primary" onclick="getExamScore()" type="button">Get exam score</button>
   </div>
 </form><br>
-<div id="getscore-results"></div>
+<div id="getscore-scores"></div>
 {% if check %}
 <div id="checkwrite">
   <form id="writescore-form" method="post">
