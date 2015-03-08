@@ -8,7 +8,7 @@
   {% if signup %}
   {% for username in signup %}
   <div class="row">
-    <div class="col-sm-4 col-md-4">
+    <div class="col-4">
       <h4>{{ username.username }}</h4>
       <p>Email: {{ username.email }}</p>
       <p>Phone: {{ username.phone }}</p>
@@ -16,7 +16,7 @@
     </div>
   </div>
   {% endfor %}
-  <button class="btn btn-default" onclick="clearDiv('signup-info')" type="button">Remove student names</button>
+  <button class="btn btn-default" onclick="replaceText('signup-info', '<p>No students to contact.</p>')" type="button">Remove student names</button>
   {% else %}
   <p>No students to contact.</p>
   {% endif %}

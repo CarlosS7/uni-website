@@ -429,32 +429,24 @@ pre {
   margin-left: -15px;
   margin-right: -15px;
 }
-.col-sm-4, .col-md-4, .col-sm-6, .col-md-6 {
+.col-3, .col-4, .col-6 {
   position: relative;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
 }
 @media (min-width: 768px) {
-  .col-sm-4, .col-sm-6 {
+  .col-3, .col-4, .col-6 {
     float: left;
   }
-  .col-sm-6 {
+  .col-6 {
     width: 50%;
   }
-  .col-sm-4 {
+  .col-4 {
     width: 33.33333333%;
   }
-}
-@media (min-width: 992px) {
-  .col-md-4, .col-md-6 {
-    float: left;
-  }
-  .col-md-6 {
-    width: 50%;
-  }
-  .col-md-4 {
-    width: 33.33333333%;
+  .col-3 {
+    width: 25%;
   }
 }
 @media (min-width: 1200px) {

@@ -11,6 +11,10 @@ function clearDiv(id) {
     document.getElementById(id).innerHTML = '';
 }
 
+function replaceText(id, text) {
+    document.getElementById(id).innerHTML = text;
+}
+
 function showResp(id, data) {
     document.getElementById(id).innerHTML += data;
 }
