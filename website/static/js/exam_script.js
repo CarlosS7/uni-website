@@ -1,3 +1,12 @@
+function postJSON(url, token, data, callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', url, true);
+    xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+    xhr.setRequestHeader('X-CSRF-Token', token);
+    xhr.onload = callback;
+    xhr.send(JSON.stringify(data));
+}
+
 function startExam() {
     var audio = document.getElementById('listening');
 
@@ -25,11 +34,6 @@ function updateResults() {
         }
     }
 
-    var xhr = new XMLHttpRequest();
     var token = document.getElementById('token').value;
-
-    xhr.open('POST', '/exam/update_results', true);
-    xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-    xhr.setRequestHeader('X-CSRF-Token', token);
-    xhr.send(JSON.stringify(data));
+    postJSON('/exam/update_results', token, data);
 }

@@ -61,7 +61,7 @@ def rand_password():
 
 def get_user_id(user_id):
     user_id = str(user_id)
-    if User.query.filter_by(username=user_id).count():
-        return get_user_id(random.randrange(10000000, 19999999))
-    password = rand_password()
-    return user_id, password
+    if not User.query.filter_by(username=user_id).count():
+        password = rand_password()
+        return user_id, password
+    return get_user_id(random.randrange(10000000, 19999999))

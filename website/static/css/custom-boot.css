@@ -449,8 +449,6 @@ pre {
     width: 25%;
   }
 }
-@media (min-width: 1200px) {
-}
 table {
   background-color: transparent;
 }
@@ -899,7 +897,7 @@ tbody.collapse.in {
 }
 .carousel {
   width: 100%;
-  height: 350px;
+  height: 150px;
   position: relative;
   margin-top: 40px;
   margin-bottom: 40px;
@@ -992,7 +990,7 @@ tbody.collapse.in {
   font-weight: bold;
   text-align: center;
   color: #428bca;
-  background-color: transparent;
+  background-color: rgba(255, 255, 255, 0.6);
 }
 #mainheading {
   height: 180px;
@@ -1058,6 +1056,9 @@ input[type="radio"] {
   #mainarea {
     padding-right: 50px;
     padding-left: 50px;
+  }
+  .carousel {
+    height: 350px;
   }
   .masthead,
   .footer {

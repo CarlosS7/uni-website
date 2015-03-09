@@ -7,20 +7,21 @@ function postJSON(url, token, data, callback) {
     xhr.send(JSON.stringify(data));
 }
 
-function clearDiv(id) {
+function empty(id) {
     document.getElementById(id).innerHTML = '';
 }
 
-function replaceText(id, text) {
+function html(id, text) {
     document.getElementById(id).innerHTML = text;
 }
 
-function showResp(id, data) {
-    document.getElementById(id).innerHTML += data;
+function prepend(id, text) {
+    old = document.getElementById(id).innerHTML;
+    document.getElementById(id).innerHTML = text + old;
 }
 
 function showAddexaminee() {
-    showResp('addexaminee-names', this.responseText);
+    prepend('addexaminee-names', this.responseText);
 }
 
 function addExaminee() {
@@ -30,11 +31,14 @@ function addExaminee() {
     data['fullname'] = document.getElementById('addexaminee').value;
     data['name'] = document.getElementById('studentcode').value;
     data['getexam'] = document.getElementById('selectexam').value;
+    if (document.getElementById('addexaminee-names').innerHTML) {
+        data['button'] = true;
+    }
     postJSON('/user/addexaminee', token, data, showAddexaminee);
 }
 
 function showGetscore() {
-    showResp('getscore-scores', this.responseText);
+    prepend('getscore-scores', this.responseText);
 }
 
 function getExamScore() {
@@ -42,11 +46,14 @@ function getExamScore() {
     var data = {};
 
     data['getscore'] = document.getElementById('getexamscore').value;
+    if (document.getElementById('getscore-scores').innerHTML) {
+        data['button'] = true;
+    }
     postJSON('/user/examscore', token, data, showGetscore);
 }
 
 function showWrite() {
-    clearDiv('checkwrite');
+    empty('checkwrite');
 }
 
 function sendWriteScore() {

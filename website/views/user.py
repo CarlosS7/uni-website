@@ -53,10 +53,11 @@ def addexaminee():
     fullname = items.get('fullname')
     exam_id = items.get('getexam')
     name, password = get_user_id(items.get('name'))
+    button = items.get('button', False)
     db.session.add(User(name, password, 'examinee', fullname, exam_id))
     db.session.commit()
     return render_template('partials/shownamepass.html',
-            fullname=fullname, name=name, password=password)
+            fullname=fullname, name=name, password=password, button=button)
 
 @mod.route('/examscore', methods=['POST'])
 @login_required(role='admin')
