@@ -1,9 +1,8 @@
-function postJSON(url, token, data, callback) {
+function postJSON(url, token, data) {
     var xhr = new XMLHttpRequest();
     xhr.open('POST', url, true);
     xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
     xhr.setRequestHeader('X-CSRF-Token', token);
-    xhr.onload = callback;
     xhr.send(JSON.stringify(data));
 }
 

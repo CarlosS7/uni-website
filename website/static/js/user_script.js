@@ -54,6 +54,7 @@ function getExamScore() {
 
 function showWrite() {
     empty('checkwrite');
+    prepend('getexamscore', '<option>' + this.responseText + '</option>');
 }
 
 function sendWriteScore() {

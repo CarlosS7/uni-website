@@ -939,10 +939,6 @@ tbody.collapse.in {
   0%, 40%, 100% { opacity: 0; }
   7%, 33% { opacity: 1; }
 }
-@-moz-keyframes css-slider-fade {
-  40% { opacity: 0; }
-  33% { opacity: 1; }
-}
 @-ms-keyframes css-slider-fade {
   0%, 40%, 100% { opacity: 0; }
   7%, 33% { opacity: 1; }

@@ -1,4 +1,5 @@
 import json
+from datetime import datetime
 from flask import Blueprint, render_template, request, redirect, flash, url_for
 from flask.ext.login import login_user, logout_user, current_user
 from website import db
@@ -78,7 +79,7 @@ def examwriting():
             writing = float(items.get(data) or 0)
             writing = writing if writing <= 6 else 0
             record_scores(user, writing)
-    return ''
+    return str(datetime.now().date())
 
 def check_writing(user):
     answers = json.loads(user.answer_page)
