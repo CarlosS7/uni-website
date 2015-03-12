@@ -39,9 +39,7 @@
       <h2>{{ data.section }}</h2>
 
       {% if data.audio %}
-      <audio id="listening">
-        <src="/static/media/{{ data.audio }}">
-      </audio>
+      <audio id="listening" src="/static/media/{{ data.audio }}"></audio>
       {% endif %}
 
       {% if data.intro %}
