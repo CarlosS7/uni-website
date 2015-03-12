@@ -16,7 +16,7 @@
     </div>
   </div>
   {% endfor %}
-  <button class="btn btn-default" onclick="html('signup-info', '<p>No students to contact.</p>')" type="button">Hide student names</button>
+  <button class="btn btn-default" onclick="Admin.clearSignup()" type="button">Hide student names</button>
   {% else %}
   <p>No students to contact.</p>
   {% endif %}
@@ -34,7 +34,7 @@
       <option>{{ exam }}</option>
       {% endfor %}
     </select>
-    <button class="btn btn-primary" onclick="addExaminee()" type="button">Add examinee</button>
+    <button class="btn btn-primary" onclick="Admin.addExaminee()" type="button">Add examinee</button>
   </div>
 </form><br>
 <div id="addexaminee-names"></div>
@@ -47,7 +47,7 @@
       <option>{{ exam_date }}</option>
       {% endfor %}
     </select>
-    <button class="btn btn-primary" onclick="getExamScore()" type="button">Get exam score</button>
+    <button class="btn btn-primary" onclick="Admin.getExamScore()" type="button">Get exam score</button>
   </div>
 </form><br>
 <div id="getscore-scores"></div>
@@ -66,7 +66,7 @@
     </label>
     <br>
     {% endfor %}
-    <button class="btn btn-primary" onclick="sendWriteScore()" type="button">Submit writing scores</button>
+    <button class="btn btn-primary" onclick="Admin.sendWriteScore()" type="button">Submit writing scores</button>
   </form>
 </div>
 {% endif %}

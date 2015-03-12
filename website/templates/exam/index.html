@@ -25,7 +25,7 @@
   {% for text in welcome.body %}
   <p>{{ text }}</p>
   {% endfor %}
-  <p><button class="btn btn-primary" onclick="startExam()" type="button">Start the exam </button></p>
+  <p><button class="btn btn-primary" onclick="Exam.start()" type="button">Start the exam </button></p>
 </div>
 
 <script src="{{ url_for('static', filename='js/exam_script.js') }}"></script>
