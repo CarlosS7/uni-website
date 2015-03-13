@@ -84,7 +84,7 @@ def examwriting():
 def check_writing(user):
     answers = json.loads(user.answer_page)
     writing = answers.get('writing')
-    return (user.username, writing)
+    return (user.fullname, writing)
 
 @mod.route('/editpage')
 @login_required(role='admin')
