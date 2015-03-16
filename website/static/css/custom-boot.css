@@ -992,6 +992,10 @@ tbody.collapse.in {
   color: #2d6b9f;
   background-image: linear-gradient(rgba(52, 52, 52, 0.2), rgba(232, 232, 232, 0.2));
 }
+.fixed-navbar .nav > li {
+  float: none;
+  display: inline-block;
+}
 #mainheading {
   height: 180px;
   overflow: hidden;

@@ -14,14 +14,16 @@ var Admin = (function () {
         old = document.getElementById(id).innerHTML;
         document.getElementById(id).innerHTML = text + old;
     };
+    var removeSignup = function () {
+        document.getElementById('signup-info').innerHTML = this.responseText;
+    };
     var clearSignup = function () {
-        document.getElementById('signup-info').innerHTML = '<p>No students to contact.</p>'
+        postJSON('/user/delsignup', csrftoken, data, removeSignup);
     };
     var showAddExaminee = function () {
         prepend('addexaminee-names', this.responseText);
     };
     var addExaminee = function () {
-        var token = document.getElementById('examinee-token').value;
         var data = {};
         data['fullname'] = document.getElementById('addexaminee').value;
         data['name'] = document.getElementById('studentcode').value;
@@ -29,20 +31,18 @@ var Admin = (function () {
         if (document.getElementById('addexaminee-names').innerHTML) {
             data['button'] = true;
         }
-        postJSON('/user/addexaminee', token, data, showAddExaminee);
+        postJSON('/user/addexaminee', csrftoken, data, showAddExaminee);
     };
     var showGetScore = function () {
         prepend('getscore-scores', this.responseText);
     };
     var getExamScore = function () {
-        var token = document.getElementById('score-token').value;
         var data = {};
-
         data['getscore'] = document.getElementById('getexamscore').value;
         if (document.getElementById('getscore-scores').innerHTML) {
             data['button'] = true;
         }
-        postJSON('/user/examscore', token, data, showGetScore);
+        postJSON('/user/examscore', csrftoken, data, showGetScore);
     };
     var showWrite = function () {
         document.getElementById('checkwrite').innerHTML = '';
@@ -50,16 +50,14 @@ var Admin = (function () {
     };
     var sendWriteScore = function () {
         var form = document.getElementById('writescore-form');
-        var token = document.getElementById('write-token').value;
         var data = {};
-
         for (var i = 0, ii = form.length; i < ii; i++) {
             var input = form[i];
             if (input.type === 'text') {
                 data[input.name] = input.value;
             }
         }
-        postJSON('/user/examwriting', token, data, showWrite);
+        postJSON('/user/examwriting', csrftoken, data, showWrite);
     };
     return {
         empty: empty,

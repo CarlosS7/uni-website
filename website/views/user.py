@@ -47,6 +47,14 @@ def index():
     old = [exam.taken_date for exam in CompletedExams.query.all()]
     return render_template('user/index.html', check=check, signup=signup, exams=exams, old=old)
 
+@mod.route('/delsignup', methods=['POST'])
+@login_required(role='admin')
+def delsignup():
+    for user in SignupCourses.query.all():
+        db.session.delete(user)
+        db.session.commit()
+    return '<p>No students to contact.</p>'
+
 @mod.route('/addexaminee', methods=['POST'])
 @login_required(role='admin')
 def addexaminee():
