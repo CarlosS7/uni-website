@@ -18,7 +18,7 @@ var Admin = (function () {
         document.getElementById('signup-info').innerHTML = this.responseText;
     };
     var clearSignup = function () {
-        postJSON('/user/delsignup', csrftoken, data, removeSignup);
+        postJSON('/user/delsignup', csrftoken, '', removeSignup);
     };
     var showAddExaminee = function () {
         prepend('addexaminee-names', this.responseText);
