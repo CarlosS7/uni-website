@@ -995,6 +995,11 @@ tbody.collapse.in {
 .fixed-navbar .nav > li {
   float: none;
   display: inline-block;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.deadline {
+  color: #cc5151;
 }
 #mainheading {
   height: 180px;
