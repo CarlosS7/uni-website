@@ -5,10 +5,16 @@
 <h2 class="page-header">English Language Enhancement Center</h2>
 <h4>We are on the second floor of the library at Payap University's Mae Khao Campus, which is east of the city ring road.</h4>
 
-<div class="carousel">
-  <img src="{{ url_for('static', filename='images/about_1.jpg') }}">
-  <img src="{{ url_for('static', filename='images/about_2.jpg') }}">
-  <img src="{{ url_for('static', filename='images/about_3.jpg') }}">
+<div class="row">
+  <div class="col-4">
+    <img src="{{ url_for('static', filename='images/about_1.jpg') }}" class="img-responsive" id="leftimg">
+  </div>
+  <div class="col-4">
+    <img src="{{ url_for('static', filename='images/about_2.jpg') }}" class="img-responsive">
+  </div>
+  <div class="col-4">
+    <img src="{{ url_for('static', filename='images/about_3.jpg') }}" class="img-responsive" id="rightimg">
+  </div>
 </div>
 
 <h3>Contact details</h3>
