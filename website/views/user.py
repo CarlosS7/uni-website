@@ -44,7 +44,7 @@ def index():
     check = [check_writing(username) for username in users if json.loads(username.answer_page)]
     signup = SignupCourses.query.all()
     exams = [q.exam_id for q in Questions.query.all()]
-    old = [exam.taken_date for exam in CompletedExams.query.all()]
+    old = list(set([exam.taken_date for exam in CompletedExams.query.all()]))
     return render_template('user/index.html', check=check, signup=signup, exams=exams, old=old)
 
 @mod.route('/delsignup', methods=['POST'])
@@ -92,7 +92,7 @@ def examwriting():
 def check_writing(user):
     answers = json.loads(user.answer_page)
     writing = answers.get('writing')
-    return (user.fullname, writing)
+    return (user.username, user.fullname, writing)
 
 @mod.route('/editpage')
 @login_required(role='admin')
