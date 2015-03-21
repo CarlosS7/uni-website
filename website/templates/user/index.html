@@ -53,20 +53,23 @@
 <div id="getscore-scores"></div>
 {% if check %}
 <div id="checkwrite">
-  <form id="writescore-form" method="post">
-    {% for chk in check %}
-    <h4>{{ chk[1] }}</h4>
-    <textarea cols="80" rows="10">
-      {{ chk[2] }}
-    </textarea><br>
-    <label>
-      Writing score
-      <input type="text" name="{{ chk[0] }}">
-    </label>
-    <br>
-    {% endfor %}
-    <button class="btn btn-primary" onclick="Admin.sendWriteScore()" type="button">Submit writing scores</button>
-  </form>
+  <p><button class="btn btn-primary" onclick="toggleDiv('writing-score')" type="button">Check writing section</button></p>
+  <div class="collapse" id="writing-score">
+    <form id="writescore-form" method="post">
+      {% for chk in check %}
+      <h4>{{ chk[1] }}</h4>
+      <textarea cols="80" rows="10">
+        {{ chk[2] }}
+      </textarea><br>
+      <label>
+        Writing score
+        <input type="text" name="{{ chk[0] }}">
+      </label>
+      <br>
+      {% endfor %}
+      <button class="btn btn-primary" onclick="Admin.sendWriteScore()" type="button">Submit writing scores</button>
+    </form>
+  </div>
 </div>
 {% endif %}
 

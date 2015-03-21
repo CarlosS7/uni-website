@@ -32,7 +32,7 @@ var Exam = (function () {
         setInterval(function () {
             var current_date, seconds_left, hours, minutes;
 
-            current_date = new Date().getTime(),
+            current_date = new Date().getTime();
             if (current_date > target_date) {
                 countdown.style.display = 'none';
                 form.submit();

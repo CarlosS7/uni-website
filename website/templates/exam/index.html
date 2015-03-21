@@ -62,29 +62,13 @@
       <h4>{{ text|safe }}</h4>
       {% endfor %}
 
+      {% for ans in question.answers %}
       <label class="radio-label">
-        <input type="radio" name="{{ question.object_id }}" value="A">
-        {{ question.answers['A'] }} 
+        <input type="radio" name="{{ question.object_id }}" value="{{ ans[0] }}">
+        {{ ans[1] }} 
       </label>
       {% if data.inline %}&nbsp;&nbsp;{% else %}<br>{% endif %}
-
-      <label class="radio-label">
-        <input type="radio" name="{{ question.object_id }}" value="B">
-        {{ question.answers['B'] }} 
-      </label>
-      {% if data.inline %}&nbsp;&nbsp;{% else %}<br>{% endif %}
-
-      <label class="radio-label">
-        <input type="radio" name="{{ question.object_id }}" value="C">
-        {{ question.answers['C'] }} 
-      </label>
-      {% if data.inline %}&nbsp;&nbsp;{% else %}<br>{% endif %}
-
-      <label class="radio-label">
-        <input type="radio" name="{{ question.object_id }}" value="D">
-        {{ question.answers['D'] }} 
-      </label>
-      {% if data.inline %}&nbsp;&nbsp;{% else %}<br>{% endif %}
+      {% endfor %}
 
       {% if question.ending %}
       <h5>{{ question.ending }}</h5>
