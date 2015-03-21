@@ -12,7 +12,7 @@
         var i = Math.floor(Math.random()*quotes.length);
         document.getElementById('randomquote').innerHTML = (quotes[i].q);
         document.getElementById('author').innerHTML = (quotes[i].a);
-    }
+    };
     randQuotes(quotes);
     setInterval(function() {
         randQuotes(quotes);
