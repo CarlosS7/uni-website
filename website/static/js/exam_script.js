@@ -24,10 +24,10 @@ var Exam = (function () {
         }
         postJSON('/exam/update_results', token, data);
     }
-    function counter() {
+    function counter(time_limit) {
         var form = document.forms[0],
             countdown = document.getElementById('countdown'),
-            target_date = new Date().getTime() + 10800 * 1000;
+            target_date = new Date().getTime() + time_limit * 1000;
 
         setInterval(function () {
             var current_date, seconds_left, hours, minutes;
@@ -48,14 +48,15 @@ var Exam = (function () {
         }, 1000 * 30);
     }
 
-    function start() {
+    function start(time_limit) {
         var audio = document.getElementById('listening'),
             exam = document.getElementById('exam-body'),
             slide = document.querySelector('.slide');
 
         exam.style.display = 'block';
         slide.className = 'slide-up';
-        counter();
+        time_limit = (time_limit === undefined) ? 10800 : time_limit,
+        counter(time_limit);
         if (audio) {
             audio.play();
         }
