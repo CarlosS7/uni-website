@@ -8,7 +8,7 @@ var Admin = (function () {
         xhr.send(JSON.stringify(data));
     }
     function empty(id) {
-        document.getElementById(id).innerHTML = '';
+        document.getElementById(id).className = 'quickslide';
     }
     function prepend(id, text) {
         var old = document.getElementById(id).innerHTML;
@@ -45,11 +45,17 @@ var Admin = (function () {
         postJSON('/user/examscore', csrftoken, data, showGetScore);
     }
     function showWrite() {
-        document.getElementById('checkwrite').innerHTML = '';
-        prepend('getexamscore', '<option>' + this.responseText + '</option>');
+        var el = document.getElementById('check-write-btn');
+        toggleDiv('writing-score');
+        el.style.display = 'none';
     }
-    function sendWriteScore() {
-        var form = document.getElementById('writescore-form'),
+    function updateGetScore() {
+        var text = document.getElementById('getexamscore').innerHTML;
+        if (text.indexOf(this.responseText) === -1)
+            prepend('getexamscore', '<option>' + this.responseText + '</option>');
+    }
+    function sendWriteScore(formId) {
+        var form = document.getElementById(formId),
             data = {},
             i = 0,
             len = form.length;
@@ -60,7 +66,8 @@ var Admin = (function () {
                 data[input.name] = input.value;
             }
         }
-        postJSON('/user/examwriting', csrftoken, data, showWrite);
+        postJSON('/user/examwriting', csrftoken, data, updateGetScore);
+        document.getElementById(formId).className = 'quickslide';
     }
 
     return {
@@ -68,6 +75,7 @@ var Admin = (function () {
         clearSignup: clearSignup,
         addExaminee: addExaminee,
         getExamScore: getExamScore,
+        showWrite: showWrite,
         sendWriteScore: sendWriteScore
     };
 }());

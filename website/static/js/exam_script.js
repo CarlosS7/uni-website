@@ -54,7 +54,7 @@ var Exam = (function () {
             slide = document.querySelector('.slide');
 
         exam.style.display = 'block';
-        slide.className = 'slide-up';
+        slide.classList.add('slide-up');
         time_limit = (time_limit === undefined) ? 10800 : time_limit,
         counter(time_limit);
         if (audio) {

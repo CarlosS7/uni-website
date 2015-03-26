@@ -28,5 +28,7 @@ db.session.add(Content('teachers', content))
 db.session.commit()
 
 add_users([['admin', 'default', 'admin', 'Admin'],
-    ['12345678', 'password', 'examinee', 'Thomas Hardy', 'silly1']])
+    ['1', 'pass', 'examinee', 'Thomas Hardy', 'silly1'],
+    ['2', 'pass', 'examinee', 'Franz Kafka', 'silly1'],
+    ['3', 'pass', 'examinee', 'Ernest Hemingway', 'silly1']])
 add_questions(['silly1'])

@@ -4,8 +4,8 @@
 
 <script>var csrftoken = "{{ csrf_token() }}"</script>
 
-<h2 class="page-header">Admin</h2>
-<h3>Students interested in courses</h3>
+<h1>Administration</h1>
+<h3 class="page-header">Students interested in courses</h3>
 <div id="signup-info">
   {% if signup %}
   <div class="row">
@@ -23,7 +23,7 @@
   <p>No students to contact.</p>
   {% endif %}
 </div>
-<h3>PYU Entrance Exam</h3>
+<h3 class="page-header">PYU Entrance Exam</h3>
 <form class="form-inline" id="examinee-form" method="post">
   <div class="form-group">
     <label for="addname">Student's name</label>
@@ -53,22 +53,23 @@
 <div id="getscore-scores"></div>
 {% if check %}
 <div id="checkwrite">
-  <p><button class="btn btn-primary" onclick="toggleDiv('writing-score')" type="button">Check writing section</button></p>
+  <p><button class="btn btn-primary" onclick="Admin.showWrite()" id="check-write-btn" type="button">Check writing section</button></p>
   <div class="collapse" id="writing-score">
-    <form id="writescore-form" method="post">
-      {% for chk in check %}
-      <h4>{{ chk[1] }}</h4>
-      <textarea cols="80" rows="10">
-        {{ chk[2] }}
-      </textarea><br>
-      <label>
-        Writing score
-        <input type="text" name="{{ chk[0] }}">
-      </label>
-      <br>
-      {% endfor %}
-      <button class="btn btn-primary" onclick="Admin.sendWriteScore()" type="button">Submit writing scores</button>
+    {% for chk in check %}
+    <form id="{{ chk[0] }}" method="post">
+      <div class="form-group">
+        <h4>{{ chk[1] }}</h4>
+        <textarea cols="80" rows="10">
+          {{ chk[2] }}
+        </textarea><br>
+        <label>
+          Writing score
+          <input type="text" name="{{ chk[0] }}">
+        </label>
+        <button class="btn btn-primary" onclick="Admin.sendWriteScore({{ chk[0] }})" type="button">Submit writing score</button>
+      </div>
     </form>
+    {% endfor %}
   </div>
 </div>
 {% endif %}
