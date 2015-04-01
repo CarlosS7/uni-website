@@ -8,7 +8,7 @@ var Admin = (function () {
         xhr.send(JSON.stringify(data));
     }
     function empty(id) {
-        document.getElementById(id).className = 'quickslide';
+        document.getElementById(id).innerHTML = '';
     }
     function prepend(id, text) {
         var old = document.getElementById(id).innerHTML;
@@ -34,7 +34,7 @@ var Admin = (function () {
         postJSON('/user/addexaminee', csrftoken, data, showAddExaminee);
     }
     function showGetScore() {
-        prepend('getscore-scores', this.responseText);
+        document.getElementById('getscore-scores').innerHTML = this.responseText;
     }
     function getExamScore() {
         var data = {};
@@ -67,7 +67,7 @@ var Admin = (function () {
             }
         }
         postJSON('/user/examwriting', csrftoken, data, updateGetScore);
-        document.getElementById(formId).className = 'quickslide';
+        document.getElementById(formId).className = 'slide-up';
     }
 
     return {

@@ -266,18 +266,11 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
-  cursor: pointer;
   z-index: 1;
   border: 1px solid #cccccc;
   border-radius: 6px;
   -webkit-transition: all 1s ease;
   transition: all 1s ease;
-}
-.img-responsive:hover {
-  -webkit-transform: scale(3);
-  transform: scale(3);
-  transform-origin: 50% 0;
-  z-index: 1000;
 }
 #leftimg {
   transform-origin: 0 0;
@@ -289,6 +282,8 @@ img {
   .img-responsive:hover {
     -webkit-transform: scale(2);
     transform: scale(2);
+    transform-origin: 50% 0;
+    cursor: pointer;
     z-index: 1000;
   }
 }
@@ -998,14 +993,6 @@ tbody.collapse.in {
   padding-top: 70px;
 }
 .slide-up {
-  height: 0;
-  overflow: hidden;
-  -webkit-animation: slide 1.2s ease-out;
-  -moz-animation: slide 1.2s ease-out;
-  -ms-animation: slide 1.2s ease-out;
-  animation: slide 1.2s ease-out;
-}
-.quickslide {
   height: 0;
   overflow: hidden;
   -webkit-animation: slide .6s ease-out;
