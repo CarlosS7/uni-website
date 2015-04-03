@@ -54,7 +54,7 @@ def record_scores(user, writing):
     update_db(user, exam_score)
 
 def rand_password():
-    alphabet = '23456789;:!@#$%^&*()abcdefghijkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ'
+    alphabet = '2345789;!@#$%&*abcdefghijkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ'
     myrg = random.SystemRandom()
     length = 8
     return ''.join(myrg.choice(alphabet) for i in range(length))

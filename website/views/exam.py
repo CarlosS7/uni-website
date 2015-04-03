@@ -19,8 +19,12 @@ def add_no_cache(response):
 def index():
     """Set exam for the user."""
     exam_id = current_user.exam_id
+    answers = json.loads(current_user.answer_page)
     data = Questions.query.filter_by(exam_id=exam_id).first().pages
-    return render_template('exam/index.html', welcome=data['pages'][0], pages=data['pages'][1:])
+    return render_template('exam/index.html',
+            welcome=data['pages'][0],
+            pages=data['pages'][1:],
+            answers=answers)
 
 @mod.route('/update_results', methods=['POST'])
 @login_required(role='examinee')
