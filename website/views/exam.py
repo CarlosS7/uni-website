@@ -3,7 +3,7 @@ from flask import Blueprint, render_template, request, redirect, url_for
 from flask.ext.login import current_user
 from website import db
 from website.models import Questions
-from website.scripts import login_required
+from website.admin import login_required
 
 mod = Blueprint('exam', __name__, url_prefix='/exam')
 

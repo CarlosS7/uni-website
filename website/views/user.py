@@ -5,7 +5,7 @@ from flask.ext.login import login_user, logout_user, current_user
 from website import db
 from website.models import User, Questions, SignupCourses, CompletedExams
 from website.forms import LoginForm
-from website.scripts import login_required, record_scores, get_user_id
+from website.admin import login_required, record_scores, get_user_id
 
 mod = Blueprint('user', __name__, url_prefix='/user')
 

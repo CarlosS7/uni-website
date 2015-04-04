@@ -3,7 +3,7 @@ import json
 import unittest
 from website import app, db
 from website.models import User, Questions
-from website.scripts import get_score, calc_score
+from website.admin import get_score, calc_score, get_current_exam
 
 class TestExaminee(unittest.TestCase):
     @classmethod
@@ -64,6 +64,7 @@ class TestExaminee(unittest.TestCase):
         self.assertIn(b'a swallow bring a coconut to such a temperate zone', rv.data)
 
     def test_full(self):
+        """Mini exam with all correct answers."""
         self.mock_test("B", "D", "D", "A", "C")
         user = User.query.filter_by(username='12345678').first()
         score = get_score(user)
@@ -73,7 +74,18 @@ class TestExaminee(unittest.TestCase):
         self.assertEqual(structure, 2)
         self.assertEqual(reading, 1)
 
+    def test_view_current_examinee(self):
+        """Check dbapi call to current examinee."""
+        self.mock_test("A", "B", "C", "D", "A")
+        answers = get_current_exam('12345678')
+        self.assertEqual(answers['silly1_list_01'], "A")
+        self.assertEqual(answers['silly1_list_02'], "B")
+        self.assertEqual(answers['silly1_struct_03'], "C")
+        self.assertEqual(answers['silly1_struct_04'], "D")
+        self.assertEqual(answers['silly1_read_05'], "A")
+
     def test_not_full(self):
+        """Mini exam with some incorrect answers."""
         self.mock_test("B", "B", "D", "C", "C")
         user = User.query.filter_by(username='12345678').first()
         score = get_score(user)

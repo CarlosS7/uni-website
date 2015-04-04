@@ -18,6 +18,16 @@ def login_required(role):
         return decorated_view
     return wrapper
 
+def get_current_exam(username):
+    """View the answer page of a current examinee."""
+    user = User.query.filter_by(username=username).first()
+    return json.loads(user.answer_page)
+
+def get_old_exams(realname):
+    """View the score of someone who has taken the exam."""
+    user = CompletedExams.query.filter_by(fullname=realname).first()
+    return user.exam_score
+
 def get_score(user):
     """Return a list of answers that are correct."""
     answers = json.loads(user.answer_page)
@@ -27,6 +37,7 @@ def get_score(user):
     return score
 
 def calc_score(ans_list):
+    """Calculate the score for each section of the exam."""
     listening = structure = reading = 0
     for ans in ans_list:
         if ans.split('_')[1] == 'list':
@@ -38,6 +49,7 @@ def calc_score(ans_list):
     return listening, structure, reading
 
 def update_db(user, exam_score):
+    """Remove the user from the User table and add him/her to the CompletedExams table."""
     answer_page = json.loads(user.answer_page)
     taken_date = datetime.now().date()
     db.session.add(CompletedExams(user.fullname, user.username, taken_date, answer_page, exam_score))
@@ -45,21 +57,27 @@ def update_db(user, exam_score):
     db.session.commit()
 
 def record_scores(user, writing):
+    """Write the scores and apply the calculation formula, if necessary."""
     exams = {'pyueng5': 'PYU Entrance Exam 5', 'pyueng8': 'PYU Entrance Exam 8'}
     exam_id = exams.get(user.exam_id)
     listening, structure, reading = calc_score(get_score(user))
-    total = round(((listening + structure + reading + 55) * 11.6/3) - 23.5 + (writing * 7.83))
+    if user.exam_id.startswith('pyueng'):
+        total = round(((listening + structure + reading + 55) * 11.6/3) - 23.5 + (writing * 7.83))
+    else:
+        total = listening + structure + reading + writing
     exam_score = {'exam_id': exam_id, 'listening': listening, 'structure': structure,
             'reading': reading, 'writing': writing, 'total': total}
     update_db(user, exam_score)
 
 def rand_password():
+    """Generate a random password for the examinee."""
     alphabet = '2345789;!@#$%&*abcdefghijkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ'
     myrg = random.SystemRandom()
     length = 8
     return ''.join(myrg.choice(alphabet) for i in range(length))
 
 def get_user_id(user_id):
+    """Generate a random numbar to be used as the username."""
     user_id = str(user_id)
     if user_id and not User.query.filter_by(username=user_id).count():
         password = rand_password()
