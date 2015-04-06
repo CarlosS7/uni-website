@@ -18,6 +18,16 @@ def login_required(role):
         return decorated_view
     return wrapper
 
+def add_examinees(namelist):
+    """Add examinees to the database."""
+    examinees = []
+    for (name, fullname, exam_id) in namelist:
+        name, password = get_user_id(name)
+        db.session.add(User(name, password, 'examinee', fullname, exam_id))
+        db.session.commit()
+        examinees.append((name, password, fullname, exam_id))
+    return examinees
+
 def get_current_exam(username):
     """View the answer page of a current examinee."""
     user = User.query.filter_by(username=username).first()
@@ -58,7 +68,9 @@ def update_db(user, exam_score):
 
 def record_scores(user, writing):
     """Write the scores and apply the calculation formula, if necessary."""
-    exams = {'pyueng5': 'PYU Entrance Exam 5', 'pyueng8': 'PYU Entrance Exam 8'}
+    exams = {'pyueng5': 'PYU Entrance Exam 5',
+            'pyueng8': 'PYU Entrance Exam 8',
+            'geneng1': 'General English 1'}
     exam_id = exams.get(user.exam_id)
     listening, structure, reading = calc_score(get_score(user))
     if user.exam_id.startswith('pyueng'):
@@ -77,7 +89,7 @@ def rand_password():
     return ''.join(myrg.choice(alphabet) for i in range(length))
 
 def get_user_id(user_id):
-    """Generate a random numbar to be used as the username."""
+    """Assign a number or generate a random number to be used as the username."""
     user_id = str(user_id)
     if user_id and not User.query.filter_by(username=user_id).count():
         password = rand_password()

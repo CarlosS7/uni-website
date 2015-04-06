@@ -69,6 +69,14 @@ var Admin = (function () {
         postJSON('/user/examwriting', csrftoken, data, updateGetScore);
         document.getElementById(formId).className = 'slide-up';
     }
+    function dratReport() {
+        prepend('drat-report', this.responseText);
+    }
+    function getDratReport() {
+        var data = {};
+        data.text = document.getElementById('drat-text').value;
+        postJSON('/user/textanalysis', csrftoken, data, dratReport);
+    }
 
     return {
         empty: empty,
@@ -76,6 +84,7 @@ var Admin = (function () {
         addExaminee: addExaminee,
         getExamScore: getExamScore,
         showWrite: showWrite,
-        sendWriteScore: sendWriteScore
+        sendWriteScore: sendWriteScore,
+        getDratReport: getDratReport
     };
 }());

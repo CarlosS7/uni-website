@@ -1,11 +1,12 @@
 import json
+from drat import app
 from datetime import datetime
 from flask import Blueprint, render_template, request, redirect, flash, url_for
 from flask.ext.login import login_user, logout_user, current_user
 from website import db
 from website.models import User, Questions, SignupCourses, CompletedExams
 from website.forms import LoginForm
-from website.admin import login_required, record_scores, get_user_id
+from website.admin import login_required, record_scores, add_examinees
 
 mod = Blueprint('user', __name__, url_prefix='/user')
 
@@ -59,12 +60,9 @@ def delsignup():
 @login_required(role='admin')
 def addexaminee():
     items = dict(request.get_json())
-    fullname = items.get('fullname')
-    exam_id = items.get('getexam')
-    name, password = get_user_id(items.get('name'))
+    [name, password, fullname, exam_id] = add_examinees([items.get('name'),
+        items.get('fullname'), items.get('exam_id')])
     button = items.get('button', False)
-    db.session.add(User(name, password, 'examinee', fullname, exam_id))
-    db.session.commit()
     return render_template('partials/shownamepass.html',
             fullname=fullname, name=name, password=password, button=button)
 
@@ -94,7 +92,9 @@ def check_writing(user):
     writing = answers.get('writing')
     return (user.username, user.fullname, writing)
 
-@mod.route('/editpage')
+@mod.route('/textanalysis', methods=['POST'])
 @login_required(role='admin')
-def editpage():
-    pass
+def textanalysis():
+    data = dict(request.get_json()).get('text')
+    message = app.raw_check(data)
+    return render_template('partials/dratreport.html', message=message.splitlines())

@@ -23,7 +23,8 @@ def signup():
                     email=form.email.data, coursename=form.coursename.data).count():
                 m = 'It seems like you have already signed up for the {} course. We will contact you soon.'
             else:
-                db.session.add(SignupCourses(form.username.data, form.email.data, form.phone.data, form.coursename.data))
+                db.session.add(SignupCourses(form.username.data, form.email.data,
+                    form.phone.data, form.coursename.data))
                 db.session.commit()
                 m = 'You have signed up for the {} course. We will contact you soon about your application.'
             flash(m.format(form.coursename.data))

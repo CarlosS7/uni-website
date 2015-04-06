@@ -74,6 +74,19 @@
 </div>
 {% endif %}
 
+<h2 class="page-header">Teaching tools</h2>
+<p><button class="btn btn-primary" onclick="toggleDiv('drat-open')" type="button">Readability tool</button></p>
+<div class="collapse" id="drat-open">
+  <form id="drat-form" method="post">
+    <div class="form-group">
+      <h4>Insert text in the box below</h4>
+      <textarea cols="80" rows="10" id="drat-text"></textarea><br>
+      <button class="btn btn-primary" onclick="Admin.getDratReport()" type="button">Submit text</button>
+    </div>
+  </form>
+</div>
+<div id="drat-report"></div>
+
 <script src="{{ url_for('static', filename='js/user_script.js') }}"></script>
 
 {% endblock %}
