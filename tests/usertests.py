@@ -29,10 +29,13 @@ class TestUser(unittest.TestCase):
         app.config['WTF_CSRF_ENABLED'] = False
         self.app = app.test_client()
         db.create_all()
-        self.user = User('admin', 'default', 'admin')
+        self.user = User(username='admin', role='admin')
+        self.user.hash_password('default')
         db.session.add(self.user)
         db.session.commit()
-        self.examinee = User('12345678', 'hard2guess', 'examinee', 'Charles Dickens', 'silly1')
+        self.examinee = User(username='12345678', role='examinee',
+                fullname='Charles Dickens', exam_id='silly1', answer_page='{}')
+        self.examinee.hash_password('hard2guess')
         db.session.add(self.examinee)
         db.session.commit()
 

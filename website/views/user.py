@@ -42,7 +42,8 @@ def logout():
 @login_required(role='admin')
 def index():
     users = User.query.all()
-    check = [check_writing(username) for username in users if json.loads(username.answer_page)]
+    check = [check_writing(username) for username in users
+            if username.role == 'examinee' and json.loads(username.answer_page)]
     signup = SignupCourses.query.all()
     exams = [q.exam_id for q in Questions.query.all()]
     old = list(set([exam.taken_date for exam in CompletedExams.query.all()]))

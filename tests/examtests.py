@@ -11,7 +11,9 @@ class TestExaminee(unittest.TestCase):
         app.config['WTF_CSRF_ENABLED'] = False
         self.app = app.test_client()
         db.create_all()
-        self.examinee = User('12345678', 'hard2guess', 'examinee', 'Charles Dickens', 'silly1')
+        self.examinee = User(username='12345678', role='examinee',
+                fullname='Charles Dickens', exam_id='silly1', answer_page='{}')
+        self.examinee.hash_password('hard2guess')
         db.session.add(self.examinee)
         db.session.commit()
         self.add_questions(self)
@@ -32,7 +34,7 @@ class TestExaminee(unittest.TestCase):
             pages = json.load(questions)
         with open(os.path.join('tests', 'testdata', 'exams', 'silly1_answers.json')) as answers:
             correct = json.load(answers)
-        db.session.add(Questions('silly1', pages, correct))
+        db.session.add(Questions(exam_id='silly1', pages=pages, correct=correct))
         db.session.commit()
 
     def login(self, username, password):

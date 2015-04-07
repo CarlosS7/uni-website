@@ -23,7 +23,9 @@ def add_examinees(namelist):
     examinees = []
     for (name, fullname, exam_id) in namelist:
         name, password = get_user_id(name)
-        db.session.add(User(name, password, 'examinee', fullname, exam_id))
+        user = User(username=name, role='examinee', fullname=fullname, exam_id=exam_id)
+        user.hash_password(user)
+        db.session.add(user)
         db.session.commit()
         examinees.append((name, password, fullname, exam_id))
     return examinees
@@ -62,7 +64,8 @@ def update_db(user, exam_score):
     """Remove the user from the User table and add him/her to the CompletedExams table."""
     answer_page = json.loads(user.answer_page)
     taken_date = datetime.now().date()
-    db.session.add(CompletedExams(user.fullname, user.username, taken_date, answer_page, exam_score))
+    db.session.add(CompletedExams(username=user.fullname, code=user.username,
+        taken_date=taken_date, answer_page=answer_page, exam_score=exam_score))
     db.session.delete(user)
     db.session.commit()
 
