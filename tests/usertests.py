@@ -86,10 +86,9 @@ class TestUser(unittest.TestCase):
     def test_add_examinee(self):
         self.login('admin', 'default')
         rv = self.add_examinee('', 'silly1', 'Henry James')
-        self.assertIn(b'Password', rv.data)
         self.assertIn(b'Hide student names', rv.data)
-        rv = self.add_examinee('1234', 'silly1', 'Thomas Hardy')
-        self.assertIn(b'1234', rv.data)
+        rv = self.add_examinee('12345678', 'silly1', 'Thomas Hardy')
+        self.assertIn(b'12345678', rv.data)
 
 if __name__ == '__main__':
     unittest.main()
