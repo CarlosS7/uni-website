@@ -1,4 +1,5 @@
 import unittest
+import json
 from website import app, db
 from website.models import User
 
@@ -73,6 +74,22 @@ class TestUser(unittest.TestCase):
         self.assertIn(b'Invalid credentials', rv.data)
         rv = self.login('admin', 'dxefault')
         self.assertIn(b'Invalid credentials', rv.data)
+
+    def add_examinee(self, username, exam_id, fullname):
+        """Add examinee helper function."""
+        return self.app.post('/user/addexaminee', data=json.dumps(dict(
+            username=username,
+            exam_id=exam_id,
+            fullname=fullname
+            )), content_type='application/json', follow_redirects=True)
+
+    def test_add_examinee(self):
+        self.login('admin', 'default')
+        rv = self.add_examinee('', 'silly1', 'Henry James')
+        self.assertIn(b'Password', rv.data)
+        self.assertIn(b'Hide student names', rv.data)
+        rv = self.add_examinee('1234', 'silly1', 'Thomas Hardy')
+        self.assertIn(b'1234', rv.data)
 
 if __name__ == '__main__':
     unittest.main()

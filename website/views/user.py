@@ -61,11 +61,12 @@ def delsignup():
 @login_required(role='admin')
 def addexaminee():
     items = dict(request.get_json())
-    [name, password, fullname, exam_id] = add_examinees([items.get('name'),
-        items.get('fullname'), items.get('exam_id')])
+    users = add_examinees([(items.get('username'), items.get('fullname'), items.get('exam_id'))])
+    if users:
+        (username, password, fullname, exam_id) = users.pop(0)
     button = items.get('button', False)
     return render_template('partials/shownamepass.html',
-            fullname=fullname, name=name, password=password, button=button)
+            fullname=fullname, username=username, password=password, button=button)
 
 @mod.route('/examscore', methods=['POST'])
 @login_required(role='admin')

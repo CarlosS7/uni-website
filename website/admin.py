@@ -21,13 +21,14 @@ def login_required(role):
 def add_examinees(namelist):
     """Add examinees to the database."""
     examinees = []
-    for (name, fullname, exam_id) in namelist:
-        name, password = get_user_id(name)
-        user = User(username=name, role='examinee', fullname=fullname, exam_id=exam_id)
-        user.hash_password(user)
+    for (username, fullname, exam_id) in namelist:
+        username, password = get_user_id(username)
+        user = User(username=username, role='examinee', fullname=fullname,
+                exam_id=exam_id, answer_page='{}')
+        user.hash_password(password)
         db.session.add(user)
         db.session.commit()
-        examinees.append((name, password, fullname, exam_id))
+        examinees.append((username, password, fullname, exam_id))
     return examinees
 
 def get_current_exam(username):
