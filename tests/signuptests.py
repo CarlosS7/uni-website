@@ -1,16 +1,7 @@
 import unittest
-from website import app, db
+from .base import BaseCase
 
-class TestSignup(unittest.TestCase):
-    def setUp(self):
-        app.config['WTF_CSRF_ENABLED'] = False
-        self.app = app.test_client()
-        db.create_all()
-
-    def tearDown(self):
-        db.session.remove()
-        db.drop_all()
-
+class TestSignup(BaseCase):
     def signup(self, username, email, phone):
         """Signup helper function"""
         return self.app.post('/signup', data=dict(

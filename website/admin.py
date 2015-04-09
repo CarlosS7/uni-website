@@ -18,6 +18,13 @@ def login_required(role):
         return decorated_view
     return wrapper
 
+def add_admin(username, password, fullname):
+    """Add an admin user to the database."""
+    user = User(username=username, role='admin', fullname=fullname)
+    user.hash_password(password)
+    db.session.add(user)
+    db.session.commit()
+
 def add_examinees(namelist):
     """Add examinees to the database."""
     examinees = []
@@ -30,6 +37,15 @@ def add_examinees(namelist):
         db.session.commit()
         examinees.append((username, password, fullname, exam_id))
     return examinees
+
+def add_exam(exam_id, question_path, answer_path):
+    """Add a new exam's questions and answers to the database."""
+    with open(question_path) as questions:
+        pages = json.load(questions)
+    with open(answer_path) as answers:
+        correct = json.load(answers)
+    db.session.add(Questions(exam_id=exam_id, pages=pages, correct=correct))
+    db.session.commit()
 
 def get_current_exam(username):
     """View the answer page of a current examinee."""
