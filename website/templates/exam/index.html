@@ -39,6 +39,7 @@
 
     <div class="exam-box">
       <h2>{{ data.section }}</h2>
+      <h3>{{ data.title }}</h3>
 
       {% if data.audio %}
       <audio id="listening" src="/static/media/{{ data.audio }}"></audio>
@@ -46,13 +47,6 @@
 
       {% if data.intro %}
       {% for text in data.intro %}
-      <h4>{{ text }}</h4>
-      {% endfor %}
-      {% endif %}
-
-      {% if data.directions %}
-      {% for text in data.directions %}
-      <h3>Directions</h3>
       <h4>{{ text }}</h4>
       {% endfor %}
       {% endif %}
@@ -81,11 +75,11 @@
       <textarea id="writingarea" name="writing" cols="80" rows="20">
         {{ answers.get('writing', '') }}
       </textarea><br>
-      <input type="submit" class="btn btn-primary pull-right" role="button" value="Finish the exam"><br>
       {% endif %}
 
     </div>
     {% endfor %}
+    <input type="submit" class="btn btn-primary pull-right" role="button" value="Finish the exam"><br>
   </form>
 </div>
 
