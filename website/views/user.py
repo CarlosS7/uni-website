@@ -41,12 +41,15 @@ def logout():
 @mod.route('/')
 @login_required(role='admin')
 def index():
-    users = User.query.all()
-    check = [check_writing(username) for username in users
-            if username.role == 'examinee' and json.loads(username.answer_page)]
+    check = False
+    for user in User.query.all():
+        if user.role == 'examinee' and json.loads(user.answer_page):
+            check = True
+            break
     signup = SignupCourses.query.all()
     exams = [q.exam_id for q in Questions.query.all()]
     old = list(set([exam.taken_date for exam in CompletedExams.query.all()]))
+    old.sort(reverse=True)
     return render_template('user/index.html', check=check, signup=signup, exams=exams, old=old)
 
 @mod.route('/delsignup', methods=['POST'])
@@ -88,6 +91,14 @@ def examwriting():
             writing = writing if writing <= 6 else 0
             record_scores(user, writing)
     return str(datetime.now().date())
+
+@mod.route('/checkwriting', methods=['POST'])
+@login_required(role='admin')
+def checkwriting():
+    users = User.query.all()
+    check = [check_writing(username) for username in users
+            if username.role == 'examinee' and json.loads(username.answer_page)]
+    return render_template('partials/checkwriting.html', check=check)
 
 def check_writing(user):
     answers = json.loads(user.answer_page)

@@ -44,10 +44,13 @@ var Admin = (function () {
         }
         postJSON('/user/examscore', csrftoken, data, showGetScore);
     }
-    function showWrite() {
+    function showCheckWrite() {
         var el = document.getElementById('check-write-btn');
-        toggleDiv('writing-score');
         el.style.display = 'none';
+        document.getElementById('checkwrite').innerHTML = this.responseText;
+    }
+    function checkWrite() {
+        postJSON('/user/checkwriting', csrftoken, '', showCheckWrite);
     }
     function updateGetScore() {
         var text = document.getElementById('getexamscore').innerHTML;
@@ -83,7 +86,7 @@ var Admin = (function () {
         clearSignup: clearSignup,
         addExaminee: addExaminee,
         getExamScore: getExamScore,
-        showWrite: showWrite,
+        checkWrite: checkWrite,
         sendWriteScore: sendWriteScore,
         getDratReport: getDratReport
     };
