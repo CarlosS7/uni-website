@@ -3,8 +3,7 @@ from drat import app
 from datetime import datetime
 from flask import Blueprint, render_template, request, redirect, flash, url_for
 from flask.ext.login import login_user, logout_user, current_user
-from website import db
-from website.models import User, Questions, SignupCourses, CompletedExams
+from website.models import User, Questions, CompletedExams
 from website.forms import LoginForm
 from website.admin import login_required, record_scores, add_examinees
 
@@ -41,24 +40,10 @@ def logout():
 @mod.route('/')
 @login_required(role='admin')
 def index():
-    check = False
-    for user in User.query.all():
-        if user.role == 'examinee' and json.loads(user.answer_page):
-            check = True
-            break
-    signup = SignupCourses.query.all()
     exams = [q.exam_id for q in Questions.query.all()]
     old = list(set([exam.taken_date for exam in CompletedExams.query.all()]))
     old.sort(reverse=True)
-    return render_template('user/index.html', check=check, signup=signup, exams=exams, old=old)
-
-@mod.route('/delsignup', methods=['POST'])
-@login_required(role='admin')
-def delsignup():
-    for user in SignupCourses.query.all():
-        db.session.delete(user)
-        db.session.commit()
-    return '<p>No students to contact.</p>'
+    return render_template('user/index.html', exams=exams, old=old)
 
 @mod.route('/addexaminee', methods=['POST'])
 @login_required(role='admin')

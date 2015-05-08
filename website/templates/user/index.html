@@ -5,25 +5,8 @@
 <script>var csrftoken = "{{ csrf_token() }}"</script>
 
 <h1>Administration</h1>
-<h3 class="page-header">Students interested in courses</h3>
-<div id="signup-info">
-  {% if signup %}
-  <div class="row">
-    {% for username in signup %}
-    <div class="col-4">
-      <h4>{{ username.username }}</h4>
-      <p>Email: {{ username.email }}</p>
-      <p>Phone: {{ username.phone }}</p>
-      <p>Course: {{ username.coursename }}</p>
-    </div>
-    {% endfor %}
-  </div>
-  <button class="btn btn-default" onclick="Admin.clearSignup()" type="button">Remove student names</button>
-  {% else %}
-  <p>No students to contact.</p>
-  {% endif %}
-</div>
 <h3 class="page-header">PYU Entrance Exam</h3>
+<h4>Add examinees</h4>
 <form class="form-inline" id="examinee-form" method="post">
   <div class="form-group">
     <label for="addname">Student's name</label>
@@ -35,10 +18,11 @@
       <option>{{ exam }}</option>
       {% endfor %}
     </select>
-    <button class="btn btn-primary" onclick="Admin.addExaminee()" type="button">Add examinee</button>
+    <button class="btn btn-default" onclick="Admin.addExaminee()" type="button">Add examinee</button>
   </div>
 </form><br>
 <div id="addexaminee-names"></div>
+<h4>Exam scores</h4>
 <form class="form-inline" id="examscore-form" method="post">
   <div class="form-group">
     <label for="getscore">Date exam taken</label>
@@ -47,24 +31,23 @@
       <option>{{ exam_date }}</option>
       {% endfor %}
     </select>
-    <button class="btn btn-primary" onclick="Admin.getExamScore()" type="button">Get exam score</button>
+    <button class="btn btn-default" onclick="Admin.getExamScore()" type="button">Get exam scores</button>
   </div>
 </form><br>
 <div id="getscore-scores"></div>
-{% if check %}
+<h4>Assess the writing section</h4>
 <div id="checkwrite">
-  <p><button class="btn btn-primary" onclick="Admin.checkWrite()" id="check-write-btn" type="button">Check writing section</button></p>
+  <p><button class="btn btn-default" onclick="Admin.checkWrite()" type="button">Check writing</button></p>
 </div>
-{% endif %}
 
 <h2 class="page-header">Teaching tools</h2>
-<p><button class="btn btn-primary" onclick="toggleDiv('drat-open')" type="button">Readability tool</button></p>
+<p><button class="btn btn-default" onclick="toggleDiv('drat-open')" type="button">Readability tool</button></p>
 <div class="collapse" id="drat-open">
   <form id="drat-form" method="post">
     <div class="form-group">
       <h4>Insert text in the box below</h4>
       <textarea cols="80" rows="10" id="drat-text"></textarea><br>
-      <button class="btn btn-primary" onclick="Admin.getDratReport()" type="button">Submit text</button>
+      <button class="btn btn-default" onclick="Admin.getDratReport()" type="button">Submit text</button>
     </div>
   </form>
 </div>

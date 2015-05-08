@@ -33,17 +33,6 @@ class User(db.Model):
     def __repr__(self):
         return '<User {}>'.format(self.username)
 
-class SignupCourses(db.Model):
-    __tablename__ = 'signupcourses'
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(32))
-    email = db.Column(db.String(32))
-    phone = db.Column(db.String(32))
-    coursename = db.Column(db.String(32))
-
-    def __repr__(self):
-        return '<User {}>'.format(self.username, self.coursename)
-
 class CompletedExams(db.Model):
     __tablename__ = 'oldexams'
     id = db.Column(db.Integer, primary_key=True)

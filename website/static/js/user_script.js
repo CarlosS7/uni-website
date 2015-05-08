@@ -14,12 +14,6 @@ var Admin = (function () {
         var old = document.getElementById(id).innerHTML;
         document.getElementById(id).innerHTML = text + old;
     }
-    function removeSignup() {
-        document.getElementById('signup-info').innerHTML = this.responseText;
-    }
-    function clearSignup() {
-        postJSON('/user/delsignup', csrftoken, '', removeSignup);
-    }
     function showAddExaminee() {
         prepend('addexaminee-names', this.responseText);
     }
@@ -45,8 +39,6 @@ var Admin = (function () {
         postJSON('/user/examscore', csrftoken, data, showGetScore);
     }
     function showCheckWrite() {
-        var el = document.getElementById('check-write-btn');
-        el.style.display = 'none';
         document.getElementById('checkwrite').innerHTML = this.responseText;
     }
     function checkWrite() {
@@ -83,7 +75,6 @@ var Admin = (function () {
 
     return {
         empty: empty,
-        clearSignup: clearSignup,
         addExaminee: addExaminee,
         getExamScore: getExamScore,
         checkWrite: checkWrite,
