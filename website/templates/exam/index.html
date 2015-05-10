@@ -79,7 +79,15 @@
 
     </div>
     {% endfor %}
-    <input type="submit" class="btn btn-primary pull-right" role="button" value="Finish the exam"><br>
+    <p><button class="btn btn-primary pull-right" onclick="toggleDiv('finish-exam')" type="button">Finish the exam</button></p>
+    <br>
+    <div class="collapse" id="finish-exam">
+      <h4>Are you sure you want to finish the exam?</h4>
+      <input type="submit" class="btn btn-primary" role="button" value="Yes, I have finished">
+      &nbsp;&nbsp;
+      <button class="btn btn-primary" onclick="toggleDiv('finish-exam')" type="button">
+        No, I want to continue taking the exam</button>
+    </div>
   </form>
 </div>
 
