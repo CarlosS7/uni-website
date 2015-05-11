@@ -60,7 +60,7 @@
       {% for ans in question.answers %}
       <label class="radio-label">
         <input type="radio" name="{{ question.object_id }}" value="{{ ans[0] }}"
-              {% if answers.get(question.object_id) == ans[0] %}checked{% endif %}>
+                                                            {% if answers.get(question.object_id) == ans[0] %}checked{% endif %}>
         {{ ans[1] }}
       </label>
       {% if data.inline %}&nbsp;&nbsp;{% else %}<br>{% endif %}
@@ -82,11 +82,13 @@
     <p><button class="btn btn-primary pull-right" onclick="toggleDiv('finish-exam')" type="button">Finish the exam</button></p>
     <br>
     <div class="collapse" id="finish-exam">
-      <h4>Are you sure you want to finish the exam?</h4>
-      <input type="submit" class="btn btn-primary" role="button" value="Yes, I have finished">
-      &nbsp;&nbsp;
-      <button class="btn btn-primary" onclick="toggleDiv('finish-exam')" type="button">
-        No, I want to continue taking the exam</button>
+      <div class="center-block">
+        <h4>Are you sure you want to finish the exam?</h4>
+        <input type="submit" class="btn btn-default" role="button" value="Yes, I have finished">
+        &nbsp;&nbsp;
+        <button class="btn btn-default" onclick="toggleDiv('finish-exam')" type="button">
+          No, I want to continue taking the exam</button>
+      </div>
     </div>
   </form>
 </div>

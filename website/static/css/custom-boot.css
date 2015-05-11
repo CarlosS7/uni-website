@@ -1015,6 +1015,12 @@ tbody.collapse.in {
 #exam-body {
   display: none;
 }
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
 .fixed-navbar {
   position: fixed;
   top: 0;
