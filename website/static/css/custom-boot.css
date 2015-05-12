@@ -986,6 +986,9 @@ tbody.collapse.in {
   padding: 40px;
   margin-bottom: 40px;
 }
+.exam-btn {
+  margin: 10px;
+}
 .radio-label {
   font-weight: normal;
 }
