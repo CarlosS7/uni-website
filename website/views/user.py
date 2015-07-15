@@ -1,5 +1,4 @@
 import json
-from drat import app
 from datetime import datetime
 from flask import Blueprint, render_template, request, redirect, flash, url_for
 from flask.ext.login import login_user, logout_user, current_user
@@ -81,18 +80,11 @@ def examwriting():
 @login_required(role='admin')
 def checkwriting():
     users = User.query.all()
-    check = [check_writing(username) for username in users
+    check = [assess_writing(username) for username in users
             if username.role == 'examinee' and json.loads(username.answer_page)]
     return render_template('partials/checkwriting.html', check=check)
 
-def check_writing(user):
+def assess_writing(user):
     answers = json.loads(user.answer_page)
     writing = answers.get('writing')
     return (user.username, user.fullname, writing)
-
-@mod.route('/textanalysis', methods=['POST'])
-@login_required(role='admin')
-def textanalysis():
-    data = dict(request.get_json()).get('text')
-    message = app.raw_check(data)
-    return render_template('partials/dratreport.html', message=message.splitlines())

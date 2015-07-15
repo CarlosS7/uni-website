@@ -103,7 +103,7 @@ def get_old_exams(realname):
 
 def rand_password():
     """Generate a random password for the examinee."""
-    alphabet = '2345789;!@#$%&*abcdefghijkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ'
+    alphabet = '2345789;!@#$%*abcdefghijkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ'
     myrg = random.SystemRandom()
     length = 8
     return ''.join(myrg.choice(alphabet) for i in range(length))
@@ -114,4 +114,4 @@ def get_user_id(user_id):
     if user_id and not User.query.filter_by(username=user_id).count():
         password = rand_password()
         return user_id, password
-    return get_user_id(random.randrange(10000000, 19999999))
+    return get_user_id(random.randrange(100000, 199999))

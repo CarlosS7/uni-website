@@ -20,7 +20,7 @@ class TestUser(BaseCase):
         """Test login and logout using helper functions"""
         add_admin('admin', 'default', 'Admin')
         rv = self.login('admin', 'default')
-        self.assertIn(b'Students interested in courses', rv.data)
+        self.assertIn(b'PYU Entrance Exam', rv.data)
         rv = self.logout()
         self.assertIn(b'You have been logged out', rv.data)
         rv = self.login('adxmin', 'default')
