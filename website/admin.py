@@ -4,7 +4,7 @@ from datetime import datetime
 from flask.ext.login import current_user
 from functools import wraps
 from website import login_man, db
-from website.models import User, Questions, CompletedExams
+from website.models import User, Exams, Examscores
 
 def login_required(role):
     def wrapper(fn):
@@ -22,7 +22,7 @@ def get_score(user):
     """Return a list of answers that are correct."""
     answers = json.loads(user.answer_page)
     exam_id = user.exam_id
-    data = Questions.query.filter_by(exam_id=exam_id).first().correct
+    data = Exams.query.filter_by(exam_id=exam_id).first().correct
     score = [key for key, val in data.items() if val == answers.get(key)]
     return score
 
@@ -39,10 +39,10 @@ def calc_score(ans_list):
     return listening, structure, reading
 
 def update_db(user, exam_score):
-    """Remove the user from the User table and add him/her to the CompletedExams table."""
+    """Remove the user from the User table and add him/her to the Examscores table."""
     answer_page = json.loads(user.answer_page)
     taken_date = datetime.now().date()
-    db.session.add(CompletedExams(username=user.fullname, code=user.username,
+    db.session.add(Examscores(username=user.fullname, code=user.username,
         taken_date=taken_date, answer_page=answer_page, exam_score=exam_score))
     db.session.delete(user)
     db.session.commit()
@@ -88,7 +88,7 @@ def add_exam(exam_id, question_path, answer_path):
         pages = json.load(questions)
     with open(answer_path) as answers:
         correct = json.load(answers)
-    db.session.add(Questions(exam_id=exam_id, pages=pages, correct=correct))
+    db.session.add(Exams(exam_id=exam_id, pages=pages, correct=correct))
     db.session.commit()
 
 def get_current_exam(username):
@@ -98,7 +98,7 @@ def get_current_exam(username):
 
 def get_old_exams(realname):
     """View the score of someone who has taken the exam."""
-    user = CompletedExams.query.filter_by(fullname=realname).first()
+    user = Examscores.query.filter_by(fullname=realname).first()
     return user.exam_score
 
 def rand_password():

@@ -62,7 +62,7 @@ var Exam = (function () {
         }
         setInterval(function () {
             updateResults();
-        }, 1000 * 60 * 5);
+        }, 1000 * 60 * 2);
     }
 
     return {

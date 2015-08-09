@@ -33,8 +33,8 @@ class User(db.Model):
     def __repr__(self):
         return '<User {}>'.format(self.username)
 
-class CompletedExams(db.Model):
-    __tablename__ = 'oldexams'
+class Examscores(db.Model):
+    __tablename__ = 'examscores'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(32))
     code = db.Column(db.String(32))
@@ -48,16 +48,16 @@ class CompletedExams(db.Model):
 class Content(db.Model):
     __tablename__ = 'content'
     id = db.Column(db.Integer, primary_key=True)
-    content_id = db.Column(db.String())
-    content = db.Column(JSON)
+    content_id = db.Column(db.String(32))
+    content = db.Column(db.Text)
 
     def __repr__(self):
         return '<Content {}>'.format(self.content_id)
 
-class Questions(db.Model):
-    __tablename__ = 'questions'
+class Exams(db.Model):
+    __tablename__ = 'exams'
     id = db.Column(db.Integer, primary_key=True)
-    exam_id = db.Column(db.String())
+    exam_id = db.Column(db.String(32))
     pages = db.Column(JSON)
     correct = db.Column(JSON)
 

@@ -2,7 +2,7 @@ import json
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask.ext.login import current_user
 from website import db
-from website.models import Questions
+from website.models import Exams
 from website.admin import login_required
 
 mod = Blueprint('exam', __name__, url_prefix='/exam')
@@ -20,7 +20,7 @@ def index():
     """Set exam for the user."""
     exam_id = current_user.exam_id
     answers = json.loads(current_user.answer_page)
-    data = Questions.query.filter_by(exam_id=exam_id).first().pages
+    data = Exams.query.filter_by(exam_id=exam_id).first().pages
     return render_template('exam/index.html',
             welcome=data['pages'][0],
             pages=data['pages'][1:],

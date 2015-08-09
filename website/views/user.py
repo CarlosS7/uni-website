@@ -2,7 +2,7 @@ import json
 from datetime import datetime
 from flask import Blueprint, render_template, request, redirect, flash, url_for
 from flask.ext.login import login_user, logout_user, current_user
-from website.models import User, Questions, CompletedExams
+from website.models import User, Exams, Examscores
 from website.forms import LoginForm
 from website.admin import login_required, record_scores, add_examinees
 
@@ -39,8 +39,8 @@ def logout():
 @mod.route('/')
 @login_required(role='admin')
 def index():
-    exams = [q.exam_id for q in Questions.query.all()]
-    old = list(set([exam.taken_date for exam in CompletedExams.query.all()]))
+    exams = [q.exam_id for q in Exams.query.all()]
+    old = list(set([exam.taken_date for exam in Examscores.query.all()]))
     old.sort(reverse=True)
     return render_template('user/index.html', exams=exams, old=old)
 
@@ -60,7 +60,7 @@ def addexaminee():
 def examscore():
     items = dict(request.get_json())
     date = items.get('getscore')
-    exams = CompletedExams.query.filter_by(taken_date=date).all()
+    exams = Examscores.query.filter_by(taken_date=date).all()
     scores = [(exam.username, exam.exam_score) for exam in exams]
     return render_template('partials/showscore.html', scores=scores)
 

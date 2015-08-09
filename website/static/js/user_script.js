@@ -55,8 +55,10 @@ var Admin = (function () {
             i = 0,
             len = form.length;
 
+        cosole.log(form);
         for (i; i < len; ++i) {
             var input = form[i];
+            cosole.log(input);
             if (input.type === 'text') {
                 data[input.name] = input.value;
             }
