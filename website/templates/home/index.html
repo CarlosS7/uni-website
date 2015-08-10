@@ -18,7 +18,7 @@
   </div>
 </div>
 
-{{ home_data }}
+{{ home_data|safe }}
 
 <script src="{{ url_for('static', filename='js/quotes.js') }}"></script>
 

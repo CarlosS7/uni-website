@@ -39,7 +39,8 @@ def logout():
 @mod.route('/')
 @login_required(role='admin')
 def index():
-    exams = [q.exam_id for q in Exams.query.all()]
+    exams = [(q.exam_id, q.exam_name) for q in Exams.query.all()
+            if q.exam_id.startswith('pyueng')]
     old = list(set([exam.taken_date for exam in Examscores.query.all()]))
     old.sort(reverse=True)
     return render_template('user/index.html', exams=exams, old=old)

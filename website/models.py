@@ -57,7 +57,8 @@ class Content(db.Model):
 class Exams(db.Model):
     __tablename__ = 'exams'
     id = db.Column(db.Integer, primary_key=True)
-    exam_id = db.Column(db.String(32))
+    exam_id = db.Column(db.String(32), unique=True)
+    exam_name = db.Column(db.String(32))
     pages = db.Column(JSON)
     correct = db.Column(JSON)
 

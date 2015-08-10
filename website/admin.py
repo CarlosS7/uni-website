@@ -4,7 +4,7 @@ from datetime import datetime
 from flask.ext.login import current_user
 from functools import wraps
 from website import login_man, db
-from website.models import User, Exams, Examscores
+from website.models import User, Content, Exams, Examscores
 
 def login_required(role):
     def wrapper(fn):
@@ -69,6 +69,13 @@ def add_admin(username, password, fullname):
     db.session.add(user)
     db.session.commit()
 
+def add_content(content_id, path):
+    """Add content to the database."""
+    with open(path) as infile:
+        data = infile.read()
+    db.session.add(Content(content_id=content_id, content=data))
+    db.session.commit()
+
 def add_examinees(namelist):
     """Add examinees to the database."""
     examinees = []
@@ -82,13 +89,13 @@ def add_examinees(namelist):
         examinees.append((username, password, fullname, exam_id))
     return examinees
 
-def add_exam(exam_id, question_path, answer_path):
+def add_exam(exam_id, exam_name, question_path, answer_path):
     """Add a new exam's questions and answers to the database."""
     with open(question_path) as questions:
         pages = json.load(questions)
     with open(answer_path) as answers:
         correct = json.load(answers)
-    db.session.add(Exams(exam_id=exam_id, pages=pages, correct=correct))
+    db.session.add(Exams(exam_id=exam_id, exam_name=exam_name, pages=pages, correct=correct))
     db.session.commit()
 
 def get_current_exam(username):

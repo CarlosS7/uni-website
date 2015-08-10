@@ -9,13 +9,13 @@
 <h4>Add examinees</h4>
 <form class="form-inline" id="examinee-form" method="post">
   <div class="form-group">
-    <label for="addname">Student's name</label>
+    <label for="addname">Student name</label>
     <input type="text" class="form-control" id="addexaminee" name="addname">
     <label for="addcode">Student Id</label>
     <input type="text" class="form-control" id="studentcode" name="addcode">
     <select class="form-control" id="selectexam" name="getexam">
-      {% for exam in exams %}
-      <option>{{ exam }}</option>
+      {% for (exam_id, exam_name) in exams %}
+      <option value="{{ exam_id }}">{{ exam_name }}</option>
       {% endfor %}
     </select>
     <button class="btn btn-primary" onclick="Admin.addExaminee()" type="button">Add examinee</button>
