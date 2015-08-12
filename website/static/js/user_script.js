@@ -39,9 +39,6 @@ var Admin = (function () {
     function getExamScore() {
         var data = {};
         data.getscore = document.getElementById('getexamscore').value;
-        if (document.getElementById('getscore-scores').innerHTML) {
-            data.button = true;
-        }
         postJSON('/user/examscore', csrftoken, data, showGetScore);
     }
 

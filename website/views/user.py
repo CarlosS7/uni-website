@@ -69,7 +69,6 @@ def examscore():
 @login_required(role='admin')
 def examwriting():
     items = dict(request.get_json())
-    print(items)
     for data in items:
         user = User.query.filter_by(username=data).first()
         if user:
