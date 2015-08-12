@@ -6,6 +6,7 @@ var Exam = (function () {
         xhr.setRequestHeader('X-CSRF-Token', token);
         xhr.send(JSON.stringify(data));
     }
+
     function updateResults() {
         var form = document.forms[0],
             data = {},
@@ -24,6 +25,7 @@ var Exam = (function () {
         }
         postJSON('/exam/update_results', token, data);
     }
+
     function counter(time_limit) {
         var form = document.forms[0],
             countdown = document.getElementById('countdown'),

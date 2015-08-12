@@ -7,16 +7,20 @@ var Admin = (function () {
         xhr.onload = callback;
         xhr.send(JSON.stringify(data));
     }
+
     function empty(id) {
         document.getElementById(id).innerHTML = '';
     }
+
     function prepend(id, text) {
         var old = document.getElementById(id).innerHTML;
         document.getElementById(id).innerHTML = text + old;
     }
+
     function showAddExaminee() {
         prepend('addexaminee-names', this.responseText);
     }
+
     function addExaminee() {
         var data = {};
         data.fullname = document.getElementById('addexaminee').value;
@@ -27,9 +31,11 @@ var Admin = (function () {
         }
         postJSON('/user/addexaminee', csrftoken, data, showAddExaminee);
     }
+
     function showGetScore() {
         document.getElementById('getscore-scores').innerHTML = this.responseText;
     }
+
     function getExamScore() {
         var data = {};
         data.getscore = document.getElementById('getexamscore').value;
@@ -38,17 +44,21 @@ var Admin = (function () {
         }
         postJSON('/user/examscore', csrftoken, data, showGetScore);
     }
+
     function showCheckWrite() {
         document.getElementById('checkwrite').innerHTML = this.responseText;
     }
+
     function checkWrite() {
         postJSON('/user/checkwriting', csrftoken, '', showCheckWrite);
     }
+
     function updateGetScore() {
         var text = document.getElementById('getexamscore').innerHTML;
         if (text.indexOf(this.responseText) === -1)
             prepend('getexamscore', '<option>' + this.responseText + '</option>');
     }
+
     function sendWriteScore(formId) {
         var form = document.getElementById(formId),
             data = {},
