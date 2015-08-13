@@ -79,13 +79,13 @@
 
     </div>
     {% endfor %}
-    <p><button class="btn btn-primary pull-right" onclick="toggleDiv('finish-exam')" type="button">Finish the exam</button></p>
+    <p><button class="btn btn-primary pull-right" onclick="Base.toggleDiv('finish-exam')" type="button">Finish the exam</button></p>
     <br>
     <div class="collapse" id="finish-exam">
       <div class="center-block">
         <h4>Are you sure you want to finish the exam?</h4>
         <input type="submit" class="btn btn-primary exam-btn" role="button" value="Yes, I have finished">
-        <button class="btn btn-primary exam-btn" onclick="toggleDiv('finish-exam')" type="button">
+        <button class="btn btn-primary exam-btn" onclick="Base.toggleDiv('finish-exam')" type="button">
           No, I want to continue taking the exam</button>
       </div>
     </div>
