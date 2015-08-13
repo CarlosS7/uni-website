@@ -14,7 +14,7 @@ class TestExaminee(BaseCase):
         cls.examinee.hash_password('hard2guess')
         db.session.add(cls.examinee)
         db.session.commit()
-        add_exam('silly1', (os.path.join('tests', 'testdata', 'exams', 'silly1.json')),
+        add_exam('silly1', 'Silly 1', (os.path.join('tests', 'testdata', 'exams', 'silly1.json')),
                 (os.path.join('tests', 'testdata', 'exams', 'silly1_answers.json')))
 
     @classmethod

@@ -5,6 +5,7 @@ from website import app, db
 class BaseCase(unittest.TestCase):
     def setUp(self):
         app.config['WTF_CSRF_ENABLED'] = False
+        print(app.config['WTF_CSRF_ENABLED'])
         self.app = app.test_client()
         db.create_all()
 
