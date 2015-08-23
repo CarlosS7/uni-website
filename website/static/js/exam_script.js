@@ -29,7 +29,7 @@ var Exam = (function () {
     function counter(time_limit) {
         var form = document.forms[0],
             countdown = document.getElementById('countdown'),
-            target_date = new Date().getTime() + time_limit * 1000;
+            target_date = new Date().getTime() + time_limit * 1000 * 3600;
 
         setInterval(function () {
             var current_date, seconds_left, hours, minutes;

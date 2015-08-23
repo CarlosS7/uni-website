@@ -1,16 +1,13 @@
 import os
 from website import db
 from website.models import User
-from website.admin import add_admin, add_content, add_exam
+from website.admin import add_admin, add_exam
 
 db.reflect()
 db.drop_all()
 db.create_all()
 
 os.chdir(os.path.join('tests', 'testdata'))
-add_content('home', 'home.html')
-add_content('about', 'about.html')
-
 add_exam('silly1', 'Silly 1', os.path.join('exams', 'silly1.json'),
         os.path.join('exams', 'silly1_answers.json'))
 add_admin('admin', 'pass', 'Admin')
