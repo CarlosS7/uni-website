@@ -3,7 +3,7 @@
     "pages": [
         {
             "title": "Rather Silly Exam",
-            "time_limit": 3600,
+            "time_limit": 1,
             "section": "General Knowledge",
             "intro": "The exam lasts thirty minutes and has four parts",
             "parts": ["General knowledge", "More general knowledge", "What was the third one, again?", "General knowledge"],

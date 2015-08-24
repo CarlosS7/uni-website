@@ -57,7 +57,7 @@ var Exam = (function () {
 
         exam.style.display = 'block';
         slide.classList.add('slide-up');
-        time_limit = (time_limit === undefined) ? 10800 : time_limit,
+        time_limit = (time_limit === undefined) ? 3 : time_limit,
         counter(time_limit);
         if (audio) {
             audio.play();
