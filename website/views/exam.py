@@ -22,9 +22,14 @@ def index():
     answers = json.loads(current_user.answer_page)
     data = Exams.query.filter_by(exam_id=exam_id).first().pages
     return render_template('exam/index.html',
-            welcome=data['pages'][0],
-            pages=data['pages'][1:],
+            welcome=get_time_limit(data.get('pages')[0]),
+            pages=data.get('pages')[1:],
             answers=answers)
+
+def get_time_limit(data):
+    (hrs, mins) = divmod(data.get('time_limit', 180), 60)
+    data['time_string'] = 'Time remaining: {}:{:02d}'.format(hrs, mins)
+    return data
 
 @mod.route('/update_results', methods=['POST'])
 @login_required(role='examinee')
