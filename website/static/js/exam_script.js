@@ -23,7 +23,7 @@ var Exam = (function () {
                 data[input.name] = input.value;
             }
         }
-        postJSON('/exam/update_results', token, data);
+        postJSON('/user/exam/update_results', token, data);
     }
 
     function counter(time_limit) {
@@ -64,7 +64,7 @@ var Exam = (function () {
         }
         setInterval(function () {
             updateResults();
-        }, 1000 * 60 * 2);
+        }, 1000 * 60);
     }
 
     return {

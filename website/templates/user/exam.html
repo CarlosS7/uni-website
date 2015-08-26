@@ -34,7 +34,7 @@
 <script src="{{ url_for('static', filename='js/exam_script.js') }}"></script>
 
 <div id="exam-body">
-  <form action="/exam/finish" method="post">
+  <form action="/user/exam/finish" method="post">
     <input type="hidden" id="token" name="csrf_token" value="{{ csrf_token() }}" />
     {% for data in pages %}
 
