@@ -8,11 +8,16 @@
   <script src="{{ url_for('static', filename='js/base.js') }}"></script>
 </head>
 <body>
-  <div class="container" id="mainarea">
-    {% if not current_user.is_authenticated() or current_user.role == 'admin' %}
-    {% include "nav.html" %}
-    {% endif %}
 
+  {% if not current_user.is_authenticated() or current_user.role == 'admin' %}
+  {% include 'partials/nav.html' %}
+  {% endif %}
+
+  {% if request.path == '/' %}
+  {% include 'partials/carousel.html' %}
+  {% endif %}
+
+  <div class="container">
     {% with messages = get_flashed_messages() %}
     {% if messages %}
     {% for message in messages %}

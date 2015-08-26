@@ -2,12 +2,6 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 
-<div class="carousel">
-  <img src="{{ url_for('static', filename='images/home_1.jpg') }}">
-  <img src="{{ url_for('static', filename='images/home_2.jpg') }}">
-  <img src="{{ url_for('static', filename='images/home_3.jpg') }}">
-</div>
-
 <div id="mainheading">
   <div class="media"><a class="pull-left" href="#"><img class="media-object img-rounded" src="{{ url_for('static', filename='images/elec_logo.png') }}"> </a>
     <div class="media-body">
@@ -39,16 +33,46 @@
   </div>
 </div>
 
-<h2 class="page-header">Courses</h2>
+<p>&nbsp;</p>
+<div class="container" id="about">
+  <div class="media"><a class="pull-left" href="#"><img class="media-object img-rounded" src="/static/images/payap_map_1.jpg" /> </a>
+    <div class="media-body">
+      <h4 class="media-heading">The English Language Enhancement Center (ELEC), at Payap University, offers English Language courses to help you develop your communication skills in the international language.</h4>
+      <p></p>
+      <p>We offer:</p>
+      <ul>
+        <li>Intensive English programs for students who want to study in English at university.</li>
+        <li>Teacher training - TESOL certificate courses.</li>
+        <li>IELTS / TOEFL preparation courses.</li>
+        <li>Entrance exams every Friday.</li>
+        <li>A self-access center, where you can improve your English in a fun and relaxed environment.</li>
+        <li>Other English courses according to your needs.</li>
+      </ul>
+    </div>
+  </div>
+  <h3 class="page-header">Entrance exam for future Payap International College students</h3>
+  <p>For students who want to study at the Payap International College, and who are not native speakers, we provide an entrance exam every Friday at 10:00 in the morning.</p>
+  <p>The exam lasts three hours and has four parts:</p>
+  <ul>
+    <li>Listening</li>
+    <li>Structure (grammar)</li>
+    <li>Reading</li>
+    <li>Writing</li>
+  </ul>
+  <p>The score you need to pass the exam depends on the course you are applying for.</p>
+  <p>Please remember that the exam starts at 10:00 am. If you are late, you will not be able to get a good score.</p>
+</div>
+
+<h2 class="page-header" id="coursesiep">Courses</h2>
 <div class="course-info">
-  <h2 class="page-header" id="coursesiep">Intensive English Program</h2>
+  <h2 class="page-header">Intensive English Program</h2>
   <h4>Ideal for students who want to study a university course in English</h4>
   <h4>An intensive 180-hour course which gives you a great chance to become a lot better at English.</h4>
   <p>There are three levels, elementary, intermediate and advanced, and it takes one semester to complete each level. Students who complete the advanced level will have learned the skills they need to successfully study in English at university level.</p>
   <p>A TOEFL, IELTS or Payap Proficiency Test score and/or an oral interview are used to work out the applicant’s English level in order to place the student at the most beneficial level of instruction. Students are expected to attend all classes in which they are placed.</p>
-  <h4>To apply for the Intensive English Program course, <a href="/about">call us, email us</a>, or come in to our office any time from Monday to Friday 8:30 am to 4:30 pm.</h4>
+  <h4>To apply for the Intensive English Program course, <a href="/#about">call us, email us</a>, or come in to our office any time from Monday to Friday 8:30 am to 4:30 pm.</h4>
   <p>Alternatively, <a href="/static/images/IEP_application.pdf">you can send us an application form</a>.</p>
-  <p><button class="btn btn-primary" onclick="Base.toggleDiv('iepfees')" type="button">Schedule and Fees</button></p>
+  <p><button class="btn btn-primary" onclick="toggleDiv('iepfees')" type="button">Schedule and Fees</button></p>
   <div class="collapse" id="iepfees">
     <div class="table-responsive">
       <table class="table table-striped">
@@ -59,34 +83,34 @@
           </tr>
         </thead>
         <tbody>
-        <tr>
-          <td><strong>First day of classes:</strong></td>
-          <td><strong>3rd August 2015</strong></td>
-        </tr>
-        <tr>
-          <td>Midterm examination:</td>
-          <td>21st - 24th September 2015</td>
-        </tr>
-        <tr>
-          <td><strong>Last day of classes:</strong></td>
-          <td><strong>17th November 2015</strong></td>
-        </tr>
-        <tr>
-          <td>Final examination:</td>
-          <td>17th November 2015</td>
-        </tr>
-        <tr>
-          <td>Grade announcement:</td>
-          <td>24th November 2015</td>
-        </tr>
-        <tr>
-          <td><strong>Class times:</strong></td>
-          <td><strong>Mon - Thurs 1 pm - 4 pm</strong></td>
-        </tr>
-        <tr>
-          <td><strong>Cost:</strong></td>
-          <td><strong>43,800 THB</strong></td>
-        </tr>
+          <tr>
+            <td><strong>First day of classes:</strong></td>
+            <td><strong>3rd August 2015</strong></td>
+          </tr>
+          <tr>
+            <td>Midterm examination:</td>
+            <td>21st - 24th September 2015</td>
+          </tr>
+          <tr>
+            <td><strong>Last day of classes:</strong></td>
+            <td><strong>17th November 2015</strong></td>
+          </tr>
+          <tr>
+            <td>Final examination:</td>
+            <td>17th November 2015</td>
+          </tr>
+          <tr>
+            <td>Grade announcement:</td>
+            <td>24th November 2015</td>
+          </tr>
+          <tr>
+            <td><strong>Class times:</strong></td>
+            <td><strong>Mon - Thurs 1 pm - 4 pm</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Cost:</strong></td>
+            <td><strong>43,800 THB</strong></td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -99,9 +123,9 @@
   <h4>The TESOL Certificate is an internationally recognized qualification for teachers of English.</h4>
   <p>We offer 120-hour TESOL Certificate courses for English teachers. The Certificate in TESOL is a program designed for graduates with near-native proficiency in English who want to begin a teaching career. It is taught entirely in English, and provides the basic training for teaching English as a non-native language.</p>
   <p>The program is a four-week intensive program, which covers the structure of spoken and written texts in English, contemporary approaches to language teaching and evaluation, and classroom practice.</p>
-  <h4>To apply for the TESOL Certificate course, <a href="/about">call us, email us</a>, or come in to our office any time from Monday to Friday 8:30 am to 4:30 pm.</h4>
+  <h4>To apply for the TESOL Certificate course, <a href="/#about">call us, email us</a>, or come in to our office any time from Monday to Friday 8:30 am to 4:30 pm.</h4>
   <p>Alternatively, <a href="/static/images/TESOL_application.pdf">you can send us an application form</a>.</p>
-  <p><button class="btn btn-primary" onclick="Base.toggleDiv('tesolfees')" type="button">Schedule and Fees</button></p>
+  <p><button class="btn btn-primary" onclick="toggleDiv('tesolfees')" type="button">Schedule and Fees</button></p>
   <div class="collapse" id="tesolfees">
     <div class="table-responsive">
       <table class="table table-striped">
@@ -112,18 +136,18 @@
           </tr>
         </thead>
         <tbody>
-        <tr>
-          <td>November</td>
-          <td>2nd November - 27th November 2015</td>
-        </tr>
-        <tr>
-          <td><strong>Class times:</strong></td>
-          <td><strong>Mon - Fri 9 am - 12 noon and 1 pm - 4 pm</strong></td>
-        </tr>
-        <tr>
-          <td><strong>Cost:</strong></td>
-          <td><strong>35,000 THB</strong></td>
-        </tr>
+          <tr>
+            <td>November</td>
+            <td>2nd November - 27th November 2015</td>
+          </tr>
+          <tr>
+            <td><strong>Class times:</strong></td>
+            <td><strong>Mon - Fri 9 am - 12 noon and 1 pm - 4 pm</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Cost:</strong></td>
+            <td><strong>35,000 THB</strong></td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -135,13 +159,13 @@
   <h4>For students who want to study abroad</h4>
   <p>For students who want to study abroad and need to prepare for an IELTS, or TOEFL, test, we also offer IELTS / TOEFL preparation courses.</p>
   <p>There is no fixed schedule for these courses, but if you are interested in taking an IELTS, or TOEFL, preparation course, please sign up, and we can contact you when the course starts. A minimum of four students is needed to start an IELTS / TOEFL preparation course.</p>
-  <h4>To apply for the IELTS / TOEFL preparation course, <a href="/about">call us, email us</a>, or come in to our office any time from Monday to Friday 8:30 am to 4:30 pm.</h4>
+  <h4>To apply for the IELTS / TOEFL preparation course, <a href="/#about">call us, email us</a>, or come in to our office any time from Monday to Friday 8:30 am to 4:30 pm.</h4>
 </div>
 <div class="course-info">
   <h2 class="page-header" id="geninfo">General English Conversation</h2>
   <h4>Improve your General English</h4>
   <p>If you take our General English Conversation courses, you can improve your English and have fun at the same time.</p>
-  <h4>To apply for the General English conversation course, <a href="/about">call us, email us</a>, or come in to our office any time from Monday to Friday 8:30 am to 4:30 pm.</h4>
+  <h4>To apply for the General English conversation course, <a href="/#about">call us, email us</a>, or come in to our office any time from Monday to Friday 8:30 am to 4:30 pm.</h4>
 </div>
 <p>&nbsp;</p>
 <h3>Notes for students</h3>
