@@ -231,7 +231,7 @@ body {
   font-size: 14px;
   line-height: 1.42857143;
   color: #333333;
-  background-color: #f8f8f8;
+  background-color: #eeeeee;
 }
 input,
 button,
@@ -874,8 +874,8 @@ tbody.collapse.in {
   float: left !important;
 }
 .carousel {
-  height: 200px;
-  margin-bottom: 60px;
+  height: 350px;
+  margin-bottom: 40px;
   position: relative;
   overflow: hidden;
 }
@@ -884,7 +884,7 @@ tbody.collapse.in {
   min-width: 100%;
   left: 0;
   right: 0;
-  height: 200px;
+  height: 350px;
   opacity: 0;
   -webkit-animation: css-slider-fade 15s linear infinite;
   -moz-animation: css-slider-fade 15s linear infinite;
@@ -918,7 +918,7 @@ tbody.collapse.in {
 .course-info {
   margin-bottom: 40px;
 }
-.exam-box {
+.well {
   background-color: rgba(255, 255, 255, 0.6);
   border: 1px solid #e8e8e8;
   border-radius: 12px;
@@ -970,6 +970,13 @@ tbody.collapse.in {
   height: 180px;
   overflow: hidden;
 }
+#aboutus {
+  background-color: #eaeff3;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
 #randomquote {
   text-align: center;
 }
@@ -987,6 +994,7 @@ tbody.collapse.in {
   margin-bottom: 20px;
 }
 .footer {
+  border-top: 1px solid #dddddd;
   padding-top: 20px;
   margin-top: 40px;
 }
