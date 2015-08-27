@@ -14,7 +14,13 @@
   {% endif %}
 
   {% if request.path == '/' %}
-  {% include 'partials/carousel.html' %}
+  <div class="carousel">
+    <div class="carousel-inner">
+      <img src="{{ url_for('static', filename='images/home_1.jpg') }}">
+      <img src="{{ url_for('static', filename='images/home_2.jpg') }}">
+      <img src="{{ url_for('static', filename='images/home_3.jpg') }}">
+    </div>
+  </div>
   {% endif %}
 
   <div class="container">

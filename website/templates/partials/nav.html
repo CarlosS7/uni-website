@@ -1,8 +1,8 @@
-<nav class="fixed-navbar">
+<nav class="navbar">
 <div class="container">
+  <a id="logo" href="#"><img src="{{ url_for('static', filename='images/logo_navbar.png') }}"/></a>
   <ul class="nav">
     <li><a href="{{ url_for('index') }}">Home</a></li>
-    <li><a href="/#about">About Elec</a></li>
     <li><a href="/#coursesiep">Courses</a></li>
     <li class="dropdown">
       <a href="#" onclick="Base.toggleDiv('pyuDd')">Payap University <span class="caret"></span></a>

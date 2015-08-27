@@ -231,7 +231,7 @@ body {
   font-size: 14px;
   line-height: 1.42857143;
   color: #333333;
-  background-color: #e8e8e8;
+  background-color: #f8f8f8;
 }
 input,
 button,
@@ -739,24 +739,49 @@ tbody.collapse.in {
 .open > a {
   outline: 0;
 }
+#logo {
+  padding: 10px;
+  float: left;
+}
 .nav {
   margin-bottom: 0;
   padding-left: 0;
   list-style: none;
 }
 .nav > li {
+  float: none;
+  display: inline-block;
   position: relative;
-  display: block;
 }
 .nav > li > a {
   position: relative;
-  display: block;
-  padding: 10px 15px;
+  display: inline-block;
+  padding: 15px;
+  font-weight: bold;
+  color: #777777;
+  text-align: center;
+  white-space: nowrap;
 }
 .nav > li > a:hover,
 .nav > li > a:focus {
   text-decoration: none;
-  background-color: #9bc2e3;
+  color: #3399f3;
+  background-color: transparent;
+}
+.nav > .dropdown .dropdown-menu {
+  top: auto;
+  left: auto;
+}
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 52px;
+  text-align: center;
+  background-image: linear-gradient(#ffffff, #eeeeee 50%, #e4e4e4);
+  border: 1px solid #d5d5d5;
 }
 .alert {
   padding: 15px;
@@ -938,32 +963,6 @@ tbody.collapse.in {
   margin-right: auto;
   width: 50%;
 }
-.fixed-navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-  width: 100%;
-  height: 52px;
-  text-align: center;
-  background-image: linear-gradient(#9bc2ef, #428bca);
-}
-.fixed-navbar .nav > li {
-  float: none;
-  display: inline-block;
-}
-.fixed-navbar .nav > li > a {
-  padding-top: 15px;
-  padding-bottom: 15px;
-  font-weight: bold;
-  color: #fff;
-  text-align: center;
-  white-space: nowrap;
-}
-.fixed-navbar > .dropdown .dropdown-menu {
-  top: auto;
-  left: auto;
-}
 .deadline {
   color: #cc5151;
 }
@@ -990,22 +989,20 @@ tbody.collapse.in {
 .footer {
   padding-top: 20px;
   margin-top: 40px;
-  margin-bottom: 20px;
-  border-top: 1px solid #eee;
 }
 input[type="radio"] {
   margin: 4px 20px 0;
 }
 @media (max-width: 480px) {
+  #logo,
   #mainheading {
+    display: none;
+  }
+  .nav > .dropdown {
     display: none;
   }
 }
 @media screen and (min-width: 768px) {
-  .fixed-navbar .nav > li {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
   .carousel,
   .carousel-inner > img {
     height: 500px;
@@ -1014,8 +1011,8 @@ input[type="radio"] {
     padding-right: 50px;
     padding-left: 50px;
   }
-  .footer {
-    padding-right: 0;
-    padding-left: 0;
+  .nav > li > a {
+    padding-right: 20px;
+    padding-left: 20px;
   }
 }
