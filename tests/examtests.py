@@ -32,7 +32,7 @@ class TestExaminee(BaseCase):
 
     def mock_test(self, ans1, ans2, ans3, ans4, ans5):
         """Take test helper function."""
-        return self.app.post('/exam/finish', data={
+        return self.app.post('/users/exam/finish', data={
             'silly1_list_01': ans1,
             'silly1_list_02': ans2,
             'silly1_struct_03': ans3,
@@ -80,7 +80,7 @@ class TestExaminee(BaseCase):
         self.assertEqual(answers['silly1_read_05'], "A")
 
     def test_finish(self):
-        rv = self.app.post('/exam/finish', follow_redirects=True)
+        rv = self.app.post('/users/exam/finish', follow_redirects=True)
         self.assertIn(b'have been logged out', rv.data)
 
 if __name__ == '__main__':

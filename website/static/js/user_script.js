@@ -29,7 +29,7 @@ var Admin = (function () {
         if (document.getElementById('addexaminee-names').innerHTML) {
             data.button = true;
         }
-        postJSON('/user/addexaminee', csrftoken, data, showAddExaminee);
+        postJSON('/users/addexaminee', csrftoken, data, showAddExaminee);
     }
 
     function showGetScore() {
@@ -39,7 +39,7 @@ var Admin = (function () {
     function getExamScore() {
         var data = {};
         data.getscore = document.getElementById('getexamscore').value;
-        postJSON('/user/examscore', csrftoken, data, showGetScore);
+        postJSON('/users/examscore', csrftoken, data, showGetScore);
     }
 
     function showCheckWrite() {
@@ -47,7 +47,7 @@ var Admin = (function () {
     }
 
     function checkWrite() {
-        postJSON('/user/checkwriting', csrftoken, '', showCheckWrite);
+        postJSON('/users/checkwriting', csrftoken, '', showCheckWrite);
     }
 
     function updateGetScore() {
@@ -68,7 +68,7 @@ var Admin = (function () {
                 data[input.name] = input.value;
             }
         }
-        postJSON('/user/examwriting', csrftoken, data, updateGetScore);
+        postJSON('/users/examwriting', csrftoken, data, updateGetScore);
         document.getElementById(formId).className = 'slide-up';
     }
 

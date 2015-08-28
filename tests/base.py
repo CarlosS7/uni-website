@@ -5,7 +5,6 @@ from website import app, db
 class BaseCase(unittest.TestCase):
     def setUp(self):
         app.config['WTF_CSRF_ENABLED'] = False
-        print(app.config['WTF_CSRF_ENABLED'])
         self.app = app.test_client()
         db.create_all()
 
@@ -15,18 +14,18 @@ class BaseCase(unittest.TestCase):
 
     def login(self, username, password):
         """Login helper function"""
-        return self.app.post('/user/login', data=dict(
+        return self.app.post('/users/login', data=dict(
             username=username,
             password=password
             ), follow_redirects=True)
 
     def logout(self):
         """Logout helper function"""
-        return self.app.get('/user/logout', follow_redirects=True)
+        return self.app.get('/users/logout', follow_redirects=True)
 
     def add_examinee(self, username, exam_id, fullname):
         """Add examinee helper function."""
-        return self.app.post('/user/addexaminee', data=json.dumps(dict(
+        return self.app.post('/users/addexaminee', data=json.dumps(dict(
             username=username,
             exam_id=exam_id,
             fullname=fullname

@@ -23,7 +23,7 @@ var Exam = (function () {
                 data[input.name] = input.value;
             }
         }
-        postJSON('/user/exam/update_results', token, data);
+        postJSON('/users/exam/update_results', token, data);
     }
 
     function counter(time_limit) {

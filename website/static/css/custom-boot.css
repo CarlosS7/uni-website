@@ -226,12 +226,11 @@ html {
 }
 body {
   padding-top: 70px;
-  padding-bottom: 40px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.42857143;
   color: #333333;
-  background-color: #eaeff3;
+  background-color: #f8f8f8;
 }
 input,
 button,
@@ -522,7 +521,7 @@ label {
   display: inline-block;
   max-width: 100%;
   margin-bottom: 5px;
-  font-weight: bold;
+  font-weight: normal;
 }
 input[type="radio"] {
   margin: 4px 0 0;
@@ -956,6 +955,7 @@ tbody.collapse.in {
 }
 #exam-body {
   display: none;
+  padding-bottom: 40px;
 }
 .center-block {
   display: block;
@@ -967,7 +967,7 @@ tbody.collapse.in {
   color: #cc5151;
 }
 .section:target {
-    padding-top: 50px;
+    padding-top: 40px;
 }
 #mainheading {
   height: 180px;
@@ -980,6 +980,9 @@ tbody.collapse.in {
 #aboutus {
   padding-top: 40px;
   padding-bottom: 40px;
+  border-top: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
+  background-color: #eaeff3;
 }
 #coursesiep {
   background-color: #f8f8f8;
@@ -995,6 +998,9 @@ tbody.collapse.in {
   margin-left: auto;
   margin-right: auto;
 }
+#admin-page {
+  padding-bottom: 40px;
+}
 #addexaminee-names {
   margin-bottom: 40px;
 }
@@ -1003,7 +1009,10 @@ tbody.collapse.in {
 }
 .footer {
   border-top: 1px solid #cccccc;
+  margin-top: 40px;
   padding-top: 20px;
+  padding-bottom: 40px;
+  background-color: #eaeff3;
 }
 input[type="radio"] {
   margin: 4px 20px 0;

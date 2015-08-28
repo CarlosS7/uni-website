@@ -37,28 +37,9 @@
 
   {% block content %}{% endblock %}
 
-  <div class="footer">
-    <div class="container" id="contact-us">
-      <div class="row">
-        <div class="col-4">
-          <h4>© LEC - Payap University 2015</h4>
-        </div>
-        <div class="col-4">
-          <h4>Telephone:</h4>
-          <ul>
-            <li>053 851 478 ext. 7419</li>
-          </ul>
-        </div>
-        <div class="col-4">
-          <h4>Email:</h4>
-          <ul>
-            <li>Simon Allen, Academic Director: <a href="mailto:simon_c@payap.ac.th">simon_c@payap.ac.th</a></li>
-            <li>Pinkvana Thaworn, Director's Assistant/Lecturer: <a href="mailto:pinkvana_t@payap.ac.th">pinkvana_t@payap.ac.th</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
+  {% if request.path == '/' %}
+  {% include 'partials/footer.html' %}
+  {% endif %}
 
 </body>
 </html>

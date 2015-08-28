@@ -30,14 +30,14 @@ def about():
 def page_not_found(error):
     return render_template('page_not_found.html'), 404
 
-@app.route('/user/exam')
+@app.route('/users/exam')
 @login_required(role='examinee')
 def exam_page():
     """Display exam page for the user."""
     exam_id = current_user.exam_id
     answers = json.loads(current_user.answer_page)
     data = Exams.query.filter_by(exam_id=exam_id).first().pages
-    return render_template('user/exam.html',
+    return render_template('users/exam.html',
             welcome=get_time_limit(data.get('pages')[0]),
             pages=data.get('pages')[1:],
             answers=answers)
@@ -47,14 +47,14 @@ def get_time_limit(data):
     data['time_string'] = 'Time remaining: {}:{:02d}'.format(hrs, mins)
     return data
 
-@app.route('/user/exam/update_results', methods=['POST'])
+@app.route('/users/exam/update_results', methods=['POST'])
 @login_required(role='examinee')
 def update_results():
     """Get user's answers."""
     get_results(request.get_json())
     return json.dumps({'status': 'ok'})
 
-@app.route('/user/exam/finish', methods=['POST'])
+@app.route('/users/exam/finish', methods=['POST'])
 @login_required(role='examinee')
 def finish():
     """Get user's answers and logout user."""
@@ -72,7 +72,7 @@ def get_results(items):
     current_user.answer_page = json.dumps(answers)
     db.session.commit()
 
-@app.route('/user/login', methods=['GET', 'POST'])
+@app.route('/users/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
     if form.validate_on_submit():
@@ -85,24 +85,24 @@ def login():
             return redirect(url_for('user_page'))
         else:
             return redirect(url_for('exam_page'))
-    return render_template('user/login.html', form=form)
+    return render_template('users/login.html', form=form)
 
-@app.route('/user/logout')
+@app.route('/users/logout')
 def logout():
     logout_user()
     flash('You have been logged out.')
     return redirect(url_for('index'))
 
-@app.route('/user')
+@app.route('/users')
 @login_required(role='admin')
 def user_page():
     exams = [(q.exam_id, q.exam_name) for q in Exams.query.all()
             if q.exam_id.startswith('pyueng')]
     old = list(set([exam.taken_date for exam in Examscores.query.all()]))
     old.sort(reverse=True)
-    return render_template('user/index.html', exams=exams, old=old)
+    return render_template('users/index.html', exams=exams, old=old)
 
-@app.route('/user/addexaminee', methods=['POST'])
+@app.route('/users/addexaminee', methods=['POST'])
 @login_required(role='admin')
 def addexaminee():
     items = dict(request.get_json())
@@ -113,7 +113,7 @@ def addexaminee():
     return render_template('partials/shownamepass.html',
             fullname=fullname, username=username, password=password, button=button)
 
-@app.route('/user/examscore', methods=['POST'])
+@app.route('/users/examscore', methods=['POST'])
 @login_required(role='admin')
 def examscore():
     items = dict(request.get_json())
@@ -122,7 +122,7 @@ def examscore():
     scores = [(exam.username, exam.exam_score) for exam in exams]
     return render_template('partials/showscore.html', scores=scores)
 
-@app.route('/user/examwriting', methods=['POST'])
+@app.route('/users/examwriting', methods=['POST'])
 @login_required(role='admin')
 def examwriting():
     items = dict(request.get_json())
@@ -134,7 +134,7 @@ def examwriting():
             record_scores(user, writing)
     return str(datetime.now().date())
 
-@app.route('/user/checkwriting', methods=['POST'])
+@app.route('/users/checkwriting', methods=['POST'])
 @login_required(role='admin')
 def checkwriting():
     users = User.query.all()
