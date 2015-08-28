@@ -225,13 +225,13 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  padding-top: 50px;
+  padding-top: 70px;
   padding-bottom: 40px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.42857143;
   color: #333333;
-  background-color: #eeeeee;
+  background-color: #eaeff3;
 }
 input,
 button,
@@ -781,7 +781,7 @@ tbody.collapse.in {
   height: 52px;
   text-align: center;
   background-image: linear-gradient(#ffffff, #eeeeee 50%, #e4e4e4);
-  border: 1px solid #d5d5d5;
+  border-bottom: 1px solid #cccccc;
 }
 .alert {
   padding: 15px;
@@ -874,8 +874,8 @@ tbody.collapse.in {
   float: left !important;
 }
 .carousel {
+  margin-top: -20px;
   height: 350px;
-  margin-bottom: 40px;
   position: relative;
   overflow: hidden;
 }
@@ -966,15 +966,23 @@ tbody.collapse.in {
 .deadline {
   color: #cc5151;
 }
+.section:target {
+    padding-top: 50px;
+}
 #mainheading {
   height: 180px;
   overflow: hidden;
 }
+#marketing {
+  background-color: #f8f8f8;
+  padding-bottom: 40px;
+}
 #aboutus {
-  background-color: #eaeff3;
-  margin-top: 40px;
-  margin-bottom: 40px;
   padding-top: 40px;
+  padding-bottom: 40px;
+}
+#coursesiep {
+  background-color: #f8f8f8;
   padding-bottom: 40px;
 }
 #randomquote {
@@ -988,15 +996,14 @@ tbody.collapse.in {
   margin-right: auto;
 }
 #addexaminee-names {
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 #getscore-scores {
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 .footer {
-  border-top: 1px solid #dddddd;
+  border-top: 1px solid #cccccc;
   padding-top: 20px;
-  margin-top: 40px;
 }
 input[type="radio"] {
   margin: 4px 20px 0;
