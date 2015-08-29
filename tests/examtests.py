@@ -41,7 +41,7 @@ class TestExaminee(BaseCase):
             }, follow_redirects=True)
 
     def test_initial(self):
-        rv = self.app.get('/exam', follow_redirects=True)
+        rv = self.app.get('/users/exam', follow_redirects=True)
         self.assertIn(b'read the instructions for each section carefully', rv.data)
         self.assertIn(b'Ontologically the goal exists only in the imagination', rv.data)
         self.assertIn(b'fart in your general direction', rv.data)

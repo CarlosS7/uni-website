@@ -784,6 +784,7 @@ tbody.collapse.in {
 }
 .alert {
   padding: 15px;
+  margin-top: 20px;
   margin-bottom: 20px;
   border: 1px solid transparent;
   border-radius: 4px;
@@ -915,7 +916,7 @@ tbody.collapse.in {
   7%, 33% { opacity: 1; }
 }
 .course-info {
-  margin-bottom: 40px;
+  margin-bottom: 60px;
 }
 .well {
   background-color: rgba(255, 255, 255, 0.6);
@@ -931,7 +932,7 @@ tbody.collapse.in {
   font-weight: normal;
 }
 .slide {
-  padding-top: 70px;
+  padding-top: 40px;
 }
 .slide-up {
   height: 0;
@@ -966,26 +967,25 @@ tbody.collapse.in {
 .deadline {
   color: #cc5151;
 }
-.section:target {
-    padding-top: 40px;
-}
 #mainheading {
   height: 180px;
   overflow: hidden;
 }
 #marketing {
   background-color: #f8f8f8;
-  padding-bottom: 40px;
+  padding-top: 60px;
+  padding-bottom: 60px;
 }
 #aboutus {
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding-top: 80px;
+  padding-bottom: 60px;
   border-top: 1px solid #cccccc;
   border-bottom: 1px solid #cccccc;
   background-color: #eaeff3;
 }
 #coursesiep {
   background-color: #f8f8f8;
+  padding-top: 60px;
   padding-bottom: 40px;
 }
 #randomquote {
