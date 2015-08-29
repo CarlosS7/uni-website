@@ -67,7 +67,13 @@ var Exam = (function () {
         }, 1000 * 60);
     }
 
+    function overlay() {
+        el = document.getElementById('overlay');
+        el.style.visibility = (el.style.visibility == 'visible') ? 'hidden' : 'visible';
+    }
+
     return {
-        start: start
+        start: start,
+        overlay: overlay
     };
 }());
