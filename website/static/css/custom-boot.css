@@ -879,6 +879,18 @@ tbody.collapse.in {
   position: relative;
   overflow: hidden;
 }
+.carousel-caption {
+  color: #151b54;
+  position: absolute;
+  z-index: 10;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+}
+.carousel-caption > ul > li {
+  font-size: 18px;
+}
 .carousel-inner > img {
   position: absolute;
   min-width: 100%;
