@@ -1019,10 +1019,10 @@ tbody.collapse.in {
   bottom: 0px;
   text-align: center;
   z-index: 10;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 #overlay div {
-  width: 400px;
+  width: 300px;
   margin: 100px auto;
   background-image: linear-gradient(#ffffff, #eeeeee 50%, #e4e4e4);
   border: 1px solid #cccccc;
@@ -1062,6 +1062,10 @@ input[type="radio"] {
   .carousel,
   .carousel-inner > img {
     height: 500px;
+  }
+  #overlay div {
+    width: 400px;
+    margin: 200px auto;
   }
   #mainarea {
     padding-right: 50px;
