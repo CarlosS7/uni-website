@@ -980,7 +980,7 @@ tbody.collapse.in {
   color: #cc5151;
 }
 #mainheading {
-  height: 180px;
+  height: 400px;
   overflow: hidden;
 }
 #marketing {
@@ -1050,12 +1050,16 @@ input[type="radio"] {
   margin: 4px 20px 0;
 }
 @media (max-width: 480px) {
-  #logo,
-  #mainheading {
+  #logo {
     display: none;
   }
   .nav > .dropdown {
     display: none;
+  }
+}
+@media screen and (min-width: 480px) {
+  #mainheading {
+    height: 320px;
   }
 }
 @media screen and (min-width: 768px) {
@@ -1074,5 +1078,8 @@ input[type="radio"] {
   .nav > li > a {
     padding-right: 20px;
     padding-left: 20px;
+  }
+  #mainheading {
+    height: 240px;
   }
 }
