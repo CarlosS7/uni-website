@@ -23,10 +23,9 @@ class BaseCase(unittest.TestCase):
         """Logout helper function"""
         return self.app.get('/users/logout', follow_redirects=True)
 
-    def add_examinee(self, username, exam_id, fullname):
+    def add_examinee(self, exam_id, fullname):
         """Add examinee helper function."""
         return self.app.post('/users/addexaminee', data=json.dumps(dict(
-            username=username,
             exam_id=exam_id,
             fullname=fullname
             )), content_type='application/json', follow_redirects=True)

@@ -1,7 +1,8 @@
 import os
 from website import db
 from website.models import User
-from website.admin import add_admin, add_exam
+from website.admin import add_admin
+from website.exam_admin import add_exam
 
 db.reflect()
 db.drop_all()

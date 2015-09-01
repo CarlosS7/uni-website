@@ -2,7 +2,7 @@ import os
 import unittest
 from website import app, db
 from website.models import User
-from website.admin import add_exam, get_score, calc_score, get_current_exam
+from website.exam_admin import add_exam, get_score, calc_score, get_current_exam
 from .base import BaseCase
 
 class TestExaminee(BaseCase):

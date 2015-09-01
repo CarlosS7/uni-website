@@ -5,7 +5,8 @@ from flask.ext.login import login_user, logout_user, current_user
 from website import app, db, login_man
 from website.models import User, Exams, Examscores
 from website.forms import LoginForm
-from website.admin import login_required, record_scores, add_examinees
+from website.admin import login_required
+from website.exam_admin import record_scores, add_examinees
 
 @login_man.user_loader
 def load_user(id):
@@ -106,7 +107,7 @@ def user_page():
 @login_required(role='admin')
 def addexaminee():
     items = dict(request.get_json())
-    users = add_examinees([(items.get('username'), items.get('fullname'), items.get('exam_id'))])
+    users = add_examinees([(None, items.get('fullname'), items.get('exam_id'))])
     if users:
         (username, password, fullname, exam_id) = users.pop(0)
     button = items.get('button', False)

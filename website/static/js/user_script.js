@@ -24,7 +24,6 @@ var Admin = (function () {
     function addExaminee() {
         var data = {};
         data.fullname = document.getElementById('addexaminee').value;
-        data.username = document.getElementById('studentcode').value;
         data.exam_id = document.getElementById('selectexam').value;
         if (document.getElementById('addexaminee-names').innerHTML) {
             data.button = true;

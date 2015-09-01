@@ -31,10 +31,10 @@ class TestUser(BaseCase):
     def test_add_examinee(self):
         add_admin('admin', 'default', 'Admin')
         rv = self.login('admin', 'default')
-        rv = self.add_examinee('', 'silly1', 'Henry James')
+        rv = self.add_examinee('silly1', 'Henry James')
         self.assertIn(b'Hide student names', rv.data)
-        rv = self.add_examinee('12345678', 'silly1', 'Thomas Hardy')
-        self.assertIn(b'12345678', rv.data)
+        rv = self.add_examinee('silly1', 'Thomas Hardy')
+        self.assertIn(b'Thomas Hardy', rv.data)
 
 if __name__ == '__main__':
     unittest.main()
