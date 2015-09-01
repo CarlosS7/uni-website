@@ -45,15 +45,6 @@ class Examscores(db.Model):
     def __repr__(self):
         return '<User {}>'.format(self.username)
 
-class Content(db.Model):
-    __tablename__ = 'content'
-    id = db.Column(db.Integer, primary_key=True)
-    content_id = db.Column(db.String(32))
-    content = db.Column(db.Text)
-
-    def __repr__(self):
-        return '<Content {}>'.format(self.content_id)
-
 class Exams(db.Model):
     __tablename__ = 'exams'
     id = db.Column(db.Integer, primary_key=True)
