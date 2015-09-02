@@ -1,4 +1,4 @@
-{% for (name, exam) in scores %}
+{% for (name, id, exam) in scores %}
 <table class="table">
   <thead>
     <tr>
@@ -14,8 +14,9 @@
       <td>Reading: {{ exam.reading }}</td>
       <td>Writing: {{ exam.writing }}</td>
       <td>Total: {{ exam.total }}</td>
+      <td><a class="btn btn-primary" href="/users/examreport/{{ id }}" target="_blank" role="button">Get report</a></td>
     </tr>
   </tbody>
 </table>
 {% endfor %}
-<button class="btn btn-primary pull-right" onclick="Admin.empty('getscore-scores')" type="button">Hide scores</button><br>
+<button class="btn btn-primary pull-left" onclick="Admin.empty('getscore-scores')" type="button">Hide scores</button><br>

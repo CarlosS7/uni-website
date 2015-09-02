@@ -880,12 +880,12 @@ tbody.collapse.in {
   overflow: hidden;
 }
 .carousel-caption {
-  color: #151b54;
+  color: #f8f8f8;
   position: absolute;
   z-index: 10;
   margin-top: 10px;
   padding: 10px;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(128, 128, 128, 0.4);
   border-radius: 6px;
 }
 .carousel-caption > ul > li {
@@ -1037,6 +1037,14 @@ tbody.collapse.in {
   margin-bottom: 40px;
 }
 #getscore-scores {
+  margin-bottom: 40px;
+}
+#examreport {
+  max-width: 750px;
+  background-color: #ffffff;
+}
+.report-heading {
+  margin-top: 40px;
   margin-bottom: 40px;
 }
 .footer {

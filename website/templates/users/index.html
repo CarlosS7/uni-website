@@ -2,6 +2,9 @@
 {% block title %}Admin{% endblock %}
 {% block content %}
 
+{% include 'partials/nav.html' %}
+{% include 'partials/messages.html' %}
+
 <script>var csrftoken = "{{ csrf_token() }}"</script>
 
 <div class="container" id="admin-page">

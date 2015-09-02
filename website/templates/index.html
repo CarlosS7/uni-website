@@ -2,6 +2,10 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 
+{% include 'partials/nav.html' %}
+{% include 'partials/carousel.html' %}
+{% include 'partials/messages.html' %}
+
 <div id="marketing">
   <div class="container">
     <div class="container" id="mainheading">
@@ -243,6 +247,8 @@
     <li>No refunds are given once the semester has started except in very exceptional circumstances</li>
   </ul>
 </div>
+
+{% include 'partials/footer.html' %}
 
 <script src="{{ url_for('static', filename='js/quotes.js') }}"></script>
 

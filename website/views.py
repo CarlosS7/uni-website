@@ -120,8 +120,15 @@ def examscore():
     items = dict(request.get_json())
     date = items.get('getscore')
     exams = Examscores.query.filter_by(taken_date=date).all()
-    scores = [(exam.username, exam.exam_score) for exam in exams]
+    scores = [(exam.username, exam.code, exam.exam_score) for exam in exams]
     return render_template('partials/showscore.html', scores=scores)
+
+@app.route('/users/examreport/<int:code>')
+@login_required(role='admin')
+def examreport(code):
+    exam = Examscores.query.filter_by(code=str(code)).first()
+    return render_template('users/examreport.html',
+            name=exam.username, exam=exam.exam_score, taken_date=exam.taken_date)
 
 @app.route('/users/examwriting', methods=['POST'])
 @login_required(role='admin')

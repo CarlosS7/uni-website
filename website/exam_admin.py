@@ -42,11 +42,28 @@ def record_scores(user, writing):
     listening, structure, reading = calc_score(get_score(user))
     if user.exam_id.startswith('pyueng'):
         total = round(((listening + structure + reading + 55) * 11.6/3) - 23.5 + (writing * 7.83))
+        grade = get_grade(total)
     else:
         total = listening + structure + reading + writing
+        grade = None
     exam_score = {'exam_id': exam_id, 'listening': listening, 'structure': structure,
-            'reading': reading, 'writing': writing, 'total': total}
+            'reading': reading, 'writing': writing, 'total': total, 'grade': grade}
     update_db(user, exam_score)
+
+def get_grade(total):
+    if total > 629:
+        grade = 'Upper advanced'
+    elif total > 569:
+        grade = 'Lower advanced'
+    elif total > 446:
+        grade = 'Upper intermediate'
+    elif total > 342:
+        grade = 'Lower intermediate'
+    elif total > 326:
+        grade = 'Elementary'
+    else:
+        grade = 'Beginner'
+    return grade
 
 def add_examinees(namelist):
     """Add examinees to the database."""

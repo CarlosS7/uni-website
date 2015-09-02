@@ -1,7 +1,7 @@
 <!doctype html>
 <head>
   <meta charset="utf-8">
-  <title>LEC - Learn English and Thai at Payap University - {% block title %}{% endblock %}</title>
+  <title>LEC - Learn English or Thai at Payap University - {% block title %}{% endblock %}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/custom-boot.css') }}">
   <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.png') }}">
@@ -9,31 +9,7 @@
 </head>
 <body>
 
-  {% if not current_user.is_authenticated() or current_user.role == 'admin' %}
-  {% include 'partials/nav.html' %}
-  {% endif %}
-
-  {% if request.path == '/' %}
-  {% include 'partials/carousel.html' %}
-  {% endif %}
-
-  <div class="container">
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-    {% for message in messages %}
-    <div class="alert alert-info" role="alert">
-      <label>{{ message }}</label>
-    </div>
-    {% endfor %}
-    {% endif %}
-    {% endwith %}
-  </div>
-
   {% block content %}{% endblock %}
-
-  {% if request.path == '/' %}
-  {% include 'partials/footer.html' %}
-  {% endif %}
 
 </body>
 </html>
