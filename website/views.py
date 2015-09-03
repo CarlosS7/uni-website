@@ -127,8 +127,9 @@ def examscore():
 @login_required(role='admin')
 def examreport(code):
     exam = Examscores.query.filter_by(code=str(code)).first()
+    taken_date = datetime.strftime(exam.taken_date, '%d %B %Y')
     return render_template('users/examreport.html',
-            name=exam.username, exam=exam.exam_score, taken_date=exam.taken_date)
+            name=exam.username, exam=exam.exam_score, taken_date=taken_date)
 
 @app.route('/users/examwriting', methods=['POST'])
 @login_required(role='admin')

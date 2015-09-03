@@ -1,46 +1,47 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="container" id="examreport">
-  <div class="media">
-    <img class="media-object pull-left" src="{{ url_for('static', filename='images/examreport_logo.png') }}">
-    <div class="media-body">
-      <h1 class="media-heading">Payap English Test</h1>
-      <h2>Language Enhancement Center</h2>
+<div id="examreport">
+  <div class="container">
+    <div class="media">
+      <img class="media-object pull-left" src="{{ url_for('static', filename='images/logo.png') }}">
+      <div class="media-body">
+        <h1 class="media-heading">Payap English Test</h1>
+        <h2>Language Enhancement Center</h2>
+      </div>
     </div>
-  </div>
 
-  <h3 class="report-heading">Name: {{ name }}</h3>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Section scores</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Listening:</td>
-        <td>{{ exam.listening }}/50</td>
-      </tr>
-      <tr>
-        <td>Structure:</td>
-        <td>{{ exam.structure }}/40</td>
-      </tr>
-      <tr>
-        <td>Reading:</td>
-        <td>{{ exam.reading }}/30</td>
-      </tr>
-      <tr>
-        <td>Writing:</td>
-        <td>{{ exam.writing }}/6</td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 class="report-heading">Payap total score: {{ exam.total }} {{ exam.grade }}</h3>
-  <p>(Including writing section)</p>
-  <br>
-  <h3 class="report-heading">Examiner's signature:</h3>
-  <h3 class="report-heading">Date: {{ taken_date }}</h3>
+    <h3 class="report-heading">Name: {{ name }}</h3>
+    <table class="table report-table">
+      <thead>
+        <tr>
+          <th>Section scores</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Listening:</td>
+          <td>{{ exam.listening }}/50</td>
+        </tr>
+        <tr>
+          <td>Structure:</td>
+          <td>{{ exam.structure }}/40</td>
+        </tr>
+        <tr>
+          <td>Reading:</td>
+          <td>{{ exam.reading }}/30</td>
+        </tr>
+        <tr>
+          <td>Writing:</td>
+          <td>{{ exam.writing }}/6</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 class="report-heading">Payap total score: {{ exam.total }} {{ exam.grade }}</h3>
+    <br>
+    <h4 class="report-heading">Examiner's signature:</h4>
+    <h4 class="report-heading">Date: <em>{{ taken_date }}</em></h4>
+  </div>
 </div>
 
 {% endblock %}

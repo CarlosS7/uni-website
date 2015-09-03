@@ -45,7 +45,7 @@ def record_scores(user, writing):
         grade = get_grade(total)
     else:
         total = listening + structure + reading + writing
-        grade = None
+        grade = ''
     exam_score = {'exam_id': exam_id, 'listening': listening, 'structure': structure,
             'reading': reading, 'writing': writing, 'total': total, 'grade': grade}
     update_db(user, exam_score)
