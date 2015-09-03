@@ -1,20 +1,7 @@
 from flask.ext.wtf import Form
-from wtforms import StringField, PasswordField, SelectField
+from wtforms import StringField, PasswordField
 from wtforms import validators as valid
 
 class LoginForm(Form):
     username = StringField('User Id', [valid.Required('Please enter your user id')])
     password = PasswordField('Password', [valid.Required('Please enter your password')])
-
-class SignupForm(Form):
-    username = StringField('Name', [
-        valid.Required('Please enter your name'),
-        valid.Length(max=30, message='The name should be less than 30 characters long'),
-        valid.Regexp('^[a-zA-Z\s]+$', message=('Name should only contain letters and spaces.'))])
-    email = StringField('Email', [valid.Email()])
-    phone = StringField('Phone number', [
-        valid.Required('Please enter your phone number'),
-        valid.Length(max=15, message='The name should be less than 15 numbers long'),
-        valid.Regexp('^[0-9]+$', message=('Phone number can only contain numbers.'))])
-    coursename = SelectField('Course', choices=[('IEP', 'Intensive English Program'), ('IELTS', 'IELTS Preparation'),
-        ('TOEFL', 'TOEFL Preparation'), ('GE', 'General English'), ('TESOL', 'TESOL Certificate')])
