@@ -748,9 +748,9 @@ tbody.collapse.in {
   list-style: none;
 }
 .nav > li {
-  float: none;
-  display: inline-block;
   position: relative;
+  display: inline-block;
+  float: none;
 }
 .nav > li > a {
   position: relative;
@@ -1041,8 +1041,7 @@ tbody.collapse.in {
 }
 #examreport {
   margin-top: -70px;
-  padding-top: 40px;
-  padding-bottom: 80px;
+  padding: 80px;
   background-color: #ffffff;
 }
 .report-heading {
