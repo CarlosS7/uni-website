@@ -84,46 +84,7 @@
     <p>Alternatively, <a href="/static/docs/IEP_application.pdf">you can send us an application form</a>.</p>
     <p><button class="btn btn-primary" onclick="Base.toggleDiv('iepfees')" type="button">Schedule and Fees</button></p>
     <div class="collapse" id="iepfees">
-      <div class="table-responsive">
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>&nbsp;</th>
-              <th>Semester 1, 2015 / 2016</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>First day of classes:</strong></td>
-              <td><strong>3rd August 2015</strong></td>
-            </tr>
-            <tr>
-              <td>Midterm examination:</td>
-              <td>21st - 24th September 2015</td>
-            </tr>
-            <tr>
-              <td><strong>Last day of classes:</strong></td>
-              <td><strong>17th November 2015</strong></td>
-            </tr>
-            <tr>
-              <td>Final examination:</td>
-              <td>17th November 2015</td>
-            </tr>
-            <tr>
-              <td>Grade announcement:</td>
-              <td>24th November 2015</td>
-            </tr>
-            <tr>
-              <td><strong>Class times:</strong></td>
-              <td><strong>Mon - Thurs 1 pm - 4 pm</strong></td>
-            </tr>
-            <tr>
-              <td><strong>Cost:</strong></td>
-              <td><strong>43,800 THB</strong></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      {% include 'partials/courses_iep.html' %}
     </div>
   </div>
   <div class="course-info" id="coursestesol">
@@ -136,30 +97,7 @@
     <p>Alternatively, <a href="/static/docs/TESOL_application.pdf">you can send us an application form</a>.</p>
     <p><button class="btn btn-primary" onclick="Base.toggleDiv('tesolfees')" type="button">Schedule and Fees</button></p>
     <div class="collapse" id="tesolfees">
-      <div class="table-responsive">
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>&nbsp;</th>
-              <th>Semester 1, 2015 / 2016</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>November</td>
-              <td>2nd November - 27th November 2015</td>
-            </tr>
-            <tr>
-              <td><strong>Class times:</strong></td>
-              <td><strong>Mon - Fri 9 am - 12 noon and 1 pm - 4 pm</strong></td>
-            </tr>
-            <tr>
-              <td><strong>Cost:</strong></td>
-              <td><strong>35,000 THB</strong></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      {% include 'partials/courses_tesol.html' %}
     </div>
   </div>
   <div class="course-info" id="coursesthai">
@@ -170,65 +108,7 @@
     <p>Alternatively, <a href="/static/docs/Thai_application.doc">you can send us an application form</a>.</p>
     <p><button class="btn btn-primary" onclick="Base.toggleDiv('thaifees')" type="button">Schedule and Fees</button></p>
     <div class="collapse" id="thaifees">
-      <div class="table-responsive">
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>&nbsp;</th>
-              <th>Academic year 2015</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Thai 1, Thai 3, Thai 5, Thai 7</td>
-              <td>17 August - 17 September 2015</td>
-            </tr>
-            <tr>
-              <td>Thai 2, Thai 4, Thai 6, Thai 8</td>
-              <td>28 September - 29 October 2015</td>
-            </tr>
-            <tr>
-              <td>Thai 1, Thai 3, Thai 5, Thai 7</td>
-              <td>9 November - 9 December 2015</td>
-            </tr>
-            <tr>
-              <td>Thai 2, Thai 4, Thai 6, Thai 8</td>
-              <td>11 January - 11 February 2016</td>
-            </tr>
-            <tr>
-              <td>Thai 1, Thai 3, Thai 5, Thai 7</td>
-              <td>23 February - 23 March 2016</td>
-            </tr>
-            <tr>
-              <td>Thai 2, Thai 4, Thai 6, Thai 8</td>
-              <td>20 April - 20 May 2016</td>
-            </tr>
-            <tr>
-              <td>Thai 1, Thai 3, Thai 5, Thai 7</td>
-              <td>30 May - 30 June 2016</td>
-            </tr>
-            <tr>
-              <td>Thai 2, Thai 4, Thai 6, Thai 8</td>
-              <td>11 July - 11 August 2016</td>
-            </tr>
-            <tr>
-              <td><strong>Class times:</strong></td>
-              <td><strong>Mon - Thurs 9 am - 12 noon</strong></td>
-            </tr>
-            <tr>
-              <td><strong>Cost:</strong></td>
-              <td><strong>8,000 THB</strong></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <h4>Notes</h4>
-      <ul>
-        <li>The cost of handouts and application fees is included.</li>
-        <li>If you enrol for two successive courses, (120 hours), the cost will be <strong>15,500 THB</strong>, with handouts and application fees included.</li>
-        <li>If you enrol for two successive courses, (120 hours), the cost will be <strong>20,200 THB</strong>, with documents for visa application, handouts and application fees included.</li>
-        <li>The fees do not include a textbook.</li>
-      </ul>
+      {% include 'partials/courses_thai.html' %}
     </div>
   </div>
 </div>
