@@ -42,7 +42,7 @@ def record_scores(user, writing):
     exams = {'pyueng5': 'PYU Entrance Exam 5',
             'pyueng8': 'PYU Entrance Exam 8',
             'geneng1': 'General English 1'}
-    exam_id = exams.get(user.exam_id)
+    exam_id = exams.get(user.exam_id, 'English Exam 0')
     listening, structure, reading = calc_score(get_score(user))
     if user.exam_id.startswith('pyueng'):
         total = round(((listening + structure + reading + 55) * 11.6/3) - 23.5 + (writing * 7.83))

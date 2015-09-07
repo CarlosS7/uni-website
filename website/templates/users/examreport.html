@@ -6,8 +6,7 @@
     <div class="media">
       <img class="media-object pull-left" src="{{ url_for('static', filename='images/logo.png') }}">
       <div class="media-body">
-        <h1 class="media-heading">Payap English Test</h1>
-        <h2>Language Enhancement Center</h2>
+        <h1 class="media-heading">{{ exam.exam_id.rsplit(' ', 1)[0] }}</h1>
       </div>
     </div>
 

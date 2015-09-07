@@ -128,7 +128,9 @@ def examscore():
 @app.route('/users/examreport/<int:code>')
 @login_required(role='admin')
 def examreport(code):
-    """Produce a printable report providing details about the exam score."""
+    """Produce a printable report providing details about the exam score.
+    The title of the report uses the value of the exam.exam_id without the number.
+    """
     exam = Examscores.query.filter_by(code=str(code)).first()
     taken_date = datetime.strftime(exam.taken_date, '%d %B %Y')
     return render_template('users/examreport.html',
