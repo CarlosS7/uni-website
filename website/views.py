@@ -14,7 +14,7 @@ def load_user(id):
 
 @app.after_request
 def add_no_cache(response):
-    """Make sure that pages are not cached."""
+    """Make sure that pages are not cached if the current user is authenticated."""
     if current_user.is_authenticated():
         response.headers.add('Cache-Control', 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0')
     return response
@@ -22,10 +22,6 @@ def add_no_cache(response):
 @app.route('/')
 def index():
     return render_template('index.html')
-
-@app.route('/about')
-def about():
-    return render_template('about.html')
 
 @app.errorhandler(404)
 def page_not_found(error):
@@ -44,6 +40,7 @@ def exam_page():
             answers=answers)
 
 def get_time_limit(data):
+    """Format the time limit for the exam."""
     (hrs, mins) = divmod(data.get('time_limit', 180), 60)
     data['time_string'] = 'Time remaining: {}:{:02d}'.format(hrs, mins)
     return data
@@ -51,18 +48,20 @@ def get_time_limit(data):
 @app.route('/users/exam/update_results', methods=['POST'])
 @login_required(role='examinee')
 def update_results():
-    """Get user's answers."""
-    get_results(request.get_json())
+    """Get the user's answers. This function can be called periodically
+    during the exam so that data loss can be kept to a minimum.
+    """
+    results_to_db(request.get_json())
     return json.dumps({'status': 'ok'})
 
 @app.route('/users/exam/finish', methods=['POST'])
 @login_required(role='examinee')
 def finish():
-    """Get user's answers and logout user."""
-    get_results(request.form.items())
+    """Get the user's answers and logout user."""
+    results_to_db(request.form.items())
     return redirect(url_for('logout'))
 
-def get_results(items):
+def results_to_db(items):
     """Add the user's answers to the database."""
     if isinstance(items, dict):
         results = items
@@ -97,6 +96,7 @@ def logout():
 @app.route('/users')
 @login_required(role='admin')
 def user_page():
+    """The main admin user page."""
     exams = [(q.exam_id, q.exam_name) for q in Exams.query.all()
             if q.exam_id.startswith('pyueng')]
     old = list(set([exam.taken_date for exam in Examscores.query.all()]))
@@ -106,6 +106,7 @@ def user_page():
 @app.route('/users/addexaminee', methods=['POST'])
 @login_required(role='admin')
 def addexaminee():
+    """Add an examinee to the User table in the database."""
     items = dict(request.get_json())
     users = add_examinees([(None, items.get('fullname'), items.get('exam_id'))])
     if users:
@@ -117,6 +118,7 @@ def addexaminee():
 @app.route('/users/examscore', methods=['POST'])
 @login_required(role='admin')
 def examscore():
+    """Display exam scores filtered by date."""
     items = dict(request.get_json())
     date = items.get('getscore')
     exams = Examscores.query.filter_by(taken_date=date).all()
@@ -126,6 +128,7 @@ def examscore():
 @app.route('/users/examreport/<int:code>')
 @login_required(role='admin')
 def examreport(code):
+    """Produce a printable report providing details about the exam score."""
     exam = Examscores.query.filter_by(code=str(code)).first()
     taken_date = datetime.strftime(exam.taken_date, '%d %B %Y')
     return render_template('users/examreport.html',
@@ -134,6 +137,10 @@ def examreport(code):
 @app.route('/users/examwriting', methods=['POST'])
 @login_required(role='admin')
 def examwriting():
+    """Send the user's writing score, calculate the total score and update
+    the database. Once the total score is calculated, the user is transferred
+    from the User table to the Examscores table in the database.
+    """
     items = dict(request.get_json())
     for data in items:
         user = User.query.filter_by(username=data).first()
@@ -146,12 +153,14 @@ def examwriting():
 @app.route('/users/checkwriting', methods=['POST'])
 @login_required(role='admin')
 def checkwriting():
+    """Show the examinees' writing so that they can be assessed."""
     users = User.query.all()
     check = [assess_writing(username) for username in users
             if username.role == 'examinee' and json.loads(username.answer_page)]
     return render_template('partials/checkwriting.html', check=check)
 
 def assess_writing(user):
+    """Get the user's writing section from his/her answer_page."""
     answers = json.loads(user.answer_page)
     writing = answers.get('writing')
     return (user.username, user.fullname, writing)

@@ -4,6 +4,10 @@ from website import login_man, db
 from website.models import User
 
 def login_required(role):
+    """Decorator function to check that the current user is allowed to
+    access the page/resource. First, there is a check to see if the current
+    user is authenticated, and then the user's role is checked.
+    """
     def wrapper(fn):
         @wraps(fn)
         def decorated_view(*args, **kwargs):
@@ -16,7 +20,7 @@ def login_required(role):
     return wrapper
 
 def add_admin(username, password, fullname):
-    """Add an admin user to the database."""
+    """Add an admin user to the User table in the database."""
     user = User(username=username, role='admin', fullname=fullname)
     user.hash_password(password)
     db.session.add(user)

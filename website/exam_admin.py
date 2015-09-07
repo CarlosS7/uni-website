@@ -25,7 +25,9 @@ def calc_score(ans_list):
     return listening, structure, reading
 
 def update_db(user, exam_score):
-    """Remove the user from the User table and add him/her to the Examscores table."""
+    """Remove the user (examinee) from the User table and add him/her to the
+    Examscores table.
+    """
     answer_page = json.loads(user.answer_page)
     taken_date = datetime.now().date()
     db.session.add(Examscores(username=user.fullname, code=user.username,
@@ -34,7 +36,9 @@ def update_db(user, exam_score):
     db.session.commit()
 
 def record_scores(user, writing):
-    """Write the scores and apply the calculation formula, if necessary."""
+    """Get the user's scores, apply the calculation formula, if necessary,
+    and assign a grade to the user.
+    """
     exams = {'pyueng5': 'PYU Entrance Exam 5',
             'pyueng8': 'PYU Entrance Exam 8',
             'geneng1': 'General English 1'}
@@ -51,22 +55,29 @@ def record_scores(user, writing):
     update_db(user, exam_score)
 
 def get_grade(total):
+    """Calculate the grade for the PYU exam."""
     if total > 629:
-        grade = 'Upper advanced'
+        grade = 'Grade: Upper advanced'
     elif total > 569:
-        grade = 'Lower advanced'
+        grade = 'Grade: Lower advanced'
     elif total > 446:
-        grade = 'Upper intermediate'
+        grade = 'Grade: Upper intermediate'
     elif total > 342:
-        grade = 'Lower intermediate'
+        grade = 'Grade: Lower intermediate'
     elif total > 326:
-        grade = 'Elementary'
+        grade = 'Grade: Elementary'
     else:
-        grade = 'Beginner'
+        grade = 'Grade: Beginner'
     return grade
 
 def add_examinees(namelist):
-    """Add examinees to the database."""
+    """Add examinees to the User table in the database.
+    The namelist is a list of tuples. Each tuple contains the username,
+    or user id, fullname, or real name, and exam id. If the username is
+    None, a random username is generated.
+    This function returns a list of tuples. Each tuple contains the username,
+    password (randomly generated), fullname and exam id.
+    """
     examinees = []
     for (username, fullname, exam_id) in namelist:
         username, password = get_user_id(username)
@@ -105,7 +116,7 @@ def rand_password():
     return ''.join(myrg.choice(alphabet) for i in range(length))
 
 def get_user_id(user_id):
-    """Assign a number or generate a random number to be used as the username."""
+    """Assign an id or generate a random number to be used as the username."""
     if user_id and not User.query.filter_by(username=str(user_id)).count():
         password = rand_password()
         return user_id, password

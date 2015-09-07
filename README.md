@@ -2,8 +2,11 @@
 
 An example website using Flask, Python3 and Postgresql.
 
-This example consists of three apps: one is a regular site with home and about page,
-one is an exam, and the last one is a basic admin page. You need to login to take the exam.
+This example consists of three apps: one consists of a single page which provides
+information about the university department and the courses it provides, another
+one is an exam, and the last one is a basic admin page, which is used to add
+examinees, give scores for the writing section, and get the users' scores.
+You need to login to take the exam.
 
 ### Usage
 
@@ -17,8 +20,8 @@ to setup this app with Flask, Postgresql and Apache.
 ### Customizing this app
 
 The exam app was written for an English exam with reading, listening
-and writing sections, as can be seen if you look at the `questions.html`
-template in the `templates` directory. However, it is also meant to be
+and writing sections, as can be seen if you look at the `exam.html`
+template in the `templates/users` directory. However, it is also meant to be
 easily customizable. If you have any questions about customization,
 feel free to let me know.
 
